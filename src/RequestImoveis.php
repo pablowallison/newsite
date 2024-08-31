@@ -24,9 +24,10 @@ class RequestImoveis {
             $authorization ? "Authorization: $authorization" : ""
         ]);
         
-        // Definindo opções de SSL
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($ch, CURLOPT_CAINFO, '/etc/ssl/certs/cacert.pem');
+        // Desabilitar verificação SSL (não recomendado em produção)
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
 
         // Executando a requisição e pegando a resposta
         $result = curl_exec($ch);
