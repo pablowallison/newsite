@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use Exception;
 
 class RequestImoveis{
     public function request($url, $method = 'GET', $data = null, $authorization = null)
