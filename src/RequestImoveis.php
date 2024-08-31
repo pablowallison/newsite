@@ -3,6 +3,89 @@
 namespace App;
 use Exception;
 
+<?php
+
+namespace App;
+
+use Exception;
+
+class RequestImoveis {
+    
+    public function request($url, $method = 'GET', $data = null, $authorization = null) {
+        $ch = curl_init();
+        
+        if ($method === 'POST') {
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data ? http_build_query($data) : '');
+        } elseif ($method === 'GET' && !empty($data)) {
+            $url .= '?' . http_build_query($data);
+        }
+
+        // Setando a URL e outras opções do cURL
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // Retorna a resposta como uma string
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Content-type: application/x-www-form-urlencoded",
+            $authorization ? "Authorization: $authorization" : ""
+        ]);
+        
+        // Definindo opções de SSL
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_CAINFO, '/etc/ssl/certs/cacert.pem');
+
+        // Executando a requisição e pegando a resposta
+        $result = curl_exec($ch);
+
+        // Verificando por erros no cURL
+        if (curl_errno($ch)) {
+            $error = curl_error($ch);
+            curl_close($ch);
+            throw new Exception("cURL error: $error");
+        }
+
+        // Fechando o cURL
+        curl_close($ch);
+
+        // Decodificando a resposta JSON
+        $decodedResult = json_decode($result, true);
+        if ($decodedResult === null) {
+            throw new Exception("Error decoding JSON response: $result");
+        }
+
+        return $decodedResult;
+    }
+
+    public function loadAll() {
+        try {
+            // Parâmetros de filtro
+            $body = [
+                'limit'     => '3',
+                'order'     => 'nome',
+                'direction' => 'desc'
+            ];
+
+            // URL da API que você quer acessar
+            $location = 'https://painel.concretizaconstrucoes.com/rest.php?class=ImoveisRestService&method=LoadAll';
+
+            // Chave de autorização no formato Basic
+            $authorization = 'Basic 9fbbb2c765d1d5d12c1e3582a9329108c4ed9a96b199ffab6700a413869c';
+
+            // Fazendo a requisição à API
+            $retorno = $this->request($location, 'GET', $body, $authorization);
+            $arrayRetorno = json_decode(json_encode($retorno), true);
+
+            return $arrayRetorno;
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+            return null;
+        }
+    }
+}
+
+
+/*
+
+classe que funciona
 class RequestImoveis{
     public function request($url, $method = 'GET', $data = null, $authorization = null)
 {
@@ -59,3 +142,6 @@ class RequestImoveis{
     }
     }
 }
+*/
+
+?>
