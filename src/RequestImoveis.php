@@ -68,9 +68,8 @@ class RequestImoveis {
 
             // Fazendo a requisição à API
             $retorno = $this->request($location, 'GET', $body, $authorization);
-            $arrayRetorno = json_decode(json_encode($retorno), true);
-
-            return $arrayRetorno;
+            
+            return $Retorno;
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
             return null;
