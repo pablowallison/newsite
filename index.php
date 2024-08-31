@@ -1,10 +1,12 @@
 <?php
-require_once 'lib/RequestImoveis.php';
-
-echo "olá";
+require_once 'vendor/autoload.php';
+use \App\RequestImoveis;
 
 $imoveis = new RequestImoveis;
-$imovel = $imoveis->getAll();
-var_dump($imovel);
+$result = $imoveis->loadAll();
+
+foreach ($result['data'] as $imovel) {
+    var_dump($imovel['imagens']);
+}
 
 ?>

@@ -1,0 +1,21 @@
+{
+    "name": "pw/concretiza",
+    "description": "Projeto de desenvolvimento de site para construtora e imobiliária.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pablo Wallison",
+            "email": "contato@pablowallison.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twig/twig": "^3.12"
+    }
+}
