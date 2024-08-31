@@ -12,7 +12,12 @@ class RequestImoveis{
             'header'  => "Content-type: application/x-www-form-urlencoded\r\n"
                         . ($authorization ? "Authorization: $authorization\r\n" : ""),
             'content' => $data ? http_build_query($data) : ''
-        ]
+        ],
+        'ssl' => [
+        'cafile' => '/etc/ssl/certs/cacert.pem',
+        'verify_peer' => true,
+        'verify_peer_name' => true,
+        ],
     ];
 
     $context  = stream_context_create($options);
