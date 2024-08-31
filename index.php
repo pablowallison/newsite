@@ -1,14 +1,14 @@
 <?php
 require_once 'vendor/autoload.php';
-use \App\RequestImoveis;
 
-$imoveis = new RequestImoveis;
+
+$imoveis = new \App\RequestImoveis;
 $result = $imoveis->loadAll();
 
-var_dump($result);
+//var_dump($result);
 
-/*foreach ($result['data'] as $imovel) {
+foreach ($result['data'] as $imovel) {
     var_dump($imovel['imagens']);
-}*/
+}
 
 ?>
