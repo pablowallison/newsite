@@ -1,20 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Listagem de Imóveis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .property-card {
+            transition: transform 0.2s;
+        }
+
+        .property-card:hover {
+            transform: scale(1.05);
+        }
+
+        .property-image {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
-    <p>Pablo</p>
-    {% for imovel in imoveis %}
-    <div>
-        <h2>{{ imovel.titulo }}</h2>
-        {% for imagem in imovel.imagens %}
-            <img src="https://painel.concretizaconstrucoes.com/{{ imagem.imagem }}" alt="{{ imagem.titulo }}">
-        {% endfor %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Imóveis Disponíveis</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for imovel in imoveis %}
+            <div class="col">
+                <div class="card property-card">
+                    <!-- Início do slide -->
+                    <div id="carouselImovel{{ loop.index }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner">
+                            {% for imagem in imovel.imagens %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img src="https://painel.concretizaconstrucoes.com/{{ imagem.imagem }}" class="d-block w-100 property-image" alt="Imagem do imóvel">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- Fim do slide -->
+                    <div class="card-body">
+                        <h5 class="card-title">{{ imovel.titulo }}</h5>
+                        <p class="card-text">{{ imovel.descricao }}</p>
+                        <p class="card-text"><strong>{{ imovel.preco }}</strong></p>
+                        <a href="#" class="btn btn-primary">Ver detalhes</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

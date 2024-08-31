@@ -35,17 +35,22 @@ $route->add('home', function($args) use ($twig) {
     $result = $imoveis->loadAll();
 
     //var_dump($result);
-
+    
     foreach ($result['data'] as $imovel) {  
-        $imovel['imagens']; // Certifique-se de que este dado está sendo corretamente tratado
-        $imoveisComImagens[] = $imovel; // Adiciona o imóvel com imagens no array
+        if($imovel['status'] == 1){
+            $imovel['imagens']; // Certifique-se de que este dado está sendo corretamente tratado
+            $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
+            $imoveisComImagens[] = $imovel; // Adiciona o imóvel com imagens no array
+        }
+        
     }
 
     $classActive = isset($args['action']) ? $args['action'] : 'home';
+
     $data = ['title' => 'Concretiza Construções',
              'active' => $classActive,
              'imoveis' => $imoveisComImagens];
-             
+
     renderLayout($twig, 'home.html', $data);
 });
 
