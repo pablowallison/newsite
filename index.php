@@ -1,5 +1,5 @@
 <?php
-//require_once 'ResquestImoveis.php';
+require_once 'lib/ResquestImoveis.php';
 
 echo "olá";
 ?>
