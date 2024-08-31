@@ -56,7 +56,7 @@ class RequestImoveis {
             // Parâmetros de filtro
             $body = [
                 'limit'     => '3',
-                'order'     => 'nome',
+                'order'     => 'id',
                 'direction' => 'desc'
             ];
 
