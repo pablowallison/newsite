@@ -7,5 +7,14 @@
 </head>
 <body>
     <p>Pablo</p>
+    {% for imovel in imoveis %}
+    <div>
+        <h2>{{ imovel.titulo }}</h2>
+        {% for imagem in imovel.imagens %}
+            <img src="https://painel.concretizaconstrucoes.com/{{ imagem.imagem }}" alt="{{ imagem.titulo }}">
+        {% endfor %}
+    </div>
+    {% endfor %}
+
 </body>
 </html>
