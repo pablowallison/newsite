@@ -1,11 +1,6 @@
 <?php
 
 namespace App;
-use Exception;
-
-<?php
-
-namespace App;
 
 use Exception;
 
