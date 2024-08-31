@@ -69,7 +69,7 @@ class RequestImoveis {
             // Fazendo a requisição à API
             $retorno = $this->request($location, 'GET', $body, $authorization);
             
-            return $Retorno;
+            return $retorno;
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
             return null;
