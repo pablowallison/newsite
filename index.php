@@ -3,7 +3,8 @@ require_once 'lib/RequestImoveis.php';
 
 echo "olá";
 
-$imoveis = RequestImoveis::getAll();
-var_dump($imoveis);
+$imoveis = new RequestImoveis;
+$imovel = $imoveis->getAll();
+var_dump($imovel);
 
 ?>
