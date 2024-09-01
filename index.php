@@ -92,11 +92,13 @@ $route->add('home', function($args) use ($twig) {
 
             // Atualiza o caminho da imagem para o Twig
             $imagem['imagem'] = $subdir . '/' . $nomeArquivoCodificado;
+            var_dump($imagem['imagem']);
         }
 
         if ($imovel['status'] == 1) {
             $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
             $imoveisComImagens[] = $imovel;
+            var_dump($imoveisComImagens[0]['imagens']);
         }
     }
 
