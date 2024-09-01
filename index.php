@@ -36,6 +36,7 @@ $route->add('home', function($args) use ($twig) {
     $urlBase = 'https://painel.concretizaconstrucoes.com/';  
     $diretorio = 'imagens/imobiliaria/imoveis/'; // Caminho absoluto
 
+    // Verifica se o diretório base existe, caso contrário, cria
     if (!is_dir($diretorio)) {
         mkdir($diretorio, 0755, true);
     }
@@ -46,7 +47,7 @@ $route->add('home', function($args) use ($twig) {
         foreach ($imovel['imagens'] as &$imagem) {
             $array_path_imagens = explode('/', $imagem['imagem']);
 
-            // Verificação da existência do índice 2
+            // Verificação da existência do índice 2 para criação do subdiretório
             if (isset($array_path_imagens[2])) {
                 $subdir = $diretorio . $array_path_imagens[2];
                 if (!is_dir($subdir)) {
@@ -57,6 +58,7 @@ $route->add('home', function($args) use ($twig) {
                 continue;
             }
             
+            // Configurações de contexto para ignorar verificação SSL
             $options = [
                 "ssl" => [
                     "verify_peer" => false,
@@ -66,19 +68,18 @@ $route->add('home', function($args) use ($twig) {
         
             $context = stream_context_create($options);
 
-            // Sanitização e codificação do nome da imagem
+            // Obtém o nome do arquivo original
             $nomeArquivoOriginal = basename($imagem['imagem']);
-            $nomeArquivoSanitizado = str_replace(['+', '(', ')', ' '], ['-', '_', '_', '-'], $nomeArquivoOriginal);
-            $nomeArquivoCodificado = rawurlencode($nomeArquivoSanitizado); // Codificação do nome do arquivo
+            
+            // Codifica a URL para download
+            $imagemUrl = $urlBase . str_replace(' ', '%20', ltrim($imagem['imagem'], '/')); 
 
-            // Construção da URL completa e codificação de espaços
-            $imagemUrl = $urlBase . ltrim(str_replace(' ', '%20', $imagem['imagem']), '/'); 
-
-            $caminhoSalvar = $subdir . '/' . $nomeArquivoSanitizado;
+            // Define o caminho para salvar a imagem localmente
+            $caminhoSalvar = $subdir . '/' . $nomeArquivoOriginal;
 
             try {
                 // Download e salvamento da imagem
-                $imagemConteudo = file_get_contents($imagemUrl); // Usa a URL codificada para download
+                $imagemConteudo = file_get_contents($imagemUrl, false, $context);
                 if ($imagemConteudo !== false) {
                     file_put_contents($caminhoSalvar, $imagemConteudo);
                 } else {
@@ -90,28 +91,32 @@ $route->add('home', function($args) use ($twig) {
                 continue;
             }
 
-            // Atualiza o caminho da imagem para o Twig
-            $imagem['imagem'] = $subdir . '/' . $nomeArquivoCodificado;
-            var_dump($imagem['imagem']);
+            // Atualiza o caminho da imagem para o Twig (caminho relativo para a web)
+            $imagem['imagem'] = $subdir . '/' . $nomeArquivoOriginal;
         }
 
+        // Verifica se o imóvel está ativo e formata o preço
         if ($imovel['status'] == 1) {
             $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
             $imoveisComImagens[] = $imovel;
-            var_dump($imoveisComImagens[0]['imagens']);
         }
     }
 
+    // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
 
+    // Dados para renderizar na view
     $data = [
         'title' => 'Concretiza Construções',
         'active' => $classActive,
         'imoveis' => $imoveisComImagens
     ];
 
+    // Renderiza a view utilizando Twig
     renderLayout($twig, 'home.html', $data);
 });
+
+
 
 // Executa a rota correspondente
 try {
