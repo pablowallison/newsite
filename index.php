@@ -33,9 +33,9 @@ $route->add('home', function($args) use ($twig) {
     $imoveis = new \App\RequestImoveis;
     $result = $imoveis->loadAll();
     
-    $url = 'https://painel.concretizaconstrucoes.com/';  
-    $diretorio = 'imagens/imobiliaria/imoveis/';
-    
+    $urlBase = 'https://painel.concretizaconstrucoes.com/';  
+    $diretorio = 'imagens/imobiliaria/imoveis/'; // Caminho absoluto
+
     if (!is_dir($diretorio)) {
         mkdir($diretorio, 0755, true);
     }
@@ -60,13 +60,16 @@ $route->add('home', function($args) use ($twig) {
             // Sanitização e codificação do nome da imagem
             $nomeArquivoOriginal = basename($imagem['imagem']);
             $nomeArquivoSanitizado = str_replace(['+', '(', ')', ' '], ['-', '_', '_', '-'], $nomeArquivoOriginal);
-            $nomeArquivoCodificado = rawurlencode($nomeArquivoSanitizado); // Nome do arquivo codificado
-            $imagemUrl = $url . str_replace(' ', '%20', $imagem['imagem']);
+            $nomeArquivoCodificado = rawurlencode($nomeArquivoSanitizado); // Codificação do nome do arquivo
+
+            // Construção da URL completa e codificação de espaços
+            $imagemUrl = $urlBase . ltrim(str_replace(' ', '%20', $imagem['imagem']), '/'); 
+
             $caminhoSalvar = $subdir . '/' . $nomeArquivoSanitizado;
 
             try {
                 // Download e salvamento da imagem
-                $imagemConteudo = file_get_contents($imagemUrl);
+                $imagemConteudo = file_get_contents($imagemUrl); // Usa a URL codificada para download
                 if ($imagemConteudo !== false) {
                     file_put_contents($caminhoSalvar, $imagemConteudo);
                 } else {
@@ -78,7 +81,7 @@ $route->add('home', function($args) use ($twig) {
                 continue;
             }
 
-            // Atualiza o caminho da imagem com o nome codificado para a URL
+            // Atualiza o caminho da imagem para o Twig
             $imagem['imagem'] = $subdir . '/' . $nomeArquivoCodificado;
         }
 
@@ -98,6 +101,7 @@ $route->add('home', function($args) use ($twig) {
 
     renderLayout($twig, 'home.html', $data);
 });
+
 
 
 
