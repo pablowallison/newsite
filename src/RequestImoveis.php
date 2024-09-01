@@ -67,6 +67,34 @@ class RequestImoveis {
             return null;
         }
     }
+
+    public function load($id) {
+        try {
+            // Verifica se o ID foi fornecido
+            if (empty($id)) {
+                throw new Exception("O ID é necessário para carregar o imóvel.");
+            }
+    
+            // URL da API para carregar um imóvel específico
+            $location = 'https://painel.concretizaconstrucoes.com/rest.php?class=ImoveisRestService&method=load';
+    
+            // Adiciona o ID como um parâmetro na URL
+            $location .= '&id=' . urlencode($id);
+    
+            // Chave de autorização no formato Basic
+            $authorization = 'Basic 9fbbb2c765d1d5d12c1e3582a9329108c4ed9a96b199ffab6700a413869c';
+    
+            // Fazendo a requisição à API
+            $retorno = $this->request($location, 'GET', null, $authorization);
+    
+            // Retorna o resultado da requisição
+            return $retorno;
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+            return null;
+        }
+    }
+    
 }
 
 

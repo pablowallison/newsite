@@ -33,6 +33,8 @@ $route->add('home', function($args) use ($twig) {
     $imoveis = new \App\RequestImoveis;
     $result = $imoveis->loadAll();
     
+    //var_dump($result);
+
     $urlBase = 'https://painel.concretizaconstrucoes.com/';  
     $diretorio = 'imagens/imobiliaria/imoveis/'; // Caminho absoluto
 
@@ -116,7 +118,23 @@ $route->add('home', function($args) use ($twig) {
     renderLayout($twig, 'home.html', $data);
 });
 
+$route->add('imovel', function($args) use ($twig) {
+    $imoveis = new \App\RequestImoveis;
+    $result = $imoveis->load($args['id']);
+    var_dump($result);
 
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
+
+    // Dados para renderizar na view
+    $data = [
+        'title' => 'Concretiza Construções',
+        'active' => $classActive,
+    ];
+
+    // Renderiza a view utilizando Twig
+    renderLayout($twig, 'home.html', $data);
+});
 
 // Executa a rota correspondente
 try {
