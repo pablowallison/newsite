@@ -60,9 +60,9 @@ $route->add('home', function($args) use ($twig) {
             // Sanitização e codificação do nome da imagem
             $nomeArquivoOriginal = basename($imagem['imagem']);
             $nomeArquivoSanitizado = str_replace(['+', '(', ')', ' '], ['-', '_', '_', '-'], $nomeArquivoOriginal);
-            $nomeArquivo = rawurlencode($nomeArquivoSanitizado); // Nome do arquivo codificado
+            $nomeArquivoCodificado = rawurlencode($nomeArquivoSanitizado); // Nome do arquivo codificado
             $imagemUrl = $url . str_replace(' ', '%20', $imagem['imagem']);
-            $caminhoSalvar = $subdir . '/' . $nomeArquivo;
+            $caminhoSalvar = $subdir . '/' . $nomeArquivoSanitizado;
 
             try {
                 // Download e salvamento da imagem
@@ -78,8 +78,8 @@ $route->add('home', function($args) use ($twig) {
                 continue;
             }
 
-            // Atualiza o caminho da imagem com o nome sanitizado e codificado
-            $imagem['imagem'] = $subdir . '/' . $nomeArquivoSanitizado;
+            // Atualiza o caminho da imagem com o nome codificado para a URL
+            $imagem['imagem'] = $subdir . '/' . $nomeArquivoCodificado;
         }
 
         if ($imovel['status'] == 1) {
