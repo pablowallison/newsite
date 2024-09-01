@@ -63,6 +63,7 @@ $route->add('home', function($args) use ($twig) {
                 "ssl" => [
                     "verify_peer" => true,
                     "verify_peer_name" => true,
+                    "cafile" => "/etc/ssl/certs/cacert.pem",
                 ],
             ];
         
