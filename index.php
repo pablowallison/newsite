@@ -14,7 +14,7 @@ $twig = new \Twig\Environment($loader);
 function renderLayout($twig, $template, $data = []) {
 
     $data['theme'] = THEME;
-
+    $data['root'] = ROOT;
     $content = $twig->render($template, $data);
     echo $twig->render($template, array_merge($data, ['content' => $content]));
 }
@@ -30,29 +30,78 @@ $route->add('', function($args) use ($twig) {
 });
 
 $route->add('home', function($args) use ($twig) {
-    
     $imoveis = new \App\RequestImoveis;
     $result = $imoveis->loadAll();
-
-    //var_dump($result);
     
-    foreach ($result['data'] as $imovel) {  
-        if($imovel['status'] == 1){
-            $imovel['imagens']; // Certifique-se de que este dado está sendo corretamente tratado
-            $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
-            $imoveisComImagens[] = $imovel; // Adiciona o imóvel com imagens no array
+    $url = 'https://painel.concretizaconstrucoes.com/';  
+    $diretorio = 'imagens/imobiliaria/imoveis/';
+    
+    if (!is_dir($diretorio)) {
+        mkdir($diretorio, 0755, true);
+    }
+
+    $imoveisComImagens = []; // Inicializando o array para armazenar imóveis com imagens
+
+    foreach ($result['data'] as $imovel) {
+        foreach ($imovel['imagens'] as &$imagem) {
+            $array_path_imagens = explode('/', $imagem['imagem']);
+
+            // Verificação da existência do índice 2
+            if (isset($array_path_imagens[2])) {
+                $subdir = $diretorio . $array_path_imagens[2];
+                if (!is_dir($subdir)) {
+                    mkdir($subdir, 0755, true);
+                }
+            } else {
+                // Tratamento de erro: diretório não foi identificado corretamente
+                continue;
+            }
+
+            // Sanitização e codificação do nome da imagem
+            $nomeArquivoOriginal = basename($imagem['imagem']);
+            $nomeArquivoSanitizado = str_replace(['+', '(', ')', ' '], ['-', '_', '_', '-'], $nomeArquivoOriginal);
+            $nomeArquivo = rawurlencode($nomeArquivoSanitizado); // Nome do arquivo codificado
+            $imagemUrl = $url . str_replace(' ', '%20', $imagem['imagem']);
+            $caminhoSalvar = $subdir . '/' . $nomeArquivo;
+
+            try {
+                // Download e salvamento da imagem
+                $imagemConteudo = file_get_contents($imagemUrl);
+                if ($imagemConteudo !== false) {
+                    file_put_contents($caminhoSalvar, $imagemConteudo);
+                } else {
+                    // Tratamento de erro: Falha ao baixar a imagem
+                    continue;
+                }
+            } catch (Exception $e) {
+                // Tratamento de exceção: Falha ao salvar a imagem
+                continue;
+            }
+
+            // Atualiza o caminho da imagem com o nome sanitizado e codificado
+            $imagem['imagem'] = $subdir . '/' . $nomeArquivoSanitizado;
         }
-        
+
+        if ($imovel['status'] == 1) {
+            $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
+            $imoveisComImagens[] = $imovel;
+        }
     }
 
     $classActive = isset($args['action']) ? $args['action'] : 'home';
 
-    $data = ['title' => 'Concretiza Construções',
-             'active' => $classActive,
-             'imoveis' => $imoveisComImagens];
+    $data = [
+        'title' => 'Concretiza Construções',
+        'active' => $classActive,
+        'imoveis' => $imoveisComImagens
+    ];
 
     renderLayout($twig, 'home.html', $data);
 });
+
+
+
+
 
 
 

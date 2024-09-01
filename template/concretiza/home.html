@@ -32,7 +32,7 @@
                         <div class="carousel-inner">
                             {% for imagem in imovel.imagens %}
                             <div class="carousel-item {% if loop.first %}active{% endif %}">
-                                <img src="https://painel.concretizaconstrucoes.com/{{ imagem.imagem }}" class="d-block w-100 property-image" alt="Imagem do imóvel">
+                                <img src="{{ imagem.imagem }}" class="d-block w-100 property-image" alt="Imagem do imóvel">
                             </div>
                             {% endfor %}
                         </div>
@@ -40,7 +40,7 @@
                     <!-- Fim do slide -->
                     <div class="card-body">
                         <h5 class="card-title">{{ imovel.titulo }}</h5>
-                        <p class="card-text">{{ imovel.descricao }}</p>
+                        <p class="card-text">{{ imovel.descricao|raw }}</p>
                         <p class="card-text"><strong>{{ imovel.preco }}</strong></p>
                         <a href="#" class="btn btn-primary">Ver detalhes</a>
                     </div>
