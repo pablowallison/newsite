@@ -61,9 +61,8 @@ $route->add('home', function($args) use ($twig) {
             // Configurações de contexto para ignorar verificação SSL
             $options = [
                 "ssl" => [
-                    "verify_peer" => true,
-                    "verify_peer_name" => true,
-                    "cafile" => "/etc/ssl/certs/cacert.pem",
+                    "verify_peer" => false,
+                    "verify_peer_name" => false,
                 ],
             ];
         
