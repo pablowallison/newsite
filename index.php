@@ -34,13 +34,22 @@ $route->add('home', function($args) use ($twig) {
     $result = $imoveis->loadAll();
     
     $urlBase = 'https://painel.concretizaconstrucoes.com/';  
-    $diretorio = 'imagens/imobiliaria/imoveis/'; // Caminho absoluto
+    $diretorio = __DIR__ . '/imagens/imobiliaria/imoveis/'; // Caminho absoluto
 
     if (!is_dir($diretorio)) {
         mkdir($diretorio, 0755, true);
     }
 
     $imoveisComImagens = []; // Inicializando o array para armazenar imóveis com imagens
+
+    $options = [
+        "ssl" => [
+            "verify_peer" => false,
+            "verify_peer_name" => false,
+        ],
+    ];
+
+    $context = stream_context_create($options);
 
     foreach ($result['data'] as $imovel) {
         foreach ($imovel['imagens'] as &$imagem) {
@@ -68,8 +77,8 @@ $route->add('home', function($args) use ($twig) {
             $caminhoSalvar = $subdir . '/' . $nomeArquivoSanitizado;
 
             try {
-                // Download e salvamento da imagem
-                $imagemConteudo = file_get_contents($imagemUrl); // Usa a URL codificada para download
+                // Download e salvamento da imagem com o contexto para desabilitar SSL
+                $imagemConteudo = file_get_contents($imagemUrl, false, $context);
                 if ($imagemConteudo !== false) {
                     file_put_contents($caminhoSalvar, $imagemConteudo);
                 } else {
@@ -81,8 +90,8 @@ $route->add('home', function($args) use ($twig) {
                 continue;
             }
 
-            // Atualiza o caminho da imagem para o Twig
-            $imagem['imagem'] = $subdir . '/' . $nomeArquivoCodificado;
+            // Atualiza o caminho da imagem para o Twig com a URL codificada
+            $imagem['imagem'] = str_replace(' ', '%20', $urlBase . ltrim($imagem['imagem'], '/'));
         }
 
         if ($imovel['status'] == 1) {
@@ -101,6 +110,7 @@ $route->add('home', function($args) use ($twig) {
 
     renderLayout($twig, 'home.html', $data);
 });
+
 
 
 
