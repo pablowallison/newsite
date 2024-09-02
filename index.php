@@ -67,6 +67,36 @@ $route->add('imovel', function($args) use ($twig) {
     renderLayout($twig, 'imovel.html', $data);
 });
 
+$route->add('venda', function($args) use ($twig) {
+    
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
+
+    // Dados para renderizar na view
+    $data = [
+        'title' => 'Concretiza Construções',
+        'active' => $classActive,
+    ];
+
+    // Renderiza a view utilizando Twig
+    renderLayout($twig, 'venda.html', $data);
+});
+
+$route->add('destaques', function($args) use ($twig) {
+    
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
+
+    // Dados para renderizar na view
+    $data = [
+        'title' => 'Concretiza Construções',
+        'active' => $classActive,
+    ];
+
+    // Renderiza a view utilizando Twig
+    renderLayout($twig, 'venda.html', $data);
+});
+
 // Executa a rota correspondente
 try {
     $route->run($action, $param);
