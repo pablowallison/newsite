@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Imóvel</title>
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="./template/{{theme}}/css/style.css">
+    <!-- Demo CSS (No need to include it into your project) -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'partials/navbar.html' %}
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Detalhes do Imóvel</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <!--<img src="imagens/{{ imovel.imagem_url }}" class="img-fluid" alt="Imagem do Imóvel">-->
+
+                <main class="cd__main">
+                    <!-- Start DEMO HTML (Use the following code into your project)-->
+                    <img src="imagens/{{imovel.imagens|first.imagem}}" id="main">
+                    
+                    <div id="thumbnails">
+                        {% for imagem in imovel.imagens %}
+                        <img src="imagens/{{imagem.imagem}}">
+                        {% endfor %}
+                    </div>
+                    <!-- END EDMO HTML (Happy Coding!)-->
+                </main>
+
+            </div>
+            <div class="col-md-6">
+                <h2>{{ titulo }}</h2>
+                <p>{{ descricao|raw }}</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Preço:</strong> R$ {{ imovel.preco|number_format(2, ',', '.') }}
+                    </li>
+                    <li class="list-group-item"><strong>Área Construída:</strong> {{ imovel.area_construida }} m²</li>
+                    <li class="list-group-item"><strong>Área do Terreno:</strong> {{ imovel.area_terreno }} m²</li>
+                    <li class="list-group-item"><strong>Quartos:</strong> {{ imovel.quarto }}</li>
+                    <li class="list-group-item"><strong>Banheiros:</strong> {{ imovel.banheiro }}</li>
+                    <li class="list-group-item"><strong>Garagem:</strong> {{ imovel.garagem }}</li>
+                    <li class="list-group-item"><strong>Cidade:</strong> {{ imovel.cidade }}</li>
+                    <li class="list-group-item"><strong>UF:</strong> {{ imovel.uf }}</li>
+                    <li class="list-group-item"><strong>Endereço:</strong> {{ imovel.logradouro }}, {{ imovel.num }} -
+                        {{ imovel.bairro }}</li>
+                    <li class="list-group-item"><strong>CEP:</strong> {{ imovel.cep }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-4">
+            <a href="index.php?action=home" class="btn btn-primary">Voltar à Listagem</a>
+        </div>
+    </div>
+
+    <script src="./template/{{theme}}/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
