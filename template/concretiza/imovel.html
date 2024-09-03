@@ -15,8 +15,21 @@
 <body>
     {% include 'partials/navbar.html' %}
 
-    <div class="container mt-5">
-        <h1 class="mb-4">Detalhes do Imóvel</h1>
+    <div class="container mt-5 mb-5">
+        <div class="d-flex">
+            <div class="ml-auto">
+                <div class="mt-4">
+                    <a href="index.php?action=home" class="btn btn-primary mb-4">Voltar à Listagem</a>
+                </div>
+            </div>
+        </div>
+        <h2 class="mb-2">DETALHES DO IMÓVEL</h2>
+        <hr class="mb-1">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <span class="small"> Publicado em: {{imovel.created_at}} </span>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
                 <!--<img src="imagens/{{ imovel.imagem_url }}" class="img-fluid" alt="Imagem do Imóvel">-->
@@ -53,10 +66,9 @@
                 </ul>
             </div>
         </div>
-        <div class="mt-4">
-            <a href="index.php?action=home" class="btn btn-primary">Voltar à Listagem</a>
-        </div>
     </div>
+    
+    {% include 'partials/footer.html' %}
 
     <script src="./template/{{theme}}/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
