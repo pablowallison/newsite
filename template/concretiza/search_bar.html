@@ -1,21 +1,21 @@
 <div class="container mt-5">
-    <div class=" mx-auto">
+    <div class="mx-auto">
         <form method="GET"> <!-- Envia os dados para index.php -->
             <input type="hidden" name="action" value="search"> <!-- Define a ação search -->
             <div class="search-bar">
                 <div class="row">
                     <div class="col-12">
-                        <div class="row">
+                        <div class="row justify-content-between align-items-center">
                             <div class="col-12 col-md-3">
-                                <select name="pretensao" class="form-control form-control-lg mr-2">
-                                    <option  disabled selected>Pretensão</option>
+                                <select name="pretensao" class="form-control form-control-lg">
+                                    <option disabled selected>Pretensão</option>
                                     {% for categoria in dropdown_categoria_imoveis %}
                                     <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="col-12 col-md-3">
-                                <select style="padding: 10px;" name="tipo_imovel" class="form-control form-control-lg mr-2">
+                                <select name="tipo_imovel" class="form-control form-control-lg">
                                     <option disabled selected>Tipo Imóvel</option>
                                     {% for tipo in dropdown_tipo_imoveis %}
                                     <option value="{{ tipo.id }}">{{ tipo.nome }}</option>
@@ -23,10 +23,10 @@
                                 </select>
                             </div>
                             <div class="col-12 col-md-3">
-                                <input type="text" name="localizacao" class="form-control form-control-lg mr-2" placeholder="Digite o bairro">
+                                <input type="text" name="localizacao" class="form-control form-control-lg" placeholder="Digite o bairro">
                             </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-lg ml-2" type="submit">Encontrar imóvel</button>
+                            <div class="col-12 col-md-3 d-flex">
+                                <button class="btn btn-primary w-100" type="submit">Encontrar imóvel</button>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                 <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Mais filtros
                 </button>
-                <div class="dropdown-menu p-3">
+                <div class="dropdown-menu p-3 pt-2">
                     <div class="form-group">
                         <label for="preco">Preço</label>
                         <input type="text" name="preco" id="preco" class="form-control" placeholder="Ex.: 200000">

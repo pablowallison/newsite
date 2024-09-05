@@ -30,7 +30,7 @@ class ImoveisService {
                     }
                 }
             }
-            var_dump($body);
+            //var_dump($body);
             // URL da API que você quer acessar
             $location = 'https://painel.concretizaconstrucoes.com/rest.php?class=ImoveisRestService&method=LoadAll';
             
@@ -59,7 +59,7 @@ class ImoveisService {
         }
 
         $result = $this->loadAll($param);
-        var_dump($result);
+        //var_dump($result);
         //$result = $imoveis->loadAll();
 
         $urlBase = 'https://painel.concretizaconstrucoes.com/';  

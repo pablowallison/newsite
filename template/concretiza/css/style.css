@@ -1,3 +1,11 @@
+.btn{
+border-radius: 50px !important;
+}
+.btn:hover{
+  border-radius: 50px !important;
+}
+
+
 #main, #thumbnails img {
   /*box-shadow: 2px 2px 10px 5px #b8b8b8;*/
   border-radius: 10px;
@@ -64,12 +72,11 @@
   box-shadow: none;
   height: 48px;
   border-radius: 50px;
-  margin-bottom: 15px;
 }
 
 .search-bar .btn {
   border-radius: 50px;
-  background-color: #2D2D2D;
+  /*background-color: #2D2D2D;*/
   color: white;
   padding: 10px 20px;
 }
@@ -81,6 +88,8 @@
 .dropdown-menu {
   padding: 20px;
   width: 300px;
+  margin: 15px 0px !important;
+  border-radius: 20px !important;
 }
 
 .dropdown-menu label {
@@ -98,11 +107,7 @@
 
 @media (max-width: 768px) {
   /* Estilos para dispositivos móveis */
-  .col-md-4 .form-control {
-    border: none;
-    box-shadow: none;
-    height: 48px;
-    border-radius: 50px;
-    margin-bottom: 1rem;
+  .col-md-3 .form-control {
+    margin-bottom: 15px;
   }
 }
