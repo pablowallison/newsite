@@ -105,6 +105,33 @@ border-radius: 50px !important;
   border: 1px solid #ced4da;
 }
 
+/*CARD*/
+.property-card {
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.property-card:hover {
+  transform: scale(1.05);
+}
+
+.property-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.price-box {
+  position: absolute;
+  top: 5px;
+  left: 5px; /* Mudando para right em vez de usar Bootstrap */
+  background-color: rgba(0, 123, 255, 0.8);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+  z-index: 10; /* Para garantir que o elemento esteja sobreposto à imagem */
+}
+
 @media (max-width: 768px) {
   /* Estilos para dispositivos móveis */
   .col-md-3 .form-control {
