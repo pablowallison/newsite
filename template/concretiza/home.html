@@ -29,7 +29,7 @@
             color: white;
             padding: 5px;
             border-radius: 5px;
-            font-size: 1.2rem;
+            font-size: 15px;
             z-index: 10; /* Para garantir que o elemento esteja sobreposto à imagem */
         }
     </style>
@@ -51,7 +51,7 @@
                             {% for imagem in imovel.imagens %}
                             <div class="carousel-item {% if loop.first %}active{% endif %}">
                                 <div class="price-box">
-                                    <span class="small" style="font-weight: bold;">R$ {{ imovel.preco }}</span>
+                                    <span style="font-weight: bold;">R$ {{ imovel.preco }}</span> 
                                 </div>
                                 <img src="{{ imagem.imagem }}" class="d-block w-100 property-image" alt="Imagem do imóvel">
                                 <!-- Box de preço -->
