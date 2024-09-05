@@ -24,7 +24,7 @@
         .price-box {
             position: absolute;
             top: 5px;
-            right: 5px; /* Mudando para right em vez de usar Bootstrap */
+            left: 5px; /* Mudando para right em vez de usar Bootstrap */
             background-color: rgba(0, 123, 255, 0.8);
             color: white;
             padding: 5px;
@@ -60,10 +60,12 @@
                         </div>
                     </div>
                     <!-- Fim do slide -->
-                    <div class="card-body">
+                    <div class="card-body ">
                         <h5 class="card-title">{{ imovel.titulo }}</h5>
                         <p class="card-text">{{ imovel.descricao|raw }}</p>
-                        <a href="index.php?action=imovel&id={{imovel.id}}" class="btn btn-primary">Ver detalhes</a>
+                        <div class="d-flex justify-content-end align-items-end">
+                            <a href="index.php?action=imovel&id={{imovel.id}}" class="btn btn-primary">Ver detalhes</a>
+                        </div>
                     </div>
                 </div>
             </div>
