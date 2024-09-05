@@ -112,7 +112,7 @@ border-radius: 50px !important;
 }
 
 .property-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
 
 .property-image {
