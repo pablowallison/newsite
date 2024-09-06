@@ -45,6 +45,7 @@ $route->add('home', function($args) use ($twig) {
     
     $results = new \App\ImoveisService();
     $result = $results->loadAll();
+    var_dump($result);
     // Verifica se o imóvel está ativo e formata o preço
     foreach($result['data'] as &$imovel){
         if ($imovel['status'] == 1) {
@@ -124,6 +125,7 @@ $route->add('destaques', function($args) use ($twig) {
 
 $route->add('search', function($args) use ($twig) {
     
+    
     //var_dump($args);
     
     // Captura os dados do formulário enviados via GET
@@ -143,7 +145,13 @@ $route->add('search', function($args) use ($twig) {
     }
 
     if (!empty($args['preco'])) {
+        $precoFormatado1 = str_replace('R$', '', $args['preco']);
+        $precoFormatado = str_replace('.', '', $precoFormatado1);
+        // Substitui a vírgula pelo ponto para usar o formato decimal do PHP
+        $args['preco'] = str_replace(',', '.', $precoFormatado);
+        //var_dump($args['preco']);
         $filters[] = ['preco', '<=', (float) $args['preco']];
+        
     }
 
     if (!empty($args['quartos'])) {
@@ -176,8 +184,19 @@ $route->add('search', function($args) use ($twig) {
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
-
+    //var_dump($args['preco']);
+    //$args['preco'] = urldecode($args['preco']);
     // Dados para renderizar na view
+    // Decodifica os dados da URL
+    //var_dump($args['preco']);
+    /*if (!empty($args['preco'])) {
+        $args['preco'] = urldecode($args['preco']); // Decodifica o valor para o formato original
+        // Remove os separadores de milhares e converte a vírgula em ponto
+        $args['preco'] = str_replace('.', '', $args['preco']);
+        
+    }*/
+    $args['preco'] = number_format($args['preco'], 2, ',', '.');
+    //var_dump($args['preco']);
     $data = [
         'args' => $args,
         'title' => 'Concretiza Construções',

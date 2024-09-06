@@ -10,7 +10,7 @@
                                 <select name="pretensao" class="form-control form-control-lg">
                                     <option disabled {% if args.pretensao is empty %}selected{% endif %}>Pretensão</option>
                                     {% for categoria in dropdown_categoria_imoveis %}
-                                    <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                                    <option value="{{ categoria.id }}" {% if categoria.id == args.pretensao %}selected{% endif %}>{{ categoria.nome }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -18,7 +18,7 @@
                                 <select name="tipo_imovel" class="form-control form-control-lg">
                                     <option disabled {% if args.tipo_imovel is empty %}selected{% endif %}>Tipo Imóvel</option>
                                     {% for tipo in dropdown_tipo_imoveis %}
-                                    <option value="{{ tipo.id }}">{{ tipo.nome }}</option>
+                                    <option value="{{ tipo.id }}" {% if tipo.id == args.tipo_imovel %}selected{% endif %}>{{ tipo.nome }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -39,15 +39,15 @@
                 <div class="dropdown-menu p-3 pt-2">
                     <div class="form-group">
                         <label for="preco">Preço</label>
-                        <input type="text" name="preco" id="preco" class="form-control" value="{{ args.preco is not empty ? args.preco : '' }}" placeholder="Ex.: 200000">
+                        <input type="text" name="preco" id="preco" class="form-control" value="{{ args.preco | default('') }}" placeholder="R$ 0,00">
                     </div>
                     <div class="form-group">
                         <label for="quartos">Número de quartos</label>
-                        <input type="text" name="quartos" id="quartos" class="form-control" value="{{ args.quartos is not empty ? args.quartos : '' }}" placeholder="Ex.: 3">
+                        <input type="text" name="quartos" id="quartos" class="form-control" value="{{ args.quartos | default('') }}" placeholder="Ex.: 3">
                     </div>
                     <div class="form-group">
                         <label for="banheiros">Número de banheiros</label>
-                        <input type="text" name="banheiros" id="banheiros" class="form-control" value="{{ args.banheiros is not empty ? args.banheiros : '' }}" placeholder="Ex.: 2">
+                        <input type="text" name="banheiros" id="banheiros" class="form-control" value="{{ args.banheiros | default('') }}" placeholder="Ex.: 2">
                     </div>
                     <div class="form-group-filters text-right">
                         <button type="submit" class="btn btn-primary" id="aplicar-filtros">Aplicar</button>
