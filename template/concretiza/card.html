@@ -11,7 +11,7 @@
                 <div class="carousel-inner">
                     {% for imagem in imovel.imagens %}
                     <div class="carousel-item {% if loop.first %}active{% endif %}">
-                        <img src="{{ url }}/{{ imagem.imagem }}" class="d-block w-100 property-image" alt="Imagem do imóvel">
+                        <a href="index.php?action=imovel&id={{imovel.id}}"><img src="{{ url }}/{{ imagem.imagem }}" class="d-block w-100 property-image" alt="Imagem do imóvel"></a>
                     </div>
                     {% endfor %}
                 </div>
@@ -28,8 +28,18 @@
             <div class="card-body ">
                 <h5 class="card-title">{{ imovel.titulo }}</h5>
                 <p class="card-text">{{ imovel.descricao|raw }}</p>
-                <div class="d-flex justify-content-end align-items-end">
-                    <a href="index.php?action=imovel&id={{imovel.id}}" class="btn btn-primary">Ver detalhes</a>
+                <div class="d-flex justify-content-between align-items-end">
+                    <div class="d-flex flex-column">
+                        <div class="elemento-superior">
+                            <!-- Elemento superior -->
+                            <span class="small" style="font-weight: bold;">Bairro {{ imovel.bairro }}</span>
+                        </div>
+                        <div class="elemento-inferior">
+                            <!-- Elemento inferior com espaçamento -->
+                            <span class="small">{{ imovel.cidade }}</span>
+                        </div>
+                    </div>
+                    <a href="index.php?action=imovel&id={{imovel.id}}" class="btn btn-primary ml-auto">Ver detalhes</a>
                 </div>
             </div>
         </div>

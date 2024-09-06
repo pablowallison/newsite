@@ -78,7 +78,7 @@ $route->add('imovel', function($args) use ($twig) {
     $imoveis = new \App\ImoveisService();
     $result = $imoveis->load($args['id']);
     //var_dump($result['data']['0']);
-
+    //var_dump($result);
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
 

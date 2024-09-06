@@ -134,6 +134,10 @@ border-radius: 50px !important;
 .form-group-filters{
 margin-bottom: 0px !important; 
 }
+
+.elemento-superior{
+  margin-bottom: -7px;
+}
 @media (max-width: 768px) {
   /* Estilos para dispositivos móveis */
   .col-md-3 .form-control {
