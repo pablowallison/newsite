@@ -124,6 +124,8 @@ $route->add('destaques', function($args) use ($twig) {
 
 $route->add('search', function($args) use ($twig) {
     
+    //var_dump($args);
+    
     // Captura os dados do formulário enviados via GET
     $filters = [];
     
@@ -169,6 +171,7 @@ $route->add('search', function($args) use ($twig) {
         }
         //var_dump($imovel[0]);
     }
+
     //var_dump($imoveis);
 
     // Determina a classe ativa para a página
@@ -176,11 +179,13 @@ $route->add('search', function($args) use ($twig) {
 
     // Dados para renderizar na view
     $data = [
+        'args' => $args,
         'title' => 'Concretiza Construções',
         'active' => $classActive,
-        'imoveis' => $imoveis
+        'imoveis' => isset($imoveis) ? $imoveis : ['not-found' => 'Imóveis não encontrado!']
+        
     ];
-
+    //var_dump($data);
     // Renderiza a view utilizando Twig
     renderLayout($twig, 'home.html', $data);
 });

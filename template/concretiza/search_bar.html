@@ -8,7 +8,7 @@
                         <div class="row justify-content-between align-items-center">
                             <div class="col-12 col-md-3">
                                 <select name="pretensao" class="form-control form-control-lg">
-                                    <option disabled selected>Pretensão</option>
+                                    <option disabled {% if args.pretensao is empty %}selected{% endif %}>Pretensão</option>
                                     {% for categoria in dropdown_categoria_imoveis %}
                                     <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
                                     {% endfor %}
@@ -16,14 +16,14 @@
                             </div>
                             <div class="col-12 col-md-3">
                                 <select name="tipo_imovel" class="form-control form-control-lg">
-                                    <option disabled selected>Tipo Imóvel</option>
+                                    <option disabled {% if args.tipo_imovel is empty %}selected{% endif %}>Tipo Imóvel</option>
                                     {% for tipo in dropdown_tipo_imoveis %}
                                     <option value="{{ tipo.id }}">{{ tipo.nome }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="col-12 col-md-3">
-                                <input type="text" name="localizacao" class="form-control form-control-lg" placeholder="Digite o bairro">
+                                <input type="text" name="localizacao" class="form-control form-control-lg" value="{{ args.localizacao is not empty ? args.localizacao : '' }}" placeholder="Digite o bairro">
                             </div>
                             <div class="col-12 col-md-3 d-flex">
                                 <button class="btn btn-primary w-100" type="submit">Encontrar imóvel</button>
@@ -39,15 +39,18 @@
                 <div class="dropdown-menu p-3 pt-2">
                     <div class="form-group">
                         <label for="preco">Preço</label>
-                        <input type="text" name="preco" id="preco" class="form-control" placeholder="Ex.: 200000">
+                        <input type="text" name="preco" id="preco" class="form-control" value="{{ args.preco is not empty ? args.preco : '' }}" placeholder="Ex.: 200000">
                     </div>
                     <div class="form-group">
                         <label for="quartos">Número de quartos</label>
-                        <input type="text" name="quartos" id="quartos" class="form-control" placeholder="Ex.: 3">
+                        <input type="text" name="quartos" id="quartos" class="form-control" value="{{ args.quartos is not empty ? args.quartos : '' }}" placeholder="Ex.: 3">
                     </div>
                     <div class="form-group">
                         <label for="banheiros">Número de banheiros</label>
-                        <input type="text" name="banheiros" id="banheiros" class="form-control" placeholder="Ex.: 2">
+                        <input type="text" name="banheiros" id="banheiros" class="form-control" value="{{ args.banheiros is not empty ? args.banheiros : '' }}" placeholder="Ex.: 2">
+                    </div>
+                    <div class="form-group-filters text-right">
+                        <button type="submit" class="btn btn-primary" id="aplicar-filtros">Aplicar</button>
                     </div>
                 </div>
             </div>

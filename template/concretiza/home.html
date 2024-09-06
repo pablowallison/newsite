@@ -17,8 +17,12 @@
     {% include 'search_bar.html' %}
 
     <div class="container mt-5 mb-5">
-        <h1 class="text-center mb-4 text-title" style="font-family: 'Exo 2', sans-serif; font-weight: bold;">IMÓVEIS DISPONÍVEIS</h1>
-        {% include 'card.html' %}
+        <h1 class="text-center mb-4 text-tile" style="font-family: 'Exo 2', sans-serif; font-weight: bold;">IMÓVEIS DISPONÍVEIS</h1>
+        {% if imoveis['not-found'] is defined %}
+            <p>{{ imoveis['not-found'] }}</p>
+        {% else %}
+            {% include 'card.html' %}
+        {% endif %}
     </div>
 
     {% include 'partials/footer.html' %}
