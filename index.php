@@ -45,7 +45,7 @@ $route->add('home', function($args) use ($twig) {
     
     $results = new \App\ImoveisService();
     $result = $results->loadAll();
-    var_dump($result);
+    //var_dump($result);
     // Verifica se o imóvel está ativo e formata o preço
     foreach($result['data'] as &$imovel){
         if ($imovel['status'] == 1) {
