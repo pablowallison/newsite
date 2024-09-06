@@ -3,6 +3,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/init.php';
 
 define('ROOT', getcwd());
+define('URL', $config['url']);
 define('THEME', $config['theme']);
 define('THEME_PATH', ROOT . '/template/' . THEME);
 
@@ -21,6 +22,7 @@ function renderLayout($twig, $template, $data = []) {
 
     $data['dropdown_categoria_imoveis'] = $resultCategoriaImoveis['data'];
     $data['dropdown_tipo_imoveis'] = $resultTipoImoveis['data'];
+    $data['url'] = URL;
     $data['theme'] = THEME;
     $data['root'] = ROOT;
     //var_dump($data);
@@ -41,8 +43,21 @@ $route->add('', function($args) use ($twig) {
 
 $route->add('home', function($args) use ($twig) {
     
-    $result = new \App\ImoveisService();
-    $imoveis = $result->loadAllProperty();
+    $results = new \App\ImoveisService();
+    $result = $results->loadAll();
+    // Verifica se o imóvel está ativo e formata o preço
+    foreach($result['data'] as &$imovel){
+        if ($imovel['status'] == 1) {
+            $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
+            $imoveis[] = $imovel;
+        }
+        //var_dump($imovel[0]);
+    }
+    /*if ($imoveis['status'] == 1) {
+        $imoveis['preco'] = number_format($imoveis['preco'], 2, ',', '.');
+        $imoveis[] = $imoveis;
+    }*/
+    //var_dump($imoveis['data']);
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
@@ -146,8 +161,15 @@ $route->add('search', function($args) use ($twig) {
 
     $imoveisService = new App\ImoveisService();
     $result = $imoveisService->loadAll($params);
-
-    var_dump($result);
+     // Verifica se o imóvel está ativo e formata o preço
+     foreach($result['data'] as &$imovel){
+        if ($imovel['status'] == 1) {
+            $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
+            $imoveis[] = $imovel;
+        }
+        //var_dump($imovel[0]);
+    }
+    //var_dump($imoveis);
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
@@ -156,10 +178,11 @@ $route->add('search', function($args) use ($twig) {
     $data = [
         'title' => 'Concretiza Construções',
         'active' => $classActive,
+        'imoveis' => $imoveis
     ];
 
     // Renderiza a view utilizando Twig
-    renderLayout($twig, 'venda.html', $data);
+    renderLayout($twig, 'home.html', $data);
 });
 
 // Executa a rota correspondente

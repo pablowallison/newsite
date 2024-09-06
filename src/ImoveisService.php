@@ -51,6 +51,7 @@ class ImoveisService {
 
     public function loadAllProperty($param = null){
 
+        
         // Verifica se o cache existe e não está expirado
         if (file_exists($this->cacheFile) && (time() - filemtime($this->cacheFile) < $this->cacheTTL)) {
             // Carrega dados do cache
@@ -59,8 +60,6 @@ class ImoveisService {
         }
 
         $result = $this->loadAll($param);
-        //var_dump($result);
-        //$result = $imoveis->loadAll();
 
         $urlBase = 'https://painel.concretizaconstrucoes.com/';  
         $diretorio = 'imagens/imobiliaria/imoveis/'; // Caminho absoluto
@@ -135,8 +134,15 @@ class ImoveisService {
 
         // Salva os dados processados no cache
         file_put_contents($this->cacheFile, json_encode($imoveisComImagens));
+        var_dump($imoveisComImagens);
 
         return $imoveisComImagens;
+        /*if (empty($result['data']) || $result['data'] === $imoveisComImagens) {
+            // Retorna os dados do cache, pois os dados não mudaram
+            return $imoveisComImagens;
+        }else{
+        }*/
+
     }
 
     public function load($id) {
