@@ -15,7 +15,7 @@ $twig = new \Twig\Environment($loader);
 // Função para renderizar o layout com conteúdo (se necessário)
 function renderLayout($twig, $template, $data = []) {
 
-    var_dump($data);
+    //var_dump($data);
     $categoriaImoveis = new \App\ImoveisService();
     $resultCategoriaImoveis = $categoriaImoveis->loadCategoriaImoveis();
     $resultTipoImoveis = $categoriaImoveis->loadTipoImoveis();
