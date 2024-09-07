@@ -167,127 +167,31 @@ margin-bottom: 0px !important;
 }
 }
 
-
-.whatsapp-icon {
-  transition: transform .3s ease-in-out; /* para efeito de hover */
-}
-
-.whatsapp-float:hover .whatsapp-icon {
-  transform: scale(1.1); /* faz o ícone crescer um pouco quando passar o mouse */
-}
-
-/* Estilos do botão do WhatsApp */
-.whatsapp-float {
+.whatsapp-button {
   position: fixed;
-  width: 60px; /* Tamanho do botão */
-  height: 60px; /* Tamanho do botão */
-  bottom: 20px; /* Distância da borda inferior da página */
-  left: 20px; /* Distância da borda direita da página */
-  background-color: #25D366; /* Cor de fundo do WhatsApp */
-  color: #ffffff; /* Cor do ícone */
-  outline: none;
-  border-radius: 100%; /* Forma circular do botão */
-  text-align: center; /* Centraliza o ícone dentro do botão */
-  font-size: 30px; /* Tamanho do ícone */
-  line-height: 60px; /* Centraliza o ícone verticalmente */
-  z-index: 1001; /* Assegura que o botão fique sobre o chatbox */
-  cursor: pointer; /* Muda o cursor para indicar que é clicável */
-  box-shadow: none; /* Sombra leve para destacar o botão */
-  border: none;
-}
-
-@media (min-width: 768px) {
-  .whatsapp-float {
-      position: fixed;
-      width: 60px; /* Tamanho do botão */
-      height: 60px; /* Tamanho do botão */
-      bottom: 20px; /* Distância da borda inferior da página */
-      left: 20px; /* Distância da borda direita da página */
-      background-color: #25D366; /* Cor de fundo do WhatsApp */
-      color: #ffffff; /* Cor do ícone */
-      outline: none;
-      border-radius: 100%; /* Forma circular do botão */
-      text-align: center; /* Centraliza o ícone dentro do botão */
-      font-size: 30px; /* Tamanho do ícone */
-      line-height: 60px; /* Centraliza o ícone verticalmente */
-      z-index: 1001; /* Assegura que o botão fique sobre o chatbox */
-      cursor: pointer; /* Muda o cursor para indicar que é clicável */
-      box-shadow: none; /* Sombra leve para destacar o botão */
-      border: none;
-  }
-}
-
-/* Efeito hover para o botão */
-.whatsapp-float:hover {
-  background-color: #128C7E; /* Cor mais escura quando passar o mouse */
-}
-
-.whatsapp-float:focus {
-  outline: none;
-}
-
-/* Estilos do chatbox do WhatsApp */
-#whatsappChatBox {
-  position: fixed;
-  bottom: 100px; /* Distância para o botão não sobrepor o chatbox */
-  left: 20px; /* Alinhado com o botão */
-  width: 300px; /* Largura do chatbox */
-  height: 400px; /* Altura do chatbox */
-  background-color: #ffffff; /* Cor de fundo do chatbox */
-  border-radius: 15px; /* Bordas arredondadas na parte superior */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar o chatbox */
-  z-index: 1001; /* Garante que o chatbox apareça sobre outros elementos */
-  display: flex; /* Permite usar flexbox para alinhar conteúdos */
-  flex-direction: column; /* Organiza os filhos do chatbox em coluna */
-  overflow: hidden; /* Oculta conteúdo que exceda o tamanho do chatbox */
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
-}
-
-#whatsappChatBox.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Conteúdo do chat */
-.whatsapp-chatbox-content {
-  padding: 20px;
-  overflow-y: auto; /* Permite rolagem se o conteúdo exceder o espaço vertical */
-}
-
-/* Adaptação para ícone do Font Awesome */
-.whatsappButton .fab.fa-whatsapp {
-  transform: translate(0, -35%); /* Centraliza verticalmente o ícone */
-}
-
-.chat-top {
+  bottom: 20px;
+  left: 20px;
+  background-color: #25D366;
+  color: white;
+  font-size: 30px;
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  
+  /* Centralização com flexbox */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #26d367;
-  padding: 10px;
 }
 
-#chatbox .chatbox-title {
-  margin-top: 20px;
-  color: white;
-  padding: 0px 10px;
+.whatsapp-button:hover {
+  background-color: #20c35a;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
-#chatbox .chatbox-top p {
-  margin-top: -10px;
-  margin-bottom: -10;
-  padding: 20px, 20px;
+.whatsapp-button i {
   color: white;
-}
-
-/* Botão de fechar */
-#closeChatBox {
-  position: absolute;
-  top: 0px;
-  right: 15px; /* Alinha o botão de fechar à direita */
-  color: white;
-  font-size: 25px; /* Tamanho do ícone de fechar */
-  cursor: pointer; /* Indica que é clicável */
 }
