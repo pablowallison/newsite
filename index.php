@@ -14,11 +14,12 @@ $twig = new \Twig\Environment($loader);
 // Função para renderizar o layout com conteúdo (se necessário)
 function renderLayout($twig, $template, $data = []) {
 
+    //var_dump($data);
     $categoriaImoveis = new \App\ImoveisService();
     $resultCategoriaImoveis = $categoriaImoveis->loadCategoriaImoveis();
     $resultTipoImoveis = $categoriaImoveis->loadTipoImoveis();
     //var_dump($resultTipoImoveis);
-
+    
 
     $data['dropdown_categoria_imoveis'] = $resultCategoriaImoveis['data'];
     $data['dropdown_tipo_imoveis'] = $resultTipoImoveis['data'];
@@ -37,7 +38,7 @@ $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : '';
 $param = array_merge($_GET, $_POST);
 
 $route->add('', function($args) use ($twig) {
-    header("Location: /home" );
+    header("Location: index.php?action=home" );
     exit();
 });
 
@@ -75,9 +76,10 @@ $route->add('home', function($args) use ($twig) {
 });
 
 $route->add('imovel', function($args) use ($twig) {
+    //var_dump($_GET);
     $imoveis = new \App\ImoveisService();
     $result = $imoveis->load($args['id']);
-    //var_dump($result['data']['0']);
+    //var_dump($result);
     //var_dump($result);
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
@@ -214,6 +216,7 @@ $route->add('search', function($args) use ($twig) {
 
 // Executa a rota correspondente
 try {
+    //var_dump($param);
     $route->run($action, $param);
 } catch (Exception $e) {
     echo "Página não encontrada";
