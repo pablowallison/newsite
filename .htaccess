@@ -3,9 +3,9 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 ErrorDocument 404 /notfound
 
-#RewriteRule ^([0-9]+)$  index.php?action=show_post&post_id=$1
+RewriteRule ^(.*)$ index.php?class=$1 [L,QSA]
 
-RewriteRule ^home$ index.php?action=home [L]
-RewriteRule ^imovel/([0-9]+)$ index.php?action=imovel&id=$1 [L] 
+#RewriteRule ^home$ index.php?action=home [L]
+#RewriteRule ^imovel/([0-9]+)$ index.php?action=imovel&id=$1 [L] 
 #RewriteRule ^artigos$ index.php?action=show_category&category_id=1
 #RewriteRule ^eventos$ index.php?action=show_category&category_id=2
