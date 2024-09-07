@@ -3,7 +3,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/init.php';
 
 define('ROOT', getcwd());
-var_dump(ROOT);
+//var_dump(ROOT);
 define('URL', $config['url']);
 define('THEME', $config['theme']);
 define('THEME_PATH', ROOT . '/template/' . THEME);
@@ -15,7 +15,7 @@ $twig = new \Twig\Environment($loader);
 // Função para renderizar o layout com conteúdo (se necessário)
 function renderLayout($twig, $template, $data = []) {
 
-    var_dump($data);
+    //var_dump($data);
     $categoriaImoveis = new \App\ImoveisService();
     $resultCategoriaImoveis = $categoriaImoveis->loadCategoriaImoveis();
     $resultTipoImoveis = $categoriaImoveis->loadTipoImoveis();
