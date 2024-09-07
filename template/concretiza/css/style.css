@@ -1,8 +1,24 @@
+
 .btn{
 border-radius: 50px !important;
 }
 .btn:hover{
   border-radius: 50px !important;
+}
+.link-default{
+  color: #e05d35 !important;
+  text-decoration: none;
+}
+
+.mb-n2{
+  margin-bottom: -2px;
+}
+.grey{
+  color: #495057;
+}
+.link-default:hover{
+  color: #be360c !important;
+  text-decoration: none;
 }
 
 .form-control:focus {
