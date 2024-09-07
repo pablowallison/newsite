@@ -189,7 +189,7 @@ margin-bottom: 0px !important;
   border-radius: 100%; /* Forma circular do botão */
   text-align: center; /* Centraliza o ícone dentro do botão */
   font-size: 30px; /* Tamanho do ícone */
-  /*line-height: 60px; /* Centraliza o ícone verticalmente */
+  line-height: 60px; /* Centraliza o ícone verticalmente */
   z-index: 1001; /* Assegura que o botão fique sobre o chatbox */
   cursor: pointer; /* Muda o cursor para indicar que é clicável */
   box-shadow: none; /* Sombra leve para destacar o botão */
@@ -209,7 +209,7 @@ margin-bottom: 0px !important;
       border-radius: 100%; /* Forma circular do botão */
       text-align: center; /* Centraliza o ícone dentro do botão */
       font-size: 30px; /* Tamanho do ícone */
-      /*line-height: 60px; /* Centraliza o ícone verticalmente */
+      line-height: 60px; /* Centraliza o ícone verticalmente */
       z-index: 1001; /* Assegura que o botão fique sobre o chatbox */
       cursor: pointer; /* Muda o cursor para indicar que é clicável */
       box-shadow: none; /* Sombra leve para destacar o botão */
