@@ -5,6 +5,14 @@ border-radius: 50px !important;
   border-radius: 50px !important;
 }
 
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgb(255 71 0 / 25%) !important;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #f1653a !important;
@@ -113,7 +121,7 @@ border-radius: 50px !important;
   padding: 5px;
   margin-bottom: 10px;
   border-radius: 5px;
-  border: 1px solid #ced4da;
+  border: 1px solid #dadada;
 }
 
 /*CARD*/
