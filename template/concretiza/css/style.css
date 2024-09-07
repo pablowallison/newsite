@@ -193,8 +193,12 @@ margin-bottom: 0px !important;
 .whatsapp-button:hover {
   background-color: #20c35a;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  /* Remove o sublinhado */
+  text-decoration: none;
 }
 
 .whatsapp-button i {
   color: white;
+  /* Remove o sublinhado */
+  text-decoration: none;
 }
