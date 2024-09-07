@@ -195,7 +195,10 @@ $route->add('search', function($args) use ($twig) {
         $args['preco'] = str_replace('.', '', $args['preco']);
         
     }*/
-    $args['preco'] = number_format($args['preco'], 2, ',', '.');
+    if(!empty($args['preco'])){
+        $args['preco'] = number_format($args['preco'], 2, ',', '.');
+    }
+    
     //var_dump($args['preco']);
     $data = [
         'args' => $args,
