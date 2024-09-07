@@ -39,7 +39,7 @@ $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : '';
 $param = array_merge($_GET, $_POST);
 
 $route->add('', function($args) use ($twig) {
-    header("Location: /home" );
+    header("Location: ./home" );
     exit();
 });
 
