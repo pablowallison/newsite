@@ -3,6 +3,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/init.php';
 
 define('ROOT', getcwd());
+var_dump(ROOT);
 define('URL', $config['url']);
 define('THEME', $config['theme']);
 define('THEME_PATH', ROOT . '/template/' . THEME);
