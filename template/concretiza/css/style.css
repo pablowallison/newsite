@@ -10,6 +10,11 @@ a:hover {
 .btn{
 border-radius: 50px !important;
 }
+
+.btn-primary {
+  color: #fff !important;
+}
+
 .btn:hover{
   border-radius: 50px !important;
 }
