@@ -19,6 +19,7 @@
             <p>{{ imoveis['not-found'] }}</p>
         {% else %}
             {% include 'card.html' %}
+            
         {% endif %}
     </div>
 
@@ -40,6 +41,26 @@
             unmaskAsNumber: true,
             placeholder: "0"
         });
+
+        $(document).ready(function(){
+            $('form').on('submit', function(e){
+                e.preventDefault(); // Evita o comportamento padrão de recarregar a página
+
+                $.ajax({
+                    url: $(this).attr('action'), // A URL do seu backend que processa a pesquisa
+                    type: 'GET',                 // Usamos GET porque estamos buscando imóveis
+                    data: $(this).serialize(),    // Enviamos os parâmetros do formulário
+                    success: function(response){
+                        // Atualiza apenas o container dos cards com a nova listagem
+                        $('#resultados-imoveis').html($(response).find('#resultados-imoveis').html());
+                    },
+                    error: function(){
+                        alert('Erro ao carregar os imóveis.');
+                    }
+                });
+            });
+        });
+
     });
     
     </script>

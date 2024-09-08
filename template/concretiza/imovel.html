@@ -31,11 +31,11 @@
 
                 <main class="cd__main">
                     <!-- Start DEMO HTML (Use the following code into your project)-->
-                    <img src="imagens/{{imovel.imagens|first.imagem}}" id="main">
+                    <img src="{{ url }}/{{imovel.imagens|first.imagem}}" id="main">
                     
                     <div id="thumbnails">
                         {% for imagem in imovel.imagens %}
-                        <img src="imagens/{{imagem.imagem}}">
+                        <img src="{{ url }}/{{imagem.imagem}}">
                         {% endfor %}
                     </div>
                     <!-- END EDMO HTML (Happy Coding!)-->

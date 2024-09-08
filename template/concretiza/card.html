@@ -1,47 +1,49 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for imovel in imoveis %}
-    <div class="col-12 col-md-4 mb-4">
-        <div class="card property-card position-relative">
-            <!-- Box de preço -->
-            <div class="price-box">
-                <span style="font-weight: bold;">R$ {{ imovel.preco }}</span> 
-            </div>
-            <!-- Início do slide -->
-            <div id="carouselImovel{{ loop.index }}" class="carousel slide" data-ride="carousel" data-interval="5000">
-                <div class="carousel-inner">
-                    {% for imagem in imovel.imagens %}
-                    <div class="carousel-item {% if loop.first %}active{% endif %}">
-                        <a href="index.php?action=imovel&id={{imovel.id}}"><img src="{{ url }}/{{ imagem.imagem }}" class="d-block w-100 property-image" alt="Imagem do imóvel"></a>
-                    </div>
-                    {% endfor %}
+<div id="resultados-imoveis">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for imovel in imoveis %}
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card property-card position-relative">
+                <!-- Box de preço -->
+                <div class="price-box">
+                    <span style="font-weight: bold;">R$ {{ imovel.preco }}</span> 
                 </div>
-                <a class="carousel-control-prev" href="#carouselImovel{{ loop.index }}" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Anterior</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselImovel{{ loop.index }}" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Próximo</span>
-                </a>
-            </div>
-            <!-- Fim do slide -->
-            <div class="card-body ">
-                <h5 class="card-title">{{ imovel.titulo }}</h5>
-                <div class="d-flex justify-content-between align-items-end">
-                    <div class="d-flex flex-column">
-                        <div class="elemento-superior">
-                            <!-- Elemento superior -->
-                            <span class="small" style="font-weight: bold;">Bairro {{ imovel.bairro }}</span>
+                <!-- Início do slide -->
+                <div id="carouselImovel{{ loop.index }}" class="carousel slide" data-ride="carousel" data-interval="5000">
+                    <div class="carousel-inner">
+                        {% for imagem in imovel.imagens %}
+                        <div class="carousel-item {% if loop.first %}active{% endif %}">
+                            <a href="index.php?action=imovel&id={{imovel.id}}"><img src="{{ url }}/{{ imagem.imagem }}" class="d-block w-100 property-image" alt="Imagem do imóvel"></a>
                         </div>
-                        <div class="elemento-inferior">
-                            <!-- Elemento inferior com espaçamento -->
-                            <span class="small">{{ imovel.cidade }}</span>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <a href="index.php?action=imovel&id={{imovel.id}}" class="btn btn-primary ml-auto">Ver detalhes</a>
+                    <a class="carousel-control-prev" href="#carouselImovel{{ loop.index }}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselImovel{{ loop.index }}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Próximo</span>
+                    </a>
+                </div>
+                <!-- Fim do slide -->
+                <div class="card-body ">
+                    <h5 class="card-title">{{ imovel.titulo }}</h5>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div class="d-flex flex-column">
+                            <div class="elemento-superior">
+                                <!-- Elemento superior -->
+                                <span class="small" style="font-weight: bold;">Bairro {{ imovel.bairro }}</span>
+                            </div>
+                            <div class="elemento-inferior">
+                                <!-- Elemento inferior com espaçamento -->
+                                <span class="small">{{ imovel.cidade }}</span>
+                            </div>
+                        </div>
+                        <a href="index.php?action=imovel&id={{imovel.id}}" class="btn btn-primary ml-auto">Ver detalhes</a>
+                    </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
