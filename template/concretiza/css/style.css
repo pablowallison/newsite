@@ -236,3 +236,33 @@ margin-bottom: 0px !important;
   /* Remove o sublinhado */
   text-decoration: none;
 }
+
+/*scroll to top */
+.scroll-top {
+  bottom: 20px;
+  font-size: 20px;
+  height: 40px;
+  position: fixed;
+  text-align: center;
+  width: 40px;
+  z-index: 10;
+  cursor: pointer;
+  transition: .3s;
+  border-radius: 50%;
+  line-height: 40px;
+  right: -100px;
+  color: #ffffff;
+  background-color: rgba(255, 109, 0, 0.5);
+  user-select: none;   /* Impede que o texto seja selecionado */
+  pointer-events: auto; /* Garante que o elemento seja clicável */
+  cursor: pointer;      /* Mostra o cursor de clique ao invés do cursor de texto */ }
+  
+  .scroll-top:hover {
+    background-color: #ff6d00;
+    transition: all .4s ease-in-out; }
+  .scroll-top.active {
+    right: 20px; }
+    
+    .scroll-top:focus {
+      outline: none;        /* Remove o outline de foco (se necessário) */
+    }
