@@ -1,4 +1,12 @@
 
+a {
+  color: #e05d35 !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
 .btn{
 border-radius: 50px !important;
 }

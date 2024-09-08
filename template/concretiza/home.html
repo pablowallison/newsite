@@ -42,6 +42,7 @@
             placeholder: "0"
         });
 
+        //função js para fazer a filtragem e busca de imoveis do lado do cliente    
         $(document).ready(function(){
             $('form').on('submit', function(e){
                 e.preventDefault(); // Evita o comportamento padrão de recarregar a página
@@ -51,8 +52,14 @@
                     type: 'GET',                 // Usamos GET porque estamos buscando imóveis
                     data: $(this).serialize(),    // Enviamos os parâmetros do formulário
                     success: function(response){
-                        // Atualiza apenas o container dos cards com a nova listagem
-                        $('#resultados-imoveis').html($(response).find('#resultados-imoveis').html());
+                        var resultados = $(response).find('#resultados-imoveis').html();
+
+                        // Verifica se o conteúdo retornado está vazio
+                        if ($.trim(resultados) === '') {
+                            $('#resultados-imoveis').html('<p>A sua busca não retornou nenhum resultado.</p>');
+                        } else {
+                            $('#resultados-imoveis').html(resultados);
+                        }
                     },
                     error: function(){
                         alert('Erro ao carregar os imóveis.');
@@ -60,7 +67,6 @@
                 });
             });
         });
-
     });
     
     </script>
