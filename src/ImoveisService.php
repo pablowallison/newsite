@@ -14,7 +14,7 @@ class ImoveisService {
 
             // Parâmetros de filtro
             $body = [
-                'limit' => isset($param['limit']) ? $param['limit'] : '3',
+                'limit' => isset($param['limit']) ? $param['limit'] : '',
                 'order' => isset($param['order']) ? $param['order'] : 'id',
                 'direction' => isset($param['direction']) ? $param['direction'] : 'desc'
             ];
