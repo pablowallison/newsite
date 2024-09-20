@@ -9,8 +9,10 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="./template/{{theme}}/css/style.css">
     <!-- Demo CSS (No need to include it into your project) -->
-    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- CDN FANCYBOX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+
 </head>
 
 <body>
@@ -27,20 +29,19 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <!--<img src="imagens/{{ imovel.imagem_url }}" class="img-fluid" alt="Imagem do Imóvel">-->
-
                 <main class="cd__main">
-                    <!-- Start DEMO HTML (Use the following code into your project)-->
-                    <img src="{{ url }}/{{imovel.imagens|first.imagem}}" id="main">
+                    <a href="{{ url }}/{{imovel.imagens|first.imagem}}" data-fancybox="gallery" data-caption="Imagem principal">
+                        <img src="{{ url }}/{{imovel.imagens|first.imagem}}" id="main" class="img-fluid">
+                    </a>
                     
                     <div id="thumbnails">
                         {% for imagem in imovel.imagens %}
-                        <img src="{{ url }}/{{imagem.imagem}}">
+                        <a href="{{ url }}/{{imagem.imagem}}" data-fancybox="gallery" data-caption="Imagem {{ loop.index }}">
+                            <img src="{{ url }}/{{imagem.imagem}}" class="img-thumbnail">
+                        </a>
                         {% endfor %}
                     </div>
-                    <!-- END EDMO HTML (Happy Coding!)-->
                 </main>
-
             </div>
             <div class="col-md-6">
                 <h2>{{ titulo }}</h2>
@@ -73,23 +74,22 @@
     {% include 'partials/footer.html' %}
     <script>
         var thumbnails = document.getElementById("thumbnails")
-        var imgs = thumbnails.getElementsByTagName("img")
-        var main = document.getElementById("main")
-        var counter=0;
-        
-        for(let i=0;i<imgs.length;i++){
-          let img=imgs[i]
-          
-          
-          img.addEventListener("click",function(){
-          main.src=this.src
-        })
-          
-        }</script>
+    var imgs = thumbnails.getElementsByTagName("img")
+    var main = document.getElementById("main")
+    var counter=0;
+    
+    for(let i=0;i<imgs.length;i++){
+      let img=imgs[i]
+      
+      img.addEventListener("click",function(){
+        main.src=this.src
+      })
+    }</script>
     <script src="./template/{{theme}}/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
 </body>
 
