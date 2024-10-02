@@ -19,7 +19,8 @@ function renderLayout($twig, $template, $data = []) {
     $categoriaImoveis = new \App\ImoveisService();
     $resultCategoriaImoveis = $categoriaImoveis->loadCategoriaImoveis();
     $resultTipoImoveis = $categoriaImoveis->loadTipoImoveis();
-    //var_dump($resultTipoImoveis);
+    $iconeSite = './imagens/assets/icon.svg';
+    //var_dump($iconeSite);
     
 
     $data['dropdown_categoria_imoveis'] = $resultCategoriaImoveis['data'];
@@ -27,6 +28,7 @@ function renderLayout($twig, $template, $data = []) {
     $data['url'] = URL;
     $data['theme'] = THEME;
     $data['root'] = ROOT;
+    $data['icon'] = $iconeSite;
     //var_dump($data);
 
     $content = $twig->render($template, $data);
