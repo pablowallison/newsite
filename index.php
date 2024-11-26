@@ -81,6 +81,16 @@ $route->add('home', function($args) use ($twig) {
 $route->add('imovel', function($args) use ($twig) {
     //var_dump($_GET);
     $imoveis = new \App\ImoveisService();
+    $result_all = $imoveis->loadAll();
+    
+    foreach($result_all['data'] as &$imovelAll){
+        if ($imovelAll['status'] == 1) {
+            $imovelAll['preco'] = number_format($imovelAll['preco'], 2, ',', '.');
+            $imoveisAll[] = $imovelAll;
+        }
+        //var_dump($imovel[0]);
+    }
+
     $result = $imoveis->load($args['id']);
     //var_dump($result);
     //var_dump($result['data']['0']);
@@ -91,7 +101,8 @@ $route->add('imovel', function($args) use ($twig) {
     $data = [
         'title' => 'Concretiza Construções',
         'active' => $classActive,
-        'imovel' => $result['data']['0']
+        'imovel' => $result['data']['0'],
+        'imoveis' => $imoveisAll
     ];
 
     // Renderiza a view utilizando Twig
