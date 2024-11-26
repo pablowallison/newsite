@@ -1,0 +1,131 @@
+// Colors
+.color-primary {
+    color: $accent-1 !important;
+}
+.bg-primary {
+    background-color: $accent-1 !important;
+}
+.color-primary-2 {
+    color: $accent-2 !important;
+}
+.bg-primary-2 {
+    background-color: $accent-2 !important;
+}
+.color-white {
+    color: $white !important;
+}
+.bg-white {
+    background-color: $white !important;
+}
+.color-black {
+    color: $black !important;
+}
+.bg-black {
+    background-color: $black !important;
+}
+
+.light-black {
+    color: $light-black !important;
+}
+.bg-light-black {
+    background-color: $light-black !important;
+}
+
+.medium-black {
+    color: $medium-black !important;
+}
+.bg-medium-black {
+    background-color: $medium-black !important;
+}
+
+.lightest-gray {
+    color: $lightest-gray !important;
+}
+.bg-lightest-gray {
+    background-color: $lightest-gray !important;
+}
+
+.light-gray {
+    color: $light-gray !important;
+}
+.bg-light-gray {
+    background-color: $light-gray !important;
+}
+
+.medium-gray {
+    color: $medium-gray !important;
+}
+.bg-medium-gray {
+    background-color: $medium-gray !important;
+}
+
+.dark-gray {
+    color: $dark-gray !important;
+}
+.bg-dark-gray {
+    background-color: $dark-gray !important;
+}
+
+
+// Mix helper classes
+.b-unstyle {
+    border: 0;
+    background: transparent;
+}
+.uppercase{
+    text-transform: uppercase;
+}
+.bold-text{
+    font-weight: 500;
+    line-height: 120%;
+}
+.font-sec{
+    font-family: $font-sec;
+}
+.fw-500{
+    font-weight: 500;
+}
+span{
+    &.br{
+        display: block;
+        margin-bottom: 12px;
+    }
+}
+.underline-text{
+    padding-right: clamp(13px, 0.833vw, 22px);
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    gap: 4px;
+    &:after{
+        content: "";
+        background: $accent-1;
+        width: 108%;
+        height: 4px;
+    }
+}
+.image-anime{
+	position: relative;
+	overflow: hidden;
+    &:after{
+        content: "";
+        position: absolute;
+        width: 200%;
+        height: 0%;
+        left: 50%;
+        top: 50%;
+        background-color: rgba(255,255,255,.3);
+        transform: translate(-50%,-50%) rotate(-45deg);
+        z-index: 1;
+    }
+    &:hover{
+        &:after {
+            height: 250%;
+            transition: all 600ms linear;
+            background-color: transparent;
+        }
+    }
+}
+
+
+

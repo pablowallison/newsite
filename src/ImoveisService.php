@@ -3,6 +3,7 @@
 namespace App;
 
 use Exception;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ImoveisService {
     

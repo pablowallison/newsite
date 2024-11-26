@@ -1,0 +1,61 @@
+/*----------------------------------------*/
+/*  Team CSS START
+/*----------------------------------------*/
+.team-card {
+    position: relative;
+        transition: $transition;
+    text-align: center;
+    .img-block {
+        position: relative;
+        background-color: $white;
+        overflow: hidden;
+        border-radius: 20px;
+        .team-social-links {
+            position: absolute;
+            right: -20%;
+            top: clamp(16px, 1.25vw, 32px);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 0.83vw, 24px);
+            -webkit-transition: $transition;
+            transition: $transition;
+            li{
+                a{
+                    width: clamp(24px, 1.66vw, 42px);
+                    height: clamp(24px, 1.66vw, 42px);
+                    border-radius: 5px;
+                    border: 1px solid $black;
+                    display: grid;
+                    align-content: center;
+                    justify-content: center;
+                    transition: $transition;
+                    background: transparent;
+                    img{
+                        width: clamp(14px, 1vw, 22px);
+                        transition: $transition;
+                    }
+                }
+                &:hover{
+                    a{
+                        background: $accent-2;
+                        transition: $transition;
+                        img{
+                            filter: invert(1);
+                            transition: $transition;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        transition: $transition;
+        .img-block {
+            .team-social-links {
+                right: 16px;
+                -webkit-transition: $transition;
+                transition: $transition;
+            }
+        }
+    }
+}

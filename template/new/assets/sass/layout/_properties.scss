@@ -1,0 +1,331 @@
+/*----------------------------------------*/
+/*  Property Card CSS START
+/*----------------------------------------*/
+.property-card{
+    position: relative;
+    border-radius: 10px;
+    background-color: $white;
+    &.shadow{
+        box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    }
+    .img-block{
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        .property-img{
+            -webkit-transition: all 0.6s linear 0s;
+                transition: all 0.6s linear 0s;
+        }
+        .detail-link{
+            border-radius: 20px;
+            background: $white;
+            color: $black;
+            font-size: 13px;
+            line-height: 120%;
+            padding: 4px 12px;
+            position: absolute;
+            z-index: 99;
+            top: 16px;
+            left: 16px;
+            transition: all 0.3s ease-in;
+            &:hover{
+                color: $white;
+                background: $accent-1;
+                transition: all 0.3s ease-in;
+            }
+        }
+        .category-title-bg{
+            position: absolute;
+            z-index: 1;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(160px, 10.417vw, 200px);
+        }
+        .category-title{
+            position: absolute;
+            z-index: 2;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+    .text-block{
+        padding: 24px 16px;
+        text-align: center;
+        .title{
+            &:hover{
+                color: $accent-1;
+            }
+        }
+        .location{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            color: $light-black;
+        }
+        .amenities{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: clamp(16px, 1.25px, 32px);
+            li{
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                img{
+                    width: clamp(16px, 1.042vw, 24px);
+                }
+            }
+        }
+    }
+    &:hover{
+        .img-block{
+            &:after{
+                height: 250%;
+                transition: all 600ms linear;
+                background-color: transparent;
+            }
+            .property-img{
+                -webkit-transform: scale(1.1);
+                transform: scale(1.1);
+                -webkit-transition: all 0.6s linear 0s;
+                transition: all 0.6s linear 0s;
+            }
+        }
+    }
+}
+
+/*----------------------------------------*/
+/*  Property Slider CSS START
+/*----------------------------------------*/
+.featured-properties-slider-block{
+    width: 100%;
+    background: url(../media/bg/properties-slider-bg.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: $light-gray;
+    border-radius: 30px 0 0 30px;
+    padding: clamp(20px, 1.66vw, 42px);
+    padding-right: 0;
+    @include media-query(575px) {
+        border-radius: 15px;
+        padding: clamp(20px, 1.66vw, 42px) 10px ;
+    }
+    .featured-properties-slider{
+        .property-card{
+            margin: 0 12px;
+            width: clamp(360px, 21.563vw, 700px);
+            @include media-query(575px) {
+                margin: 0 8px;
+            }
+        }
+    }
+}
+
+
+
+/*----------------------------------------*/
+/*  Property Detail CSS START
+/*----------------------------------------*/
+.property-detail{
+    .slider-block{
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        .category-tag{
+            position: absolute;
+            top: clamp(12px, 0.83vw, 24px);
+            left: clamp(12px, 0.83vw, 24px);
+            z-index: 20;
+            border-radius: 30px;
+            border: 0.5px solid $medium-gray;
+            color: $white;
+            background: $accent-1;
+            padding: 8px 12px;
+            transition: $transition;
+            font-size: clamp(9px, 0.677vw, 16px);
+            font-weight: 400;
+            line-height: 120%;
+            &:hover {
+                background: $white;
+                color: $black;
+                transition: $transition;
+            }
+        }
+        .slider-arrow{
+            gap: clamp(12px, 0.83vw, 24px);
+            position: absolute;
+            border-radius: 10px;
+            z-index: 20;
+            bottom: clamp(12px, 0.83vw, 24px);
+            right: clamp(12px, 0.83vw, 24px);
+            background: $white;
+            padding: clamp(12px, 0.83vw, 24px);
+            @include media-query(492px) {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                margin-top: 16px;
+                padding: 0;
+                background: transparent;
+                justify-content: center;
+            }
+        }
+    }
+    .amenities-list{
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: clamp(20px, 1.66vw, 42px);
+        li{
+            flex-grow: 1;
+        }
+        .amenity-block{
+            padding: clamp(20px, 1.66vw, 42px) 12px;
+            min-width: clamp(130px, 9.5vw, 300px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            background: $lightest-gray;
+            border-radius: 5px;
+        }
+    }
+     .video{
+        border-radius: 10px;
+        overflow: hidden;
+        .img-box {
+            border-radius: 10px;
+            position: relative;
+            width: 100%;
+            height: clamp(350px, 27.083vw, 800px);
+            @include media-query(492px) {
+                height: 250px;
+            }
+            .detail-image {
+                display: block;
+                border-radius: 10px;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .overlay {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 100%;
+                border-radius: 10px;
+                .play-btn {
+                    color: $black;
+                    font-size: clamp(22px, 2vw, 78px);
+                    background-color: $white;
+                    position: absolute;
+                    z-index: 10;
+                    top: 50%;
+                    left: 50%;
+                    width: clamp(54px, 3.906vw, 96px);
+                    height: clamp(54px, 3.906vw, 96px);
+                    text-align: center;
+                    border-radius: 50px;
+                    transform: translate(-50%, -50%);
+                    -ms-transform: translate(-50%, -50%);
+                    display: grid;
+                    text-align: center;
+                    align-content: center;
+                }
+            }
+        }
+        .video-box {
+            display: none;
+            border-radius: 10px;
+            overflow: hidden;
+            video {
+                border-radius: 10px;
+                width: 100%;
+                height: clamp(350px, 27.083vw, 800px);
+                object-fit: cover;
+                @include media-query(492px) {
+                    height: 250px;
+                }
+            }
+        }
+    }
+    iframe{
+        border-radius: 10px;
+        width: 100%;
+        height: clamp(350px, 25.833vw, 900px);
+    }
+}
+
+/*----------------------------------------*/
+/*  Property Type CSS START
+/*----------------------------------------*/
+.property-type-item{
+    position: relative;
+    width: 100%;
+    padding: clamp(16px, 1.25vw, 32px);
+    background: $lightest-gray;
+    border-radius: clamp(12px, 1.08vw, 24px);
+    .icon-box{
+        background: $accent-1;
+        transition: $transition;
+        width: clamp(44px, 3vw, 64px);
+        height: clamp(44px, 3vw, 64px);
+        border-radius: 50%;
+        display: grid;
+        align-content: center;
+        justify-content: center;
+        margin-bottom: clamp(16px, 1.25vw, 32px);
+        h6{
+            transition: $transition;
+        }
+        img{
+            width: clamp(20px, 1.66vw, 40px);
+        }
+    }
+    &:hover{
+        h6{
+            color: $accent-1;
+            transition: $transition;
+        }
+        .icon-box{
+            background: $accent-2;
+            transition: $transition;
+        }
+    }
+}
+
+.properties-by-city-card{
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    .text-block{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .cus-btn{
+        position: absolute;
+        left: 50%;
+        bottom: -100px;
+        transform: translateX(-50%);
+        transition: $transition;
+    }
+    &:hover{
+        .cus-btn{
+            bottom: 16px;
+        }
+    }
+}
+
+.partner-block{
+    img{
+        margin: 0 auto;
+    }
+}

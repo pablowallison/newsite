@@ -1,0 +1,43 @@
+.coming-soon{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .text-block{
+        height: 100%;
+        padding: clamp(40px, 4.375vw, 160px) 0;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: clamp(24px, 1.66vw, 48px);
+        .logo{
+            width: clamp(180px, 17.448vw, 450px);
+        }
+        .countdown{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(10px, 0.83vw, 24px);
+            @include media-query(492px) {
+                flex-wrap: wrap;
+            }
+            li{
+                width: clamp(100px, 8.333vw, 280px);
+                height: clamp(100px, 8.333vw, 280px);
+                background: $lightest-gray;
+                display: grid;
+                justify-content: center;
+                align-content: center;
+                @include media-query(492px) {
+                    width: 90px;
+                    height: 90px;
+                }
+                h1{
+                    color: $accent-1;
+                }
+            }
+        }
+    }
+}

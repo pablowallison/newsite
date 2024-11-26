@@ -1,0 +1,18 @@
+/*----------------------------------------*/
+/*  Heading CSS START
+/*----------------------------------------*/
+.heading{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: clamp(12px, 0.833vw, 24px);
+  p{
+    br{
+      @include media-query(575px) {
+        display: none;
+      }
+    }
+  }
+}
+

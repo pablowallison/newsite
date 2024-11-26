@@ -1,0 +1,303 @@
+/*----------------------------------------*/
+/*  Sidebar CSS START
+/*----------------------------------------*/
+.sidebar{
+    background: $lightest-gray;
+    padding: clamp(16px, 1.25vw, 32px) clamp(12px, 0.83vw, 24px);
+    border-radius: 10px;
+    
+    .sidebar-widget{
+        padding: clamp(24px, 1.33vw, 42px) 0;
+        border-bottom: 1px solid $medium-gray;
+        
+        &:last-child{
+            border: 0;
+            padding-bottom: 0;
+        }
+        .widget-title-row{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            span{
+                i{
+                    color: $black;
+                    font-size: 16px;
+                    &.fa-plus{
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+        .filter-options{
+            display: flex;
+            flex-direction: column;
+            gap: clamp(16px, 1.25vw, 36px);
+        }
+        .filter-list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: clamp(16px, 1.25vw, 36px);
+            li{
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;  
+            }
+        }
+        .blogs-list{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            li{
+                .blog-list-item{
+                    display: flex;
+                    align-items: center;
+                    gap: clamp(12px, 0.86vw, 24px);
+                    .blog-img{
+                        flex-shrink: 0;
+                    }
+                    img{
+                        border-radius: 5px;
+                        width: clamp(70px, 4.792vw, 130px);
+                        height: clamp(70px, 4.792vw, 105px);
+                    }
+                }
+               
+            }
+        }
+        .tags-list{
+            display: flex;
+            gap: clamp(12px, 0.78vw, 24px);
+            flex-wrap: wrap;
+            li{
+                a{
+                    border-radius: 30px;
+                    border: 0.5px solid $medium-gray;
+                    background: $white;
+                    color: $black;
+                    padding: 8px 12px;
+                    transition: $transition;
+                    font-size: clamp(9px, 0.677vw, 16px);
+                    font-weight: 400;
+                    line-height: 120%;
+                    &:hover {
+                        color: $white;
+                        background: $accent-1;
+                        transition: $transition;
+                    }
+                }
+            }
+        }
+        .filter-checkbox {
+            input {
+                padding: 0;
+                display: none;
+                border: 1px solid $black;
+                cursor: pointer;
+                &:checked+label {
+                    &:after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: 5px;
+                        left: 5px;
+                        width: 6px;
+                        height: 11px;
+                        z-index: 10;
+                        border: solid $black;
+                        border-width: 0 2px 2px 0;
+                        transform: rotate(45deg);
+                    }
+                    &.rating{
+                        &:after {
+                            top: 4px;
+                        }
+                    }
+                     &:before {
+                        background: transparent;
+                    }
+                }
+            }
+            label {
+                position: relative;
+                font-weight: 500;
+                cursor: pointer;
+                &:before {
+                    content: "";
+                    -webkit-appearance: none;
+                    background: transparent;
+                    border: 1px solid $black;
+                    border-radius: 3px;
+                    width: 16px;
+                    height: 16px;
+                    display: inline-block;
+                    position: relative;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    margin-right: 8px;
+                    margin-top: -3px;
+                }
+            }
+        }
+        
+    }
+}
+
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+    gap: clamp(12px, 0.83vw, 24px);
+    width: 100%;
+    @include media-query(992px) {
+        margin: 0 auto;
+        flex-wrap: wrap;
+        width: fit-content;
+    }
+    .form-group{
+        @include media-query(992px) {
+            width: 32%;
+        }
+        @include media-query(575px) {
+            width: 47%;
+        }
+    }
+    button{
+        flex-shrink: 0;
+        @include media-query(992px) {
+            width: 32%;
+        }
+        @include media-query(575px) {
+            width: 47%;
+        }
+    }
+}
+.inquiry-block{
+    padding: clamp(16px, 1.25vw, 24px) clamp(12px, 0.83vw, 20px);
+    background: $lightest-gray;
+    border-radius: 10px;
+}
+.filter-block {
+    padding: clamp(16px, 1.25vw, 24px) clamp(12px, 0.83vw, 20px);
+    background: $lightest-gray;
+    border-radius: 10px;
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(16px, 1.25vw, 24px);
+        width: 100%;
+        @include media-query(992px) {
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+        .form-group{
+            @include media-query(992px) {
+                width: 31%;
+            }
+            @include media-query(575px) {
+                width: 47%;
+            }
+        }
+        button{
+            width: 100%;
+            @include media-query(992px) {
+                width: 31%;
+            }
+            @include media-query(575px) {
+                width: 47%;
+            }
+        }
+    }
+}
+.property-category-box{
+    padding: clamp(16px, 1.25vw, 24px) clamp(12px, 0.83vw, 20px);
+    background: $lightest-gray;
+    border-radius: 10px;
+    ul{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        li{
+            a{
+                display: flex;
+                align-items: center;
+                position: relative;
+                transition: all 0.3s ease-in-out;
+                &:hover{
+                    transition: all 0.3s ease-in-out;
+                    color: $accent-1;
+                }
+                &:before{
+                    content: '';
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    background: url(../media/icons/icon-list.svg) no-repeat left center;
+                }
+            }
+        }
+    }
+}
+
+
+.contact-block{
+    position: relative;
+    img{
+        border-radius: 10px;
+    }
+    .content{
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 100%;
+    }
+}
+.about-property-block{
+    padding: clamp(16px, 1.25vw, 24px) clamp(12px, 0.83vw, 20px);
+    background: $lightest-gray;
+    border-radius: 10px;
+    .links{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        li{
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background-color: $white;
+            color: $black;
+            border-radius: 5px;
+            i{
+                font-size: clamp(20px, 1.25vw, 32px);
+                color: $white;
+                background: $accent-1;
+                width: clamp(32px, 2.2vw, 48px);
+                height: clamp(40px, 2.5vw, 56px);
+                display: grid;
+                justify-content: center;
+                align-content: center;
+                border-radius: 5px 0 0 5px;
+            }
+            .icon{
+                background: $accent-1;
+                width: clamp(32px, 2.2vw, 48px);
+                height: clamp(40px, 2.5vw, 56px);
+                display: grid;
+                justify-content: center;
+                align-content: center;
+                border-radius: 5px 0 0 5px;
+                img{
+                    width: clamp(20px, 1.25vw, 32px);
+                }
+            }
+        }
+    }
+}

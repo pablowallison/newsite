@@ -1,0 +1,21 @@
+/*----------------------------------------*/
+/*  Gallery CSS START
+/*----------------------------------------*/
+.gallery {
+    .img-block {
+        overflow: hidden;
+        border-radius: clamp(10px, 1vw, 26px);
+        img {
+            -webkit-transition: all 0.6s linear 0s;
+            transition: all 0.6s linear 0s;
+        }
+        &:hover {
+            img{
+                -webkit-transform: scale(1.1);
+                transform: scale(1.1);
+                -webkit-transition: all 0.6s linear 0s;
+                transition: all 0.6s linear 0s;
+            }
+        }
+    }
+}

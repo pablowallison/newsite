@@ -1,0 +1,248 @@
+/*----------------------------------------*/
+/*  Blogs CSS START
+/*----------------------------------------*/
+.blog-card {
+    position: relative;
+    .img-block {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        img {
+            -webkit-transition: all 0.6s linear 0s;
+            transition: all 0.6s linear 0s;
+        }
+        .tag{
+            position: absolute;
+            top: clamp(12px, 0.83vw, 24px);
+            left: clamp(12px, 0.83vw, 24px);
+            border-radius: 30px;
+            border: 0.5px solid $medium-gray;
+            background: $white;
+            color: $black;
+            padding: 8px 12px;
+            transition: $transition;
+            font-size: clamp(9px, 0.677vw, 16px);
+            font-weight: 400;
+            line-height: 120%;
+            &:hover {
+                color: $white;
+                background: $accent-1;
+                transition: $transition;
+            }
+        }
+    }
+    .text-block{
+        padding: clamp(20px, 1.66vw, 40px) 0;
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            img{
+                width: clamp(32px, 2.083vw, 48px);
+            }
+            .text {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    &::before {
+                        content: "";
+                        background: $black;
+                        width: 4px;
+                        height: 4px;
+                        border-radius: 50%;
+                    }
+                    &:first-child{
+                        &::before{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        .img-block {
+            img {
+                -webkit-transform: scale(1.05);
+                transform: scale(1.05);
+                -webkit-transition: all 0.6s linear 0s;
+                transition: all 0.6s linear 0s;
+            }
+        }
+    }
+}
+
+.blog-list-card {
+    position: relative;
+    padding: clamp(16px, 1.25vw, 32px);
+    background: $lightest-gray;
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(16px, 1.25vw, 32px);
+    @include media-query(575px) {
+        gap: 12px;
+    }
+    .img-block {
+        position: relative;
+        flex-shrink: 0;
+        overflow: hidden;
+        border-radius: 10px;
+        height: fit-content;
+        width: clamp(130px, 9.896vw, 300px);
+        @include media-query(575px) {
+            width: 100px;
+            border-radius: 5px;
+        }
+        @include media-query(420px) {
+            width: 80px;
+        }
+        img {
+            -webkit-transition: all 0.6s linear 0s;
+            transition: all 0.6s linear 0s;
+        }
+    }
+    .title{
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+                line-clamp: 3; 
+        -webkit-box-orient: vertical;
+    }
+    .date{
+        display: block;
+        margin-bottom: 12px;
+        @include media-query(575px) {
+            margin-bottom: 8px;
+        }
+        @include media-query(400px) {
+            margin-bottom: 6px;
+        }
+    }
+    .author {
+        display: flex;
+        align-items: center;
+        gap: clamp(12px, 0.83vw, 24px);
+        margin-top: clamp(16px, 1.25vw, 32px);
+        @include media-query(575px) {
+            gap: 8px;
+            margin-top: 12px;
+        }
+        img{
+            width: clamp(24px, 1.66vw, 40px);
+        }
+        .text {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: clamp(8px, 0.61vw, 16px);
+            @include media-query(400px) {
+                gap: 8px;
+            }
+            span {
+                display: flex;
+                align-items: center;
+                gap: clamp(8px, 0.61vw, 16px);
+                &::before {
+                    content: "";
+                    background: $black;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                }
+                &:first-child{
+                    &::before{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    &:hover {
+        .img-block {
+            img {
+                -webkit-transform: scale(1.05);
+                transform: scale(1.05);
+                -webkit-transition: all 0.6s linear 0s;
+                transition: all 0.6s linear 0s;
+            }
+        }
+    }
+}
+
+.blog-detail{
+    .img-block {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        .tags-list{
+            position: absolute;
+            top: clamp(12px, 0.83vw, 24px);
+            left: clamp(12px, 0.83vw, 24px);
+            display: flex;
+            gap: 8px;
+            .tag{
+                border-radius: 5px;
+                border: 0.5px solid $medium-gray;
+                background: $white;
+                color: $black;
+                padding: clamp(8px, 0.6vw, 14px);
+                transition: $transition;
+                &:hover {
+                    color: $white;
+                    background: $accent-1;
+                    transition: $transition;
+                }
+            }
+        }
+    }
+    .author {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        img{
+            width: clamp(32px, 2.083vw, 48px);
+        }
+        .text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            span {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                &::before {
+                    content: "";
+                    background: $black;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                }
+                &:first-child{
+                    &::before{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    span{
+        &.br{
+            display: block;
+            margin-bottom: 12px;
+        }
+    }
+    .quote-block{
+        padding: 32px 16px;
+        background: $lightest-gray;
+        border-radius: 10px;
+        .quote{
+            padding-left: 20px;
+            border-left: 4px solid $accent-1;
+        }
+    }
+}

@@ -16,6 +16,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "twig/twig": "^3.12"
+        "twig/twig": "^3.12",
+        "intervention/image": "^3.8"
     }
 }

@@ -1,0 +1,21 @@
+.error-page{
+    background: url(../media/bg/404.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    padding-top: 100px;
+    display: grid;
+    align-content: center;
+    .content{
+        text-align: center;
+        .error{
+            font-size: clamp(100px, 13.021vw, 500px);
+            font-weight: 600;
+            font-family: $font-sec;
+            color: $black;
+            display: block;
+            line-height: 90%;
+            letter-spacing: -5.014px;           
+        }
+    }
+}

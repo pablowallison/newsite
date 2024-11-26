@@ -1,0 +1,227 @@
+/*----------------------------------------*/
+/*  Button CSS START
+/*----------------------------------------*/
+.cus-btn {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  font-size: clamp(14px, 0.83vw, 20px);
+  font-weight: 500;
+  line-height: 150%;
+  padding: clamp(12px, 0.83vw, 20px) clamp(24px, 1.66vw, 40px);
+  border-radius: 5px;
+  width: fit-content;
+  display: flex;
+  border: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: $transition;
+  background-color: $accent-1 !important;
+  color: $white !important;
+
+  svg {
+    width: clamp(20px, 1.25vw, 32px);
+    height: clamp(20px, 1.25vw, 32px);
+
+    path {
+      fill: $white !important;
+    }
+  }
+
+  span {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    color: $white;
+    border-radius: 50%;
+    transition:
+      width 0.4s ease-in-out,
+      height 0.4s ease-in-out;
+    transform: translate(-50%, -50%);
+    background: $accent-2;
+    z-index: -1;
+  }
+
+  &:hover {
+    span {
+      width: 225%;
+      height: 562.5px;
+      z-index: -1;
+    }
+  }
+
+  &.sec {
+    background-color: $accent-2 !important;
+
+    span {
+      background-color: $accent-1 !important;
+    }
+  }
+
+  &.light {
+    color: $black !important;
+    background-color: $white !important;
+
+    span {
+      background-color: $accent-1 !important;
+    }
+
+    &:hover {
+      color: $white !important;
+      transition: $transition;
+    }
+  }
+}
+
+.cus-btn-2 {
+  padding: clamp(6px, 0.42vw, 10px) clamp(12px, 0.83vw, 20px);
+  border: 1px solid $accent-2;
+  font-size: clamp(14px, 0.83vw, 20px);
+  transition: $transition;
+  background: transparent;
+  border-radius: 5px;
+  font-weight: 500;
+  color: $accent-2;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 1.5s;
+  z-index: 1;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: $accent-2;
+    height: 450px;
+    width: 450px;
+    border-radius: 50%;
+    top: 100%;
+    left: 100%;
+    transition: all 0.5s;
+  }
+
+  &:hover {
+    color: $white;
+
+    &:before {
+      top: -114px;
+      left: -33px;
+      background: $accent-2;
+      transition: $transition;
+    }
+  }
+}
+
+/*----------------------------------------*/
+/* Slider Buttons
+/*----------------------------------------*/
+.slider-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(16px, 1.25vw, 32px);
+
+  .arrow {
+    width: clamp(40px, 3vw, 84px);
+    height: clamp(40px, 3vw, 84px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $white;
+    border: 1px solid $black;
+    border-radius: 5px;
+    transition: $transition;
+    padding: 0;
+
+    svg {
+      transition: $transition;
+      width: clamp(24px, 1.66vw, 48px);
+      height: clamp(24px, 1.66vw, 48px);
+
+      path {
+        transition: $transition;
+      }
+    }
+
+    &.slick-disabled {
+      svg {
+        opacity: 0.3;
+      }
+    }
+
+    &:hover {
+      &:not(.slick-disabled) {
+        background: $accent-1;
+        border-color: $accent-1;
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+        svg {
+          path {
+            stroke: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*----------------------------------------*/
+/* scroll to top
+/*----------------------------------------*/
+.scroll-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 2px RGBA(0, 0, 0, 0.2);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+
+  &::after {
+    position: absolute;
+    content: "\f148";
+    font-family: $font-awesome !important;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    color: $accent-2;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    z-index: 1;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+  }
+
+  .scroll-top__circle {
+    path {
+      stroke: $accent-2;
+      stroke-width: 4;
+      fill: none;
+      box-sizing: border-box;
+      -webkit-transition: all 200ms linear;
+      transition: all 200ms linear;
+    }
+  }
+}
+
+.scroll-top--active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

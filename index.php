@@ -49,7 +49,7 @@ $route->add('home', function($args) use ($twig) {
     
     $results = new \App\ImoveisService();
     $result = $results->loadAll();
-    //var_dump($result);
+    //var_dump($result['data']['0']['imagens']);
     // Verifica se o imóvel está ativo e formata o preço
     foreach($result['data'] as &$imovel){
         if ($imovel['status'] == 1) {
@@ -62,7 +62,7 @@ $route->add('home', function($args) use ($twig) {
         $imoveis['preco'] = number_format($imoveis['preco'], 2, ',', '.');
         $imoveis[] = $imoveis;
     }*/
-    //var_dump($imoveis['data']);
+    //var_dump($imovel);
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
@@ -75,7 +75,7 @@ $route->add('home', function($args) use ($twig) {
     ];
 
     // Renderiza a view utilizando Twig
-    renderLayout($twig, 'home.html', $data);
+    renderLayout($twig, 'index.html', $data);
 });
 
 $route->add('imovel', function($args) use ($twig) {
@@ -95,7 +95,7 @@ $route->add('imovel', function($args) use ($twig) {
     ];
 
     // Renderiza a view utilizando Twig
-    renderLayout($twig, 'imovel.html', $data);
+    renderLayout($twig, 'property-detail.html', $data);
 });
 
 $route->add('venda', function($args) use ($twig) {

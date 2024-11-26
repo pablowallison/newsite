@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Realtor - HTML Real Estate Template">
+
+    <title>Realtor - HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./template/{{theme}}/assets/media/favicon.png">
+
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/all.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/animate.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/jquery.magnific-popup.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/app.css">
+
+</head>
+
+<body>
+
+    <main class="x-hidden">
+        <!-- Header Area Start -->
+        <header >
+            <nav class="main-menu">
+                <div class="container-fluid">
+                    <div class="main-menu__block">
+                        <div class="main-menu__left">
+                            <div class="main-menu__logo">
+                                <a href="index.html" class="logo">
+                                    <img src="./template/{{theme}}/assets/media/logo.png" alt="Realtor">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="main-menu__right">
+                            <div class="main-menu__nav">
+                                <ul class="main-menu__list">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About us</a></li>
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0);" class="active">Properties</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="properties-list.html">Properties list</a></li>
+                                            <li><a href="properties-list-sidebar.html">Properties list(Sidebar)</a></li>
+                                            <li><a href="property-detail.html" class="active">Property Detail</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="javascript:void(0);">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="blogs.html">Blogs</a></li>
+                                            <li><a href="blog-detail.html">Blog Detail</a></li>
+                                            <li><a href="team.html">Team</a></li>
+                                            <li><a href="404.html">404 Page</a></li>
+                                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact us</a></li>
+                                </ul>
+                            </div>
+                            <a href="contact.html" class="cus-btn d-xl-flex d-none">
+                                Contact Us
+                                <svg viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19.8759 7.98103C19.532 7.98103 19.2058 8.05711 18.9122 8.19234C18.6769 7.16583 17.7568 6.3975 16.6599 6.3975C16.3085 6.3975 15.9753 6.47667 15.6767 6.61762C15.4132 5.63128 14.5123 4.90252 13.4439 4.90252C13.123 4.90252 12.8171 4.96842 12.5391 5.0872V2.31113C12.5391 1.03673 11.5024 0 10.228 0C8.95358 0 7.9168 1.03673 7.9168 2.31113V13.3079L6.72515 11.5389L6.70649 11.5157C5.81427 10.4066 4.24457 10.1601 3.0554 10.9425C2.43355 11.3516 2.01229 11.9791 1.86913 12.7095C1.72686 13.4354 1.87738 14.171 2.29293 14.7823L6.54585 21.4861L6.56001 21.5076C7.63194 23.0682 9.40227 24 11.2956 24H16.0677C19.4419 24 22.187 21.2549 22.187 17.8807V10.2921C22.187 9.01777 21.1503 7.98103 19.8759 7.98103ZM20.7808 17.8807C20.7808 20.4795 18.6665 22.5938 16.0677 22.5938H11.2956C9.8698 22.5938 8.53644 21.8941 7.72626 20.7216L3.47394 14.0188L3.45979 13.9974C3.25405 13.6978 3.17929 13.3365 3.24913 12.9799C3.31902 12.6234 3.52471 12.317 3.82827 12.1173C4.40132 11.7403 5.15544 11.8527 5.59377 12.3765L9.32305 17.9123V2.31113C9.32305 1.81214 9.72899 1.40625 10.228 1.40625C10.727 1.40625 11.1328 1.81214 11.1328 2.31113V10.6528H12.5391V7.21369C12.5391 6.7147 12.945 6.30881 13.444 6.30881C13.943 6.30881 14.3488 6.7147 14.3488 7.21369V10.6528H15.7551V8.70862C15.7551 8.20964 16.161 7.80375 16.66 7.80375C17.159 7.80375 17.5648 8.20964 17.5648 8.70862V10.6528H18.9711V10.2922C18.9711 9.79317 19.377 9.38728 19.876 9.38728C20.375 9.38728 20.7808 9.79317 20.7808 10.2922V17.8807H20.7808Z" fill="#212627"/>
+                                </svg>
+                                <span></span>
+                            </a>
+                            <a href="#" class="main-menu__toggler mobile-nav__toggler">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- Header Area end -->
+
+        <!-- Page Header Area Start -->
+        <section class="page-header">
+            <h1 class="color-white wow fadeInUp" data-wow-delay="0.5s">Property Detail</h1>
+        </section>
+        <!-- Page Header Area End -->
+
+        <!-- Property Detail Area Start -->
+        <section class="py-80">
+            <div class="container-fluid">
+                <div class="row row-gap-4">
+                    <div class="col-xxl-9 col-lg-8">
+                        <div class="property-detail">
+                            <div class="mb-32 d-flex gap-2 justify-content-between flex-wrap wow fadeInUp" data-wow-delay="0.3s">
+                                <h2>Luxurious Living Spaces</h2>
+                                <h2 class="color-primary">$36,000</h2>
+                            </div>
+                            <div class="slider-block mb-64 wow fadeInUp" data-wow-delay="0.5s">
+                                <a href="properties-list.html" class="category-tag">For Sale</a>
+                                <div class="property-images-slider">
+                                    <div class="image-anime">
+                                        <img src="./template/{{theme}}/assets/media/properties/property-detail.jpg" alt="">
+                                    </div>
+                                    <div class="image-anime">
+                                        <img src="./template/{{theme}}/assets/media/properties/property-detail-1.jpg" alt="">
+                                    </div>
+                                    <div class="image-anime">
+                                        <img src="./template/{{theme}}/assets/media/properties/property-detail-2.jpg" alt="">
+                                    </div>
+                                    <div class="image-anime">
+                                        <img src="./template/{{theme}}/assets/media/properties/property-detail-3.jpg" alt="">
+                                    </div>
+                                </div>
+                                <div class="slider-arrow">
+                                    <button class="arrow prev-btn" data-slide="property-images-slider">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+                                            <path d="M12.8057 23C12.8057 20 10.0057 16 6.80566 16M6.80566 16C8.639 16 12.8057 15 12.8057 9M6.80566 16H25.8057" stroke="#1B1918" stroke-width="2"/>
+                                        </svg>
+                                    </button> 
+                                    <button class="arrow next-btn" data-slide="property-images-slider">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                            <path d="M19.3545 23C19.3545 20 22.1545 16 25.3545 16M25.3545 16C23.5212 16 19.3545 15 19.3545 9M25.3545 16H6.35449" stroke="#1B1918" stroke-width="2"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-delay="0.3s">
+                                <h5 class="mb-32 underline-text">About Property</h5>
+                                <p class="mb-64">Lorem ipsum dolor sit amet consectetur. Lectus ac sed purus ultrices diam eu scelerisque. Eu ipsum curabitur ultricies id vel lacus pellentesque tristique. Nunc amet semper turpis auctor rhoncus amet aliquet commodo. Bibendum leo gravida turpis quis tincidunt. Elit tempor suspendisse sit egestas at aliquam lacus ullamcorper pharetra. Libero faucibus ultrices cursus id in pellentesque mauris a nunc. Et diam ultrices netus velit ornare sem amet tellus molestie. <br><span class="br"></span>
+                                Lorem ipsum dolor sit amet consectetur. Sapien ultrices curabitur massa elementum. Suscipit pretium ornare odio in at. Viverra praesent erat ultrices ipsum parturient sit tincidunt pulvinar ornare. Neque orci mauris maecenas imperdiet mauris senectus. Lobortis donec sit urna nulla posuere cras. <br> <span class="br"></span>Tempus id lacinia venenatis semper consequat. Sit sagittis venenatis mauris cursus consequat.Lorem ipsum dolor sit amet consectetur. Sapien ultrices curabitur massa elementum. Suscipit pretium ornare odio in at. Viverra praesent erat ultrices ipsum parturient sit tincidunt pulvinar ornare. Neque orci mauris maecenas imperdiet mauris senectus. Lobortis donec sit urna nulla posuere cras. Tempus id lacinia venenatis semper consequat.</p>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-delay="0.4s">
+                                <h5 class="mb-32 underline-text">Amenities</h5>
+                                <ul class="unstyled mb-64 amenities-list">
+                                    <li>
+                                        <div class="amenity-block">
+                                            <img src="./template/{{theme}}/assets/media/icons/cold.png" alt="">
+                                            <h6 class="fw-500 color-black">Air Condition</h6>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="amenity-block">
+                                            <img src="./template/{{theme}}/assets/media/icons/shower.png" alt="">
+                                            <h6 class="fw-500 color-black">Heated Water</h6>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="amenity-block">
+                                            <img src="./template/{{theme}}/assets/media/icons/hotel.png" alt="">
+                                            <h6 class="fw-500 color-black">Hospital</h6>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="amenity-block">
+                                            <img src="./template/{{theme}}/assets/media/icons/pool.png" alt="">
+                                            <h6 class="fw-500 color-black">Swimming Pool</h6>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="amenity-block">
+                                            <img src="./template/{{theme}}/assets/media/icons/wifi.png" alt="">
+                                            <h6 class="fw-500 color-black">High Speed WIFI</h6>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-delay="0.5s">
+                                <h5 class="mb-32 underline-text">Property Video</h5>
+                                <div class="video mb-64">
+                                    <div class="img-box image-anime">
+                                        <img class="detail-image" src="./template/{{theme}}/assets/media/properties/video-thumbnail.png" alt="">
+                                        <div class="overlay">
+                                            <a href="javascript:;" class="play-btn"><i class="fa-solid fa-play"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="video-box">
+                                        <video controls>
+                                            <source src="./template/{{theme}}/assets/media/properties/property.mp4" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wow fadeInUp" data-wow-delay="0.6s">
+                                <h5 class="mb-32 underline-text">Map Location</h5>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1398189.2651781747!2d6.904948286445451!3d46.80748890835359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c64ef6f596d61%3A0x5c56b5110fcb7b15!2sSwitzerland!5e0!3m2!1sen!2s!4v1710743420131!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xxl-3 col-lg-4">
+                        <div class="about-property-block mb-24 wow fadeInUp" data-wow-delay="0.25s">
+                            <h4 class="mb-24">Property Details</h4>
+                            <ul class="unstyled links">
+                                <li><i class="fa-thin fa-ruler-horizontal"></i><p>3200 Square Feet</p></li>
+                                <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/bed-w.png" alt=""></div><p>4 Bed Rooms</p></li>
+                                <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/shower-w.png" alt=""></div><p>2 Bathrooms</p></li>
+                                <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/kitchen-w.png" alt=""></div><p>1 Kitchen</p></li>
+                                <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/car-white.png" alt=""></div><p>1 Garage</p></li>
+                                <li><i class="fa-light fa-location-dot"></i><p>123 Harmony Avenue, City Heights.</p></li>
+                            </ul>
+                        </div>
+                        <div class="inquiry-block mb-24 wow fadeInUp" data-wow-delay="0.5s">
+                            <h4 class="mb-32">Send Inquiry</h4>
+                            <form action="properties-list.html">
+                                <div class="row row-gap-3">
+                                    <div class="col-lg-12 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" name="name" required placeholder="Name*">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-6">
+                                        <div class="form-group">
+                                            <input type="email" name="email" required placeholder="E-mail*">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <input type="tel" name="tel" required placeholder="Phone number*">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <textarea name="message" rows="4" required placeholder="Message*"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="cus-btn w-100">
+                                            Send Message
+                                            <svg viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.8759 7.98103C19.532 7.98103 19.2058 8.05711 18.9122 8.19234C18.6769 7.16583 17.7568 6.3975 16.6599 6.3975C16.3085 6.3975 15.9753 6.47667 15.6767 6.61762C15.4132 5.63128 14.5123 4.90252 13.4439 4.90252C13.123 4.90252 12.8171 4.96842 12.5391 5.0872V2.31113C12.5391 1.03673 11.5024 0 10.228 0C8.95358 0 7.9168 1.03673 7.9168 2.31113V13.3079L6.72515 11.5389L6.70649 11.5157C5.81427 10.4066 4.24457 10.1601 3.0554 10.9425C2.43355 11.3516 2.01229 11.9791 1.86913 12.7095C1.72686 13.4354 1.87738 14.171 2.29293 14.7823L6.54585 21.4861L6.56001 21.5076C7.63194 23.0682 9.40227 24 11.2956 24H16.0677C19.4419 24 22.187 21.2549 22.187 17.8807V10.2921C22.187 9.01777 21.1503 7.98103 19.8759 7.98103ZM20.7808 17.8807C20.7808 20.4795 18.6665 22.5938 16.0677 22.5938H11.2956C9.8698 22.5938 8.53644 21.8941 7.72626 20.7216L3.47394 14.0188L3.45979 13.9974C3.25405 13.6978 3.17929 13.3365 3.24913 12.9799C3.31902 12.6234 3.52471 12.317 3.82827 12.1173C4.40132 11.7403 5.15544 11.8527 5.59377 12.3765L9.32305 17.9123V2.31113C9.32305 1.81214 9.72899 1.40625 10.228 1.40625C10.727 1.40625 11.1328 1.81214 11.1328 2.31113V10.6528H12.5391V7.21369C12.5391 6.7147 12.945 6.30881 13.444 6.30881C13.943 6.30881 14.3488 6.7147 14.3488 7.21369V10.6528H15.7551V8.70862C15.7551 8.20964 16.161 7.80375 16.66 7.80375C17.159 7.80375 17.5648 8.20964 17.5648 8.70862V10.6528H18.9711V10.2922C18.9711 9.79317 19.377 9.38728 19.876 9.38728C20.375 9.38728 20.7808 9.79317 20.7808 10.2922V17.8807H20.7808Z" fill="#212627"/>
+                                            </svg>
+                                            <span></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="contact-block d-lg-block d-none wow fadeInUp" data-wow-delay="0.7s">
+                            <img src="./template/{{theme}}/assets/media/bg/contact-block-bg.jpg" alt="">
+                            <div class="content">
+                                <h4 class="color-white mb-8">Need Help?</h4>
+                                <h4 class="color-white mb-16">Take to Our Expert.</h4>
+                                <a href="tel:123456789" class="cus-btn mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                        <path d="M19.4989 18.6365L18.9984 17.8007C18.0982 16.3165 16.8559 14.6131 15.2264 14.6131C14.9245 14.6131 14.6255 14.6738 14.3296 14.7968L13.4549 15.1719C13.3751 15.205 13.2974 15.2426 13.2153 15.2826C12.9914 15.3915 12.7376 15.5148 12.4765 15.5148C11.8325 15.5148 11.0862 14.6766 10.3756 13.1548C9.67816 11.6611 9.72265 10.8781 9.88274 10.4841C10.0594 10.0494 10.4702 9.86351 10.9115 9.69649C10.9729 9.67322 11.0283 9.65211 11.0822 9.62992L11.9679 9.25701C14.2752 8.29212 13.4168 4.92017 13.1354 3.81467L12.8967 2.86417C12.6927 2.0808 12.1517 0 10.3572 0C10.025 0 9.67058 0.0773953 9.30417 0.230129C9.06376 0.325601 5.75535 1.67607 4.55676 4.04858C3.12424 6.87259 3.38912 10.6595 5.34326 15.3019C7.2828 19.95 9.79788 22.7931 12.8187 23.7519C13.3368 23.9165 13.9224 23.9999 14.5594 23.9999H14.5597C16.6444 23.9999 18.7022 23.1129 18.8692 23.0393C19.588 22.7348 20.0526 22.2721 20.25 21.6639C20.5847 20.6324 20.0233 19.5023 19.4989 18.6365ZM18.7055 21.1627C18.6596 21.304 18.5 21.4331 18.2316 21.5461C18.2271 21.548 18.2217 21.5503 18.2172 21.5524C18.1986 21.5606 16.3359 22.3764 14.5593 22.3763C14.0893 22.3763 13.6689 22.3185 13.31 22.2044C10.765 21.3966 8.58889 18.864 6.84062 14.6744C5.07936 10.4899 4.79793 7.16204 6.00529 4.78194C6.9428 2.9263 9.87787 1.74913 9.90666 1.73788C9.91251 1.73549 9.91824 1.73322 9.92398 1.73084C10.0911 1.6607 10.2409 1.62368 10.3572 1.62368C10.7149 1.62368 11.0405 2.17854 11.3235 3.26608L11.5611 4.21258C12.0737 6.22593 11.9957 7.48526 11.3394 7.75977L10.458 8.13105C10.4229 8.14555 10.3819 8.16082 10.3366 8.17803C9.84973 8.36237 8.83655 8.74577 8.37835 9.87282C7.96258 10.8955 8.13469 12.1938 8.90399 13.842C9.94011 16.0602 11.1086 17.1386 12.4763 17.1386C13.111 17.1386 13.6206 16.8909 13.9249 16.743C13.981 16.7158 14.0311 16.6907 14.085 16.6685L14.961 16.2928C15.0513 16.2552 15.1381 16.2369 15.2263 16.2369C15.6479 16.2369 16.4039 16.6544 17.6078 18.6389L18.108 19.4742C18.7244 20.492 18.7731 20.9542 18.7055 21.1627Z"/>
+                                    </svg>
+                                    +1 234 567 890
+                                    <span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Property Detail Area End --> 
+
+        <!-- Related Properties Area Start -->
+        <section class="py-80">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-md-between justify-content-center mb-48 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="heading align-items-md-start text-md-start">
+                        <p class="eyebrow justify-content-md-start">Properties</p>
+                        <h2>Related Properties</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur. Accumsan lacus neque nunc <br> convallis eleifend vitae et felis potenti.</p>
+                    </div>
+                    <a href="properties-list.html" class="cus-btn d-md-flex d-none">
+                        View Properties
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                            <g clip-path="url(#clip0_3752_13)"><path d="M8.0692 6.75527H9.47545V8.16152H8.0692V6.75527Z"/><path d="M8.0692 9.98294H9.47545V11.3892H8.0692V9.98294Z"/><path d="M14.5245 9.98294H15.9308V11.3892H14.5245V9.98294Z"/><path d="M17.7522 9.98294H19.1585V11.3892H17.7522V9.98294Z"/><path d="M14.5245 13.2107H15.9308V14.6169H14.5245V13.2107Z"/><path d="M17.7522 13.2107H19.1585V14.6169H17.7522V13.2107Z"/><path d="M14.5245 16.4383H15.9308V17.8446H14.5245V16.4383Z"/><path d="M17.7522 16.4383H19.1585V17.8446H17.7522V16.4383Z"/><path d="M14.5245 19.666H15.9308V21.0723H14.5245V19.666Z"/><path d="M17.7522 19.666H19.1585V21.0723H17.7522V19.666Z"/><path d="M4.84153 9.98294H6.24778V11.3892H4.84153V9.98294Z"/><path d="M8.0692 13.2107H9.47545V14.6169H8.0692V13.2107Z"/><path d="M4.84153 13.2107H6.24778V14.6169H4.84153V13.2107Z"/><path d="M8.0692 16.4383H9.47545V17.8446H8.0692V16.4383Z"/><path d="M4.84153 16.4383H6.24778V17.8446H4.84153V16.4383Z"/><path d="M22.3861 22.8937V6.75527H12.7031V3.40071L11.0893 3.66968V0.299927H3.22767V4.97997L1.61386 5.24894V22.8937H0V24.2999H24V22.8937H22.3861ZM20.9799 8.16152V22.8937H12.7031V8.16152H20.9799ZM4.63392 1.70618H9.68302V3.90405L4.63392 4.7456V1.70618ZM3.02011 6.44022L11.2969 5.06074V22.8937H9.47545V19.666H4.84153V22.8937H3.02011V6.44022ZM8.0692 22.8937H6.24778V21.0723H8.0692V22.8937Z"/>
+                            </g>
+                        </svg>
+                        <span></span>
+                    </a>
+                </div>
+                <div class="row row-gap-4 wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                        <div class="property-card shadow">
+                            <div class="img-block">
+                                <img class="property-img" src="./template/{{theme}}/assets/media/properties/property-1.png" alt="">
+                                <a href="property-detail.html" class="detail-link">View Detail</a>
+                                <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+                                <h6 class="category-title">For Sale</h6>
+                            </div>
+                            <div class="text-block">
+                                <a href="property-detail.html" class="title h5 mb-8">Urban Oasis Homes</a>
+                                <div class="location mb-24">
+                                    <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
+                                    <span>101 Serene Avenue, Maplewood Gardens.</span>
+                                </div>
+                                <h6 class="price color-primary mb-24">$90,000</h6>
+                                <ul class="unstyled amenities">
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
+                                        <span>4 Bedrooms</span>
+                                    </li>
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
+                                        <span>2 Baths</span>
+                                    </li>
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                                        <span>360 Sqft</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                        <div class="property-card shadow">
+                            <div class="img-block">
+                                <img class="property-img" src="./template/{{theme}}/assets/media/properties/property-2.png" alt="">
+                                <a href="property-detail.html" class="detail-link">View Detail</a>
+                                <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+                                <h6 class="category-title">For Rent</h6>
+                            </div>
+                            <div class="text-block">
+                                <a href="property-detail.html" class="title h5 mb-8">Luxurious Living Spaces</a>
+                                <div class="location mb-24">
+                                    <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
+                                    <span>101 Serene Avenue, Maplewood Gardens.</span>
+                                </div>
+                                <h6 class="price color-primary mb-24">$90,000</h6>
+                                <ul class="unstyled amenities">
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
+                                        <span>4 Bedrooms</span>
+                                    </li>
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
+                                        <span>2 Baths</span>
+                                    </li>
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                                        <span>360 Sqft</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                        <div class="property-card shadow">
+                            <div class="img-block">
+                                <img class="property-img" src="./template/{{theme}}/assets/media/properties/property-3.png" alt="">
+                                <a href="property-detail.html" class="detail-link">View Detail</a>
+                                <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+                                <h6 class="category-title">For Sale</h6>
+                            </div>
+                            <div class="text-block">
+                                <a href="property-detail.html" class="title h5 mb-8">Urban Oasis Homes</a>
+                                <div class="location mb-24">
+                                    <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
+                                    <span>101 Serene Avenue, Maplewood Gardens.</span>
+                                </div>
+                                <h6 class="price color-primary mb-24">$90,000</h6>
+                                <ul class="unstyled amenities">
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
+                                        <span>4 Bedrooms</span>
+                                    </li>
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
+                                        <span>2 Baths</span>
+                                    </li>
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                                        <span>360 Sqft</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-lg-4 col-sm-6 d-xxl-block d-lg-none">
+                        <div class="property-card shadow">
+                            <div class="img-block">
+                                <img class="property-img" src="./template/{{theme}}/assets/media/properties/property-4.png" alt="">
+                                <a href="property-detail.html" class="detail-link">View Detail</a>
+                                <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+                                <h6 class="category-title">For Rent</h6>
+                            </div>
+                            <div class="text-block">
+                                <a href="property-detail.html" class="title h5 mb-8">Luxurious Living Spaces</a>
+                                <div class="location mb-24">
+                                    <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
+                                    <span>101 Serene Avenue, Maplewood Gardens.</span>
+                                </div>
+                                <h6 class="price color-primary mb-24">$90,000</h6>
+                                <ul class="unstyled amenities">
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
+                                        <span>4 Bedrooms</span>
+                                    </li>
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
+                                        <span>2 Baths</span>
+                                    </li>
+                                    <li>
+                                        <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                                        <span>360 Sqft</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Related Properties Area End --> 
+
+        <!-- Footer Section Start -->
+        <footer class="footer bg-primary pb-80 mt-80 wow fadeInUp" data-wow-delay="0.5s">
+            <!-- Footer Newsletter Start -->
+            <div class="footer-newsletter mb-80">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-9 col-md-12">
+                            <!-- Newsletter Box Start -->
+                            <div class="newsletter-box">
+                                <div class="row align-items-center row-gap-4">
+                                    <div class="col-lg-6">
+                                        <!-- Section Title Start -->
+                                        <div class="newsletter-title">
+                                            <h3 class="mb-8 color-primary">Subscribe Our Newsletter</h3>
+                                            <p>Duis pulvinar metus elit, ut aliquam est sollicitudin finibus.</p>
+                                        </div>
+                                        <!-- Section Title End -->
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <!-- Newsletter Form Start -->
+                                        <form action="index.html">
+                                            <div class="newsletter-field">
+                                                <input type="email" name="newsletter" id="newsletter" placeholder="Your Email" required>
+                                                <button>
+                                                    Subscribe
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <g clip-path="url(#clip0_3752_509)">
+                                                            <path d="M23.7939 0.205944C23.9928 0.404833 24.054 0.703239 23.9496 0.964239L14.9122 23.558C14.8088 23.8165 14.5626 23.9896 14.2843 23.9996C14.006 24.0094 13.7482 23.8542 13.6267 23.6037L9.30571 14.6943L0.39629 10.3733C0.15329 10.2554 -3.62396e-05 10.0093 -3.62396e-05 9.74077C-3.62396e-05 9.73242 0.000104904 9.72404 0.000432968 9.71564C0.0103245 9.43744 0.183432 9.19116 0.441946 9.0878L23.0356 0.0503178C23.2967 -0.0541191 23.595 0.00705338 23.7939 0.205944ZM14.1975 21.5581L21.3717 3.62256L10.6829 14.3114L14.1975 21.5581ZM2.44182 9.80241L9.68863 13.317L20.3774 2.62816L2.44182 9.80241Z"/>
+                                                        </g>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <!-- Newsletter Form End -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Newsletter Box End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Newsletter End -->
+
+            <!-- Mega Footer Start -->
+            <div class="mega-footer ">
+                <div class="container-fluid">
+                    <div class="row row-gap-4">
+                        <div class="col-lg-3">
+                            <!-- Footer About Start -->
+                            <div class="footer-about">
+                                <!-- Footer Logo Start -->
+                                <div class="footer-logo mb-32">
+                                    <img src="./template/{{theme}}/assets/media/logo-light.png" alt="">
+                                </div>
+                                <!-- Footer Logo End -->
+                                
+                                <!-- Footer About Content Start -->
+                                <div class="footer-about-content mb-32">
+                                    <p class="color-white">Duis pulvinar metus elit, ut aliquam est sollicitudin finibus. Integer lobortis est interdum.</p>
+                                </div>
+                                <!-- Footer About Content End -->
+
+                                <!-- Footer Social Link Start -->
+                                <div class="footer-social-links">
+                                    <ul class="unstyled">
+                                        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                    </ul>
+                                </div>							
+                                <!-- Footer Social Link End -->
+                            </div>
+                            <!-- Footer About End -->
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <!-- Footer Contact Info Start -->
+                            <div class="footer-contact-info">
+                                <h4 class="mb-32 color-white">Contact Info</h4>
+
+                                <!-- Footer Contact Info Box Start -->
+                                <div class="footer-contact-box">
+                                    <div class="footer-info-box">
+                                        <div class="icon-box">
+                                            <img src="./template/{{theme}}/assets/media/icons/icon-location.svg" alt="">
+                                        </div>
+
+                                        <p>123, Lorem Ipsum, Street no, Cityname, Country 123456</p>
+                                    </div>
+
+                                    <div class="footer-info-box">
+                                        <div class="icon-box">
+                                            <img src="./template/{{theme}}/assets/media/icons/icon-phone.svg" alt="">
+                                        </div>
+
+                                        <p>+0 12345 67890</p>
+                                    </div>
+
+                                    <div class="footer-info-box">
+                                        <div class="icon-box">
+                                            <img src="./template/{{theme}}/assets/media/icons/icon-email.svg" alt="">
+                                        </div>
+
+                                        <p>info@domainname.com</p>
+                                    </div>
+                                </div>
+                                <!-- Footer Contact Info Box End -->
+                            </div>
+                            <!-- Footer Contact Info End -->
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <!-- Footer Quick Link Starts -->
+                            <div class="footer-quick-links">
+                                <h4 class="mb-32 color-white">Quick Links</h4>
+                                <ul class="unstyled">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Listing</a></li>
+                                    <li><a href="#">Property</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                </ul>
+                            </div>
+                            <!-- Footer Quick Link End -->
+                        </div>
+
+                        <div class="col-lg-3">
+                            <!-- Footer Quick Link Starts -->
+                            <div class="footer-appointment">
+                                <h4 class="mb-32 color-white">Appointment</h4>
+                                
+                                <div class="footer-appointment-content">
+                                    <p class="mb-32 color-white">Duis pulvinar metus elit, ut aliquam est sollicitudin finibus. Integer lobortis est interdum.</p>
+                                    <a href="contact.html" class="cus-btn sec">
+                                        Book Appointment
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Footer Quick Link End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mega Footer End -->
+        </footer>
+        <!-- Footer Section End -->
+
+        <!-- Footer Copyright Section Start -->
+        <div class="footer-copyright-links">
+            <div class="container-fluid">
+                <div class="row align-items-center row-gap-2">
+                    <div class="col-md-6">
+                        <!-- Footer Copyright Content Start -->
+                        <div class="footer-copyright text-md-start text-center">
+                            <p>Copyright © 2024 Realtor. All rights reserved.</p>
+                        </div>
+                        <!-- Footer Copyright Content End -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <!-- Footer Policy Links Start -->
+                        <div class="footer-policy-links">
+                            <ul class="text-md-end text-center">
+                                <li><a href="#">Privacy & Policy</a></li>
+                                <li><a href="#">Terms & Condition</a></li>
+                            </ul>
+                        </div>
+                        <!-- Footer Policy Links End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Copyright Section End -->
+
+    </main>
+
+    <!-- Mobile Menu Start -->
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"></span>
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="./template/{{theme}}/assets/media/logo.png" alt="" class="invisible"></a>
+            </div>
+            <div class="mobile-nav__container"></div>
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:example@company.com">example@company.com</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:+12345678">+123 (4567) -890</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Mobile Menu End -->
+    <!-- back-to-top-start -->
+    <a href="#" class="scroll-top">
+        <svg class="scroll-top__circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </a>
+    <!-- back-to-top-end -->
+  
+    <!-- Jquery Js -->
+    <script src="./template/{{theme}}/assets/js/vendor/jquery-3.6.3.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery-appear.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/slick.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/wow.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/app.js"></script>
+
+</body>
+
+</html>

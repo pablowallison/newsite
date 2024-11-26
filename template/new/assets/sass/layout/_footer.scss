@@ -1,0 +1,141 @@
+/*----------------------------------------*/
+/*  FOOTER CSS START
+/*----------------------------------------*/
+
+footer{
+    &.footer{
+        background: $accent-1;
+        margin-top: 60px;
+    }
+    .newsletter-box{
+        background: #F6F8FF;
+        padding: clamp(20px, 1.66vw, 40px) clamp(24px, 2.5vw, 64px);
+        border-radius: 20px;
+        margin-top: -70px;
+    }
+    .newsletter-form .row > *{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .footer-social-links{
+        li{
+            display: inline-block;
+            margin-right: 8px;
+        }
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            font-size: 18px;
+            border-radius: 5px;
+            background: $accent-2;
+            color: $white;
+            transition: all 0.3s ease-out;
+            &:hover{
+                background-color: $lightest-gray;
+                color: $accent-1;
+            }
+        }
+    }
+    .footer-contact-info, 
+    .footer-quick-links, 
+    .footer-appointment{
+        h3{
+            font-size: 22px;
+        }
+    } 
+    .footer-info-box{
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 25px;
+        .icon-box{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        p{
+            color: $white;
+            margin-bottom: 0;
+        }
+    }
+    .footer-quick-links{
+        li{
+            margin-bottom: 8px;
+            a{
+                color: $white;
+                position: relative;
+                padding-left: 20px;
+                transition: all 0.3s ease-out;
+                &:hover{
+                    color: $accent-2;
+                }
+                
+                &:before{
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 4px;
+                    left: 0;
+                    width: 14px;
+                    height: 14px;
+                    background: url(../media/icons/icon-menu-item.svg) no-repeat left center;
+                }
+            }
+        }
+    }
+}
+
+
+
+.footer-copyright-links{
+	padding: 20px 0;
+}
+
+
+.footer-policy-links{
+	text-align: right;
+}
+
+.footer-policy-links ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.footer-policy-links ul li{
+	display: inline-block;
+	margin-left: 16px;
+	position: relative;
+	padding-left: 20px;
+}
+
+.footer-policy-links ul li:before{
+	content: '';
+	display: block;
+	width: 1px;
+	height: 15px;
+	background: var(--text-color);
+	position: absolute;
+	top: 5px;
+	left: 0;
+}
+
+.footer-policy-links ul li:first-child{
+	padding-left: 0;
+}
+
+.footer-policy-links ul li:first-child:before{
+	display: none;
+}
+
+.footer-policy-links ul li a{
+	color: var(--text-color);
+	transition: all 0.4s ease-out;
+}
+
+.footer-policy-links ul li a:hover{
+	color: $accent-2;
+}

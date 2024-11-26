@@ -1,0 +1,221 @@
+/*-------------------------
+  Form Styling
+-------------------------*/
+
+.form-group {
+  position: relative;
+  width: 100%;
+  input[type="date"],
+  input[type="text"],
+  input[type="email"],
+  input[type="file"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="submit"],
+  input[type="tel"],
+  textarea,
+  .cus-form-control{
+    width: 100%;
+    background: $white;
+    padding: 0 clamp(12px, 0.83vw, 24px);
+    height: clamp(42px, 2.917vw, 72px);
+    color: $dark-gray;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    border: 1px solid $medium-gray;
+    &:focus {
+      color: $dark-gray;
+      outline: none;
+      background: $white !important;
+      border: 1px solid $medium-gray;
+      border-radius: 5px;
+      box-shadow: none;
+    }
+    &:hover {
+      color: $dark-gray;
+      border: 1px solid $medium-gray;
+    }
+    &::placeholder {
+      color: $dark-gray;
+      opacity: 1;
+    }
+  }
+  textarea {
+    height: auto !important;
+    padding-top: 16px;
+  }
+}
+
+.newsletter-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 5px;
+  background: $white;
+  input{
+    width: 100%;
+    background: transparent;
+    padding: 0 clamp(12px, 0.83vw, 24px);
+    color: $dark-gray;
+    border: none;
+    &:focus {
+      color: $dark-gray;
+      outline: none;
+      background: transparent !important;
+      border: none;
+      box-shadow: none;
+    }
+    &:hover {
+      color: $dark-gray;
+      border: none;
+    }
+    &::placeholder {
+      color: $dark-gray;
+      opacity: 1;
+    }
+  }
+  button {
+    flex-shrink: 0;
+    font-size: clamp(14px, 0.83vw, 20px);
+    font-weight: 500;
+    line-height: 150%;
+    padding: clamp(12px, 0.83vw, 20px) clamp(24px, 1.66vw, 40px);
+    border-radius: 5px;
+    width: fit-content;
+    display: flex;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: $transition;
+    background-color: $accent-2 !important;
+    color: $white !important;
+    svg {
+      width: clamp(20px, 1.25vw, 32px);
+      height: clamp(20px, 1.25vw, 32px);
+      path {
+        fill: $white !important;
+      }
+    }
+  }
+}
+.newsletter-field-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid $medium-gray;
+  border-radius: 5px;
+  background: $white;
+  width: 100%;
+  max-width: 560px;
+  input{
+    width: 100%;
+    background: transparent;
+    padding: 0 clamp(12px, 0.83vw, 24px);
+    color: $dark-gray;
+    border: none;
+    &:focus {
+      color: $dark-gray;
+      outline: none;
+      background: transparent !important;
+      border: none;
+      box-shadow: none;
+    }
+    &:hover {
+      color: $dark-gray;
+      border: none;
+    }
+    &::placeholder {
+      color: $dark-gray;
+      opacity: 1;
+    }
+  }
+  button {
+    flex-shrink: 0;
+    font-size: clamp(14px, 0.83vw, 20px);
+    font-weight: 500;
+    line-height: 150%;
+    padding: clamp(12px, 0.83vw, 20px) clamp(24px, 1.66vw, 40px);
+    border-radius: 5px;
+    width: fit-content;
+    display: flex;
+    border: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: $transition;
+    background-color: $accent-1 !important;
+    color: $white !important;
+    svg {
+      width: clamp(20px, 1.25vw, 32px);
+      height: clamp(20px, 1.25vw, 32px);
+      path {
+        fill: $white !important;
+      }
+    }
+  }
+}
+// Search Field
+.search-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 clamp(12px, 0.83vw, 24px);
+  border-radius: 5px;
+  height: clamp(42px, 2.917vw, 72px);
+  border: 1px solid $medium-gray;
+  background: $white;
+  .form-group {
+    input[type="date"],
+    input[type="text"],
+    input[type="email"],
+    input[type="file"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="submit"],
+    input[type="tel"],
+    textarea,
+    .cus-form-control {
+      border: none;
+      padding-right: 0;
+      background: transparent;
+      height: auto;
+      padding: 0;
+      &:focus {
+        border: none;
+      }
+      &:hover {
+        border: none;
+      }
+      &::placeholder {
+        border: none;
+      }
+    }
+  }
+  .search-btn {
+    flex-shrink: 0;
+    border: 0;
+    background: transparent;
+    color: $dark-gray;
+    i {
+      font-size: 16px;
+    }
+  }
+}
+
+.cus-form-control-select {
+  padding: 0 24px;
+  border: 1px solid $black;
+  height: 48px;
+  display: grid;
+  align-content: center;
+  border-radius: 10px;
+  width: clamp(200px, 11.146vw, 240px);
+}

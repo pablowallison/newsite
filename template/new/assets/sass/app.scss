@@ -1,0 +1,128 @@
+/*---------------------------------------------"
+// Template Name: Realtor
+// Description:  Realtor Html Template
+// Version: 1.0.0
+
+===============================================   
+STYLE SHEET INDEXING
+|
+|___ Fonts
+|___ Variables
+|___ Responsive
+|___ Reset Styles
+|___ Spacing
+|___ Helper Classes
+|___ Buttons
+|___ Headings
+|___ Layout Styles
+|___ END STYLE SHEET INDEXING
+
+--------------------------------------------*/
+
+/*-------------------------
+    Fonts
+-------------------------*/
+
+//// Inter
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
+//// Italianno
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/*-------------------------
+    Variables
+-------------------------*/
+/* Fonts */
+$font-primary:"Libre Franklin", sans-serif ;
+$font-sec:'Sora', sans-serif;
+$font-awesome: "Font Awesome 6 Pro";
+
+/* Colors */
+$accent-1: #2F3D7E;
+$accent-2: #ED7D3A;
+$white: #FFFFFF;
+$black: #131110;
+$medium-black: #1B1918;
+$light-black: #282525;
+$lightest-gray: #F5F7F9;
+$light-gray: #F6F8FF;
+$medium-gray: #BDBCBC;
+$dark-gray: #808080;
+
+
+/* Transitions */
+$transition: all .3s ease-in;
+
+/* Gradients */
+
+
+/* Shadows */
+$shadow: 2px 1px 5px 0px rgba(0, 0, 0, 0.05), 7px 6px 9px 0px rgba(0, 0, 0, 0.04), 15px 13px 12px 0px rgba(0, 0, 0, 0.03), 26px 23px 14px 0px rgba(0, 0, 0, 0.01), 41px 37px 15px 0px rgba(0, 0, 0, 0.00);
+
+
+/*-------------------------
+ Responsive Styles
+-------------------------*/
+@import "helpers/mixin";
+
+/*-------------------------
+    Reset Styles
+-------------------------*/
+@import "basic/basic";
+
+/*-------------------------
+Helpers
+-------------------------*/
+@import "helpers/classes";
+
+@import "helpers/spacing";
+
+/*-------------------------
+Elements
+-------------------------*/
+
+@import "elements/buttons";
+
+@import "elements/form";
+
+@import "elements/heading";
+
+@import "elements/preloader";
+
+@import "elements/nice-select";
+
+@import "elements/pagination";
+
+/*-------------------------
+  layouts
+-------------------------*/
+@import "layout/header";
+
+@import "layout/banner";
+
+@import "layout/sidebar"; 
+
+@import "layout/page-header"; 
+
+@import "layout/properties"; 
+
+@import "layout/about"; 
+
+@import "layout/services"; 
+
+@import "layout/testimonials";
+
+@import "layout/gallery";
+
+@import "layout/team";
+
+@import "layout/contact";
+
+@import "layout/error-page";
+
+@import "layout/coming-soon";
+
+@import "layout/blogs";
+
+@import "layout/footer";

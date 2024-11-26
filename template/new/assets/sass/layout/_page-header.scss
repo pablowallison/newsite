@@ -1,0 +1,13 @@
+/* ------------------------------------------------------------- *
+ * Page Header CSS Start
+/* ------------------------------------------------------------- */
+.page-header{
+    background: url(../media/bg/page-header-bg.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    justify-content: center;
+    padding-top: 4%;
+    align-content: center;
+    height: clamp(300px, 20.833vw, 700px);
+}

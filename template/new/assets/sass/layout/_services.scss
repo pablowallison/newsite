@@ -1,0 +1,61 @@
+/*----------------------------------------*/
+/*  Services CSS START
+/*----------------------------------------*/
+.service-block{
+    position: relative;
+    border-top: 1px solid $dark-gray;
+    &:last-child{
+        border-bottom: 1px solid $dark-gray;
+    }
+    .title{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: clamp(32px, 2.5vw, 64px) clamp(12px, 0.83vw, 24px);
+        &.h3{
+            transition: $transition;
+            color: $dark-gray;
+        }
+        svg{
+            stroke: $dark-gray;
+            transition: $transition;
+            width: clamp(32px, 2.5vw, 64px);
+            height: clamp(32px, 2.5vw, 64px);
+        }
+    }
+    img{
+        position: absolute;
+        top: -12.5%;
+        right: 15%;
+        width: clamp(150px, 13.958vw, 350px);
+        -webkit-transform: scale(0) rotate(0deg);
+        transform: scale(0) rotate(0deg);
+        z-index: 10;
+        border-radius: 5px;
+        -webkit-transition: all 0.4s linear 0s;
+        transition: all 0.4s linear 0s;
+        @include media-query(575px) {
+            display: none;
+        }
+    }
+    &:hover{
+        .title{
+            &.h3{
+                transition: $transition;
+                color: $accent-1;
+            }
+            svg{
+                transition: $transition;
+                stroke: $accent-1;
+            }
+        }
+
+        img{
+            -webkit-transform: scale(1) rotate(5deg);
+                    transform: scale(1) rotate(5deg);
+            -webkit-transition: all 0.4s linear 0s;
+            transition: all 0.4s linear 0s;
+        }
+    }
+}
