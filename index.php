@@ -225,7 +225,7 @@ $route->add('search', function($args) use ($twig) {
     ];
     //var_dump($data);
     // Renderiza a view utilizando Twig
-    renderLayout($twig, 'home.html', $data);
+    renderLayout($twig, 'properties-list.html', $data);
 });
 
 // Executa a rota correspondente

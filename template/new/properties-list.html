@@ -10,15 +10,15 @@
     <title>Realtor - HTML Template</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/media/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="./template/{{theme}}/assets/media/favicon.png">
 
     <!-- All CSS files -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/all.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="assets/css/vendor/animate.min.css">
-    <link rel="stylesheet" href="assets/css/vendor/jquery.magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/all.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/animate.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/jquery.magnific-popup.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/app.css">
 
 </head>
 
@@ -27,7 +27,8 @@
     <main class="x-hidden">
         <!-- Header Area Start -->
         <header >
-            <nav class="main-menu">
+            {% include 'partials/navbar.html' %}
+            <!--<nav class="main-menu">
                 <div class="container-fluid">
                     <div class="main-menu__block">
                         <div class="main-menu__left">
@@ -76,13 +77,13 @@
                         </div>
                     </div>
                 </div>
-            </nav>
+            </nav>-->
         </header>
         <!-- Header Area end -->
 
         <!-- Page Header Area Start -->
         <section class="page-header">
-            <h1 class="color-white wow fadeInUp" data-wow-delay="0.5s">Listing</h1>
+            <h1 class="color-white wow fadeInUp" data-wow-delay="0.5s">Imóveis</h1>
         </section>
         <!-- Page Header Area End -->
 
@@ -145,39 +146,43 @@
                     </div>
                 </form>
                 <div class="row row-gap-4">
+                    {% for imovel in imoveis %}
                     <div class="col-xxl-3 col-lg-4 col-sm-6">
                         <div class="property-card shadow wow fadeInUp" data-wow-delay="0.4s">
                             <div class="img-block">
-                                <img class="property-img" src="assets/media/properties/property-1.png" alt="">
-                                <a href="property-detail.html" class="detail-link">View Detail</a>
-                                <img class="category-title-bg" src="assets/media/shapes/card-tag-bg.png" alt="">
-                                <h6 class="category-title">For Sale</h6>
+                                {% if imovel.imagens|length > 0 %}
+                                <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
+                                {% endif %}
+                                <a href="index.php?action=imovel&id={{imovel.id}}" class="detail-link">Ver detalhes</a>
+                                <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+                                <h6 class="category-title">{{ imovel.categoria_imoveis }}</h6>
                             </div>
                             <div class="text-block">
-                                <a href="property-detail.html" class="title h5 mb-8">Urban Oasis Homes</a>
+                                <a href="index.php?action=imovel&id={{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
                                 <div class="location mb-24">
-                                    <img src="assets/media/icons/location.svg" alt="">
-                                    <span>101 Serene Avenue, Maplewood Gardens.</span>
+                                    <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
+                                    <span>Bairro {{ imovel.bairro }}</span>
                                 </div>
-                                <h6 class="price color-primary mb-24">$90,000</h6>
+                                <h6 class="price color-primary mb-24">R$ {{ imovel.preco }}</h6>
                                 <ul class="unstyled amenities">
                                     <li>
-                                        <img src="assets/media/icons/bed.svg" alt="">
-                                        <span>4 Bedrooms</span>
+                                        <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
+                                        <span>{{ imovel.quarto }} {{ imovel.quarto == 1 ? 'Quarto' : 'Quartos' }}</span>
                                     </li>
                                     <li>
-                                        <img src="assets/media/icons/shower.svg" alt="">
-                                        <span>2 Baths</span>
+                                        <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
+                                        <span>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros' }}</span>
                                     </li>
                                     <li>
-                                        <img src="assets/media/icons/area.svg" alt="">
-                                        <span>360 Sqft</span>
+                                        <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                                        <span>{{ imovel.area_construida }} m²</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xxl-3 col-lg-4 col-sm-6">
+                    {% endfor %}
+                    <!--<div class="col-xxl-3 col-lg-4 col-sm-6">
                         <div class="property-card shadow wow fadeInUp" data-wow-delay="0.55s">
                             <div class="img-block image-anime">
                                 <img class="property-img" src="assets/media/properties/property-2.png" alt="">
@@ -400,7 +405,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- Pagination Start -->
                     <ul class="pagination text-center wow fadeInUp" data-wow-delay="0.5s">
@@ -627,14 +632,14 @@
     <!-- back-to-top-end -->
   
     <!-- Jquery Js -->
-    <script src="assets/js/vendor/jquery-3.6.3.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/vendor/jquery-appear.js"></script>
-    <script src="assets/js/vendor/jquery.nice-select.min.js"></script>
-    <script src="assets/js/vendor/slick.min.js"></script>
-    <script src="assets/js/vendor/wow.js"></script>
-    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery-3.6.3.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery-appear.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/slick.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/wow.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/app.js"></script>
 
 </body>
 
