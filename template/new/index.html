@@ -260,14 +260,14 @@
                             <div class="about-content">
                                 <!-- Section Title Start -->
                                  <div class="heading mb-32 align-items-start text-start">
-                                    <p class="eyebrow sec justify-content-start wow fadeInUp">Properties</p>
-                                    <h2 class="color-primary wow fadeInUp" data-wow-delay="0.5s">The Leading Real Estate About Marketplace.</h2>
+                                    <p class="eyebrow sec justify-content-start wow fadeInUp">Imóveis</p>
+                                    <h2 class="color-primary wow fadeInUp" data-wow-delay="0.5s">Fique por dentro das novidades do mercado imobiliário.</h2>
                                 </div>
                                 <!-- Section Title End -->
 
                                 <!-- About Content Body Start -->
                                 <div class="about-content-body">
-                                    <p class="mb-24 wow fadeInUp" data-wow-delay="0.7s">Duis pulvinar metus elit, ut aliquam est sollicitudin finibus. Integer lobortis est interdum. Suspendisse nunc est, varius quis fringilla ac, commodo a ante. Praesent non elit cursus, aliquam sapien quis, dictum tortor.</p>
+                                    <p class="mb-24 wow fadeInUp" data-wow-delay="0.7s">Aqui você terá acesso às novidades e conteúdos sobre o mercado de imóveis e os recentes acontecimentos desse mundo dinâmico. Fique ligado!</p>
                                     <ul>
                                         <li class="wow fadeInUp" data-wow-delay="0.8s">
                                             <div class="icon-box"><img src="./template/{{theme}}/assets/media/icons/icon-about-1.svg" alt=""></div>
@@ -337,8 +337,8 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-6">
                             <div class="heading mb-64 text-center">
-                                <p class="eyebrow justify-content-md-start wow fadeInUp">Properties</p>
-                                <h2 class="wow fadeInUp" data-wow-delay="0.5s">Expert Real Estate: Pathway to Investment</h2>
+                                <p class="eyebrow justify-content-md-start wow fadeInUp">Mercado imobiliário</p>
+                                <h2 class="wow fadeInUp" data-wow-delay="0.5s">Imóveis: O caminho para o investimento de sucesso</h2>
                                 <p class="wow fadeInUp" data-wow-delay="0.7s">Lorem ipsum dolor sit amet consectetur. Convallis nisl eu consequat nisi in <br>montes odio amet massa. Adipiscing.</p>
                             </div>
                         </div>
@@ -383,8 +383,8 @@
                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-md-between justify-content-center mb-48">
                         <div class="heading align-items-md-start text-md-start">
-                            <p class="eyebrow justify-content-md-start wow fadeInUp">Properties</p>
-                            <h2 class="wow fadeInUp" data-wow-delay="0.5s">Top-Rated Properties</h2>
+                            <p class="eyebrow justify-content-md-start wow fadeInUp">Os melhores imóveis para você</p>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.5s">Imóveis em destaques</h2>
                             <p class="wow fadeInUp" data-wow-delay="0.7s">Lorem ipsum dolor sit amet consectetur. Accumsan lacus neque nunc <br> convallis eleifend vitae et felis potenti.</p>
                         </div>
                         <a href="properties-list.html" class="cus-btn d-md-flex d-none">
@@ -397,39 +397,43 @@
                         </a>
                     </div>
                     <div class="row row-gap-4">
+                        {% for imovel in imoveis %}
                         <div class="col-xxl-3 col-lg-4 col-sm-6">
                             <div class="property-card shadow wow fadeInUp" data-wow-delay="0.8s">
                                 <div class="img-block image-anime">
-                                    <img class="property-img" src="./template/{{theme}}/assets/media/properties/property-1.png" alt="">
-                                    <a href="property-detail.html" class="detail-link">View Detail</a>
-                                    <img class="category-title-bg" src="assets/media/shapes/card-tag-bg.png" alt="">
-                                    <h6 class="category-title">For Sale</h6>
+                                    {% if imovel.imagens|length > 0 %}
+                                    <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
+                                    {% endif %}
+                                    <a href="index.php?action=imovel&id={{imovel.id}}" class="detail-link">Ver detalhes</a>
+                                    <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+                                    <h6 class="category-title">{{ imovel.categoria_imoveis }}</h6>
                                 </div>
                                 <div class="text-block">
-                                    <a href="property-detail.html" class="title h5 mb-8">Urban Oasis Homes</a>
+                                    <a href="index.php?action=imovel&id={{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
                                     <div class="location mb-24">
                                         <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
-                                        <span>101 Serene Avenue, Maplewood Gardens.</span>
+                                        <span>Bairro {{ imovel.bairro }}</span>
                                     </div>
-                                    <h6 class="price color-primary mb-24">$90,000</h6>
+                                    <h6 class="price color-primary mb-24">R$ {{ imovel.preco }}</h6>
                                     <ul class="unstyled amenities">
                                         <li>
                                             <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
-                                            <span>4 Bedrooms</span>
+                                            <span>{{ imovel.quarto }} {{imovel.quarto == 1 ? 'Quarto' : 'Quartos'}}</span>
                                         </li>
                                         <li>
                                             <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
-                                            <span>2 Baths</span>
+                                            <span>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros' }}</span>
                                         </li>
                                         <li>
                                             <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
-                                            <span>360 Sqft</span>
+                                            <span>{{ imovel.area_construida }}m²</span>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-3 col-lg-4 col-sm-6">
+                        {% endfor %}
+                        <!--<div class="col-xxl-3 col-lg-4 col-sm-6">
                             <div class="property-card shadow wow fadeInUp" data-wow-delay="1.0s">
                                 <div class="img-block image-anime">
                                     <img class="property-img" src="./template/{{theme}}/assets/media/properties/property-2.png" alt="">
@@ -524,7 +528,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </section>
