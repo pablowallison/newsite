@@ -51,7 +51,7 @@ $route->add('home', function($args) use ($twig) {
     $result = $results->loadAll();
     //var_dump($result['data']['0']['imagens']);
     // Verifica se o imóvel está ativo e formata o preço
-    foreach($result['data'] as &$imovel){
+    foreach($result['data']['imoveis'] as &$imovel){
         if ($imovel['status'] == 1) {
             $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
             $imoveis[] = $imovel;
@@ -83,7 +83,7 @@ $route->add('imovel', function($args) use ($twig) {
     $imoveis = new \App\ImoveisService();
     $result_all = $imoveis->loadAll();
     
-    foreach($result_all['data'] as &$imovelAll){
+    foreach($result_all['data']['imoveis'] as &$imovelAll){
         if ($imovelAll['status'] == 1) {
             $imovelAll['preco'] = number_format($imovelAll['preco'], 2, ',', '.');
             $imoveisAll[] = $imovelAll;
@@ -177,26 +177,39 @@ $route->add('search', function($args) use ($twig) {
     if (!empty($args['banheiros'])) {
         $filters[] = ['banheiro', '>=', (int) $args['banheiros']];
     }
+    
+    //implementa a paginação na busca
+    $page = !empty($args['page']) ? (int) $args['page'] : 1;
+    $perPage = 1;
+    $offset = ($page - 1) * $perPage;
 
     // Adiciona mais filtros conforme necessário
     $params = [
         'filters' => $filters,
         'order' => 'created_at',
-        'direction' => 'desc'
+        'direction' => 'desc',
+        'limit'     => $perPage,
+        'offset'    => $offset
     ];
 
     $imoveisService = new App\ImoveisService();
     $result = $imoveisService->loadAll($params);
-     // Verifica se o imóvel está ativo e formata o preço
-     foreach($result['data'] as &$imovel){
+    
+    //carrega a lista de imóveis
+    $listaImoveis = $result['data']['imoveis'];
+    //var_dump($listaImoveis);
+    $totalImoveis = $result['data']['total']; 
+    $totalPaginas = ceil($totalImoveis / $perPage);
+
+    // Verifica se o imóvel está ativo e formata o preço
+     foreach($listaImoveis as &$imovel){
         if ($imovel['status'] == 1) {
             $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
             $imoveis[] = $imovel;
         }
-        //var_dump($imovel[0]);
+        
     }
-
-    //var_dump($imoveis);
+    //var_dump($totalImoveis);
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
@@ -220,7 +233,9 @@ $route->add('search', function($args) use ($twig) {
         'args' => $args,
         'title' => 'Concretiza Construções',
         'active' => $classActive,
-        'imoveis' => isset($imoveis) ? $imoveis : ['not-found' => 'Imóveis não encontrado!']
+        'imoveis' => isset($imoveis) ? $imoveis : ['not-found' => 'Imóveis não encontrado!'],
+        'totalPaginas'  => $totalPaginas,
+        'paginaAtual'   => $page
         
     ];
     //var_dump($data);

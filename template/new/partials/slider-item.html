@@ -10,7 +10,7 @@
         <h6 class="category-title">{{ imovel.categoria_imoveis }}</h6>
     </div>
     <div class="text-block">
-        <a href="property-detail.html" class="title h5 mb-8">{{ imovel.titulo }}</a>
+        <a href="index.php?action=imovel&id={{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
         <div class="location mb-24">
             <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
             <span>Bairro {{ imovel.bairro }}</span>

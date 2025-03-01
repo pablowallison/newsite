@@ -408,6 +408,48 @@
                     </div>-->
 
                     <!-- Pagination Start -->
+                     {% if totalPaginas > 1 %}
+                    <ul class="pagination text-center wow fadeInUp" data-wow-delay="0.5s">
+                        <li><a class="prev {% if paginaAtual == 1 %}disabled{% endif %}" href="{% if paginaAtual > 1 %}?action=search&page={{ paginaAtual - 1 }}{% endif %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M12.6455 23C12.6455 20 9.84551 16 6.64551 16M6.64551 16C8.47884 16 12.6455 15 12.6455 9M6.64551 16H25.6455" stroke-width="2"/></svg></a></li>
+                        
+                        {%for p in 1..totalPaginas %}
+                        {% if p == paginaAtual %}
+                        <li><a class="active" href="?action&page={{ p }}
+                            {% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}
+                            {% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}
+                            {% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}
+                            {% if args.preco %}&preco={{ args.preco }}{% endif %}
+                            {% if args.quartos %}&quartos={{ args.quartos }}{% endif %}
+                            {% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{ p }}</a></li>
+                        
+                        {% elseif p == 1 or p == totalPaginas or (p >= paginaAtual - 2 and p <= paginaAtual + 2) %}
+                        <li><a href="?action=search&page={{ p }}
+                            {% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}
+                            {% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}
+                            {% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}
+                            {% if args.preco %}&preco={{ args.preco }}{% endif %}
+                            {% if args.quartos %}&quartos={{ args.quartos }}{% endif %}
+                            {% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{ p }}</a></li>
+                        
+                        {% elseif p == paginaAtual - 3 or p == paginaAtual + 3 %}
+                        <li><a href="#">...</a></li>
+                        {% endif %}
+                        {% endfor %}
+
+                        <li>
+                            <a class="next {% if paginaAtual == totalPaginas %}disabled{% endif %}" 
+                               href="{% if paginaAtual < totalPaginas %}?action=search&page={{ paginaAtual + 1 }}{% endif %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+                                    <path d="M19.3545 9C19.3545 12 22.1545 16 25.3545 16M25.3545 16C23.5212 16 19.3545 17 19.3545 23M25.3545 16L6.35449 16" stroke-width="2"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    <!-- Pagination End -->
+
+
+                    <!-- Pagination Start 
                     <ul class="pagination text-center wow fadeInUp" data-wow-delay="0.5s">
                         <li><a class="prev" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M12.6455 23C12.6455 20 9.84551 16 6.64551 16M6.64551 16C8.47884 16 12.6455 15 12.6455 9M6.64551 16H25.6455" stroke-width="2"/></svg></a></li>
                         <li><a class="active" href="#">01</a></li>
@@ -416,7 +458,7 @@
                         <li><a href="#">09</a></li>
                         <li><a class="next" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M19.3545 9C19.3545 12 22.1545 16 25.3545 16M25.3545 16C23.5212 16 19.3545 17 19.3545 23M25.3545 16L6.35449 16" stroke-width="2"/></svg></a></li>
                     </ul>
-                    <!-- Pagination End -->
+                    Pagination End -->
                 </div>
             </div>
         </section>

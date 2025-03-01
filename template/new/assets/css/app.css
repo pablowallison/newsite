@@ -3553,4 +3553,7 @@ footer .footer-quick-links li a:before {
   color: #ED7D3A;
 }
 
+.disabled{
+  pointer-events: none;
+}
 /*# sourceMappingURL=app.css.map */
