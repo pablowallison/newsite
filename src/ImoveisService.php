@@ -226,4 +226,28 @@ class ImoveisService {
         //$resultCategoriaImoveis = $categoriaImoveis->loadPropertyCategory(); 
     }
 
+    public function store($param){
+        //var_dump($param);
+        //exit;
+        $body = [
+            'data'=> [
+                'imoveis_id' => $param['data']['imoveis_id'],
+                'nome' => $param['data']['nome'],
+                'email' => $param['data']['email'],
+                'telefone' => $param['data']['telefone'],
+                'message_lead' => $param['data']['message_lead']
+            ],
+
+        ];
+        var_dump($body);
+        // URL da API que você quer acessar
+        $location = 'https://painel.concretizaconstrucoes.com/rest.php?class=LeadImobRestService&method=Store';
+
+        $data = new \App\RequestData();
+            $result = $data->requisicao($location, 'POST', $body);
+            //var_dump($result);
+            return $result;
+            
+    }
+
 }

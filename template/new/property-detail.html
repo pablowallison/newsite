@@ -205,13 +205,15 @@
                                 <li><i class="fa-light fa-location-dot"></i><p>Bairro {{ imovel.bairro }}</p></li>
                             </ul>
                         </div>
+                        <!--Formulário de contato INICIO-->
                         <div class="inquiry-block mb-24 wow fadeInUp" data-wow-delay="0.5s">
-                            <h4 class="mb-32">Send Inquiry</h4>
-                            <form action="properties-list.html">
+                            <h4 class="mb-32">Solicitar contato</h4>
+                            <form action="index.php?action=lead" method="POST">
+                                <input type="hidden" name="imoveis_id" value="{{imovel_id}}">
                                 <div class="row row-gap-3">
                                     <div class="col-lg-12 col-sm-6">
                                         <div class="form-group">
-                                            <input type="text" name="name" required placeholder="Name*">
+                                            <input type="text" name="nome" required placeholder="Name*">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-sm-6">
@@ -221,12 +223,12 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <input type="tel" name="tel" required placeholder="Phone number*">
+                                            <input type="tel" name="telefone" required placeholder="Phone number*">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <textarea name="message" rows="4" required placeholder="Message*"></textarea>
+                                            <textarea name="message_lead" rows="4" required placeholder="Message*"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -241,6 +243,7 @@
                                 </div>
                             </form>
                         </div>
+                        <!--Formulário de contato FIM-->
                         <div class="contact-block d-lg-block d-none wow fadeInUp" data-wow-delay="0.7s">
                             <img src="./template/{{theme}}/assets/media/bg/contact-block-bg.jpg" alt="">
                             <div class="content">

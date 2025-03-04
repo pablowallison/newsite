@@ -79,6 +79,9 @@ $route->add('home', function($args) use ($twig) {
 });
 
 $route->add('imovel', function($args) use ($twig) {
+    //TRATA OS DADOS DO FORMULÁRIO
+    //var_dump($args);
+
     //var_dump($_GET);
     $imoveis = new \App\ImoveisService();
     $result_all = $imoveis->loadAll();
@@ -102,11 +105,126 @@ $route->add('imovel', function($args) use ($twig) {
         'title' => 'Concretiza Construções',
         'active' => $classActive,
         'imovel' => $result['data']['0'],
-        'imoveis' => $imoveisAll
+        'imoveis' => $imoveisAll,
+        'imovel_id' => intval($args['id'])
     ];
 
     // Renderiza a view utilizando Twig
     renderLayout($twig, 'property-detail.html', $data);
+});
+
+$route->add('lead2', function($args) use ($twig) {
+
+    // Captura e sanitiza os dados do formulário
+    $imoveis_id = filter_input(INPUT_POST, 'imoveis_id', FILTER_SANITIZE_NUMBER_INT);
+    $nome = trim(htmlspecialchars(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $telefone = trim(preg_replace('/\D/', '', filter_input(INPUT_POST, 'telefone', FILTER_SANITIZE_NUMBER_INT) ?? '')); // Apenas números
+    $mensagem = trim(htmlspecialchars(filter_input(INPUT_POST, 'message_lead', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
+
+    // Valida os campos obrigatórios
+    /*if (empty($nome) || !$email || empty($telefone) || empty($mensagem)) {
+        echo "<script>alert('Erro: Todos os campos são obrigatórios e o e-mail deve ser válido!'); window.history.back();</script>";
+        exit;
+    }*/
+
+    // Validação de telefone: apenas números, mínimo de 10 e máximo de 15 dígitos
+    /*if (!preg_match('/^\d{10,15}$/', $telefone)) {
+        echo "<script>alert('Erro: Telefone inválido!'); window.history.back();</script>";
+        exit;
+    }*/
+
+    // Dados para envio na API
+    $postData = [
+        'data' => [
+            'imoveis_id'   => intval($imoveis_id) ?: null,
+            'nome'         => $nome,
+            'email'        => $email,
+            'telefone'     => $telefone,
+            'message_lead' => $mensagem
+        ]
+    ];
+    //var_dump($postData);
+
+    // URL da API
+    $url = "https://painel.concretizaconstrucoes.com/rest.php?class=LeadImobRestService&method=Store";
+
+    // Armazene o token de forma segura
+    $token = getenv('API_TOKEN') ?: 'Basic 9fbbb2c765d1d5d12c1e3582a9329108c4ed9a96b199ffab6700a413869c';
+
+    // Configuração do cURL
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Authorization: ' . $token
+    ]);
+
+    // Executa a requisição e captura a resposta
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    var_dump($httpCode);
+    $curlError = curl_error($ch);
+    var_dump($curlError);
+    curl_close($ch);
+    
+    if ($response === false) {
+        error_log("Erro ao conectar à API. Erro: " . $curlError);
+        echo "<script>alert('Erro ao conectar à API. Tente novamente mais tarde.'); window.history.back();</script>";
+        //exit;
+    }
+
+    // Decodifica a resposta da API
+    $responseData = json_decode($response, true);
+    var_dump($responseData);
+    // Verifica se a requisição foi bem-sucedida
+    if (!is_array($responseData) || !isset($responseData['status']) || $responseData['status'] !== 'success') {
+        error_log("Erro na API: " . json_encode($responseData));
+        echo "<script>alert('Erro ao enviar a mensagem. Verifique os dados e tente novamente.'); window.history.back();</script>";
+        //exit;
+    }
+
+    echo "<script>alert('Mensagem enviada com sucesso!'); window.location.href='index.php';</script>";
+});
+
+$route->add('lead', function($args) use ($twig) {
+
+    // Captura e sanitiza os dados do formulário
+    $imoveis_id = filter_input(INPUT_POST, 'imoveis_id', FILTER_SANITIZE_NUMBER_INT);
+    $nome = trim(htmlspecialchars(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $telefone = trim(preg_replace('/\D/', '', filter_input(INPUT_POST, 'telefone', FILTER_SANITIZE_NUMBER_INT) ?? '')); // Apenas números
+    $mensagem = trim(htmlspecialchars(filter_input(INPUT_POST, 'message_lead', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
+
+    // Valida os campos obrigatórios
+    /*if (empty($nome) || !$email || empty($telefone) || empty($mensagem)) {
+        echo "<script>alert('Erro: Todos os campos são obrigatórios e o e-mail deve ser válido!'); window.history.back();</script>";
+        exit;
+    }*/
+
+    // Validação de telefone: apenas números, mínimo de 10 e máximo de 15 dígitos
+    /*if (!preg_match('/^\d{10,15}$/', $telefone)) {
+        echo "<script>alert('Erro: Telefone inválido!'); window.history.back();</script>";
+        exit;
+    }*/
+
+    // Dados para envio na API
+    $postData = [
+        'data' => [
+            'imoveis_id'   => intval($imoveis_id) ?: null,
+            'nome'         => $nome,
+            'email'        => $email,
+            'telefone'     => $telefone,
+            'message_lead' => $mensagem
+        ]
+    ];
+    //var_dump($postData);
+    $imoveis = new \App\ImoveisService();
+    $result_all = $imoveis->store($postData);
+
 });
 
 $route->add('venda', function($args) use ($twig) {
