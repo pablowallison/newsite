@@ -11,6 +11,8 @@
 
  namespace App;
 
+ use exception;
+
 class Route
 {
     public static $actions;

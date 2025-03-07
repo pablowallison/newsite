@@ -1,4 +1,14 @@
 <?php
+/**
+ * ImoveisService
+ * 
+ * @version    1.0
+ * @package    Web
+ * @author     Pablo Wallison
+ * @copyright  Copyright (c) 2006 Concretiza Construções e Imoveis Ltda. (http://www.concretizaimoveis.com.br)
+ * @license    http://www.concretizaimoveis.com.br/license
+ * 
+ */
 
 namespace App;
 
@@ -32,7 +42,7 @@ class ImoveisService {
                     }
                 }
             }
-            //var_dump($body);
+
             // URL da API que você quer acessar
             $location = 'https://painel.concretizaconstrucoes.com/rest.php?class=ImoveisRestService&method=LoadAll';
             
@@ -42,7 +52,6 @@ class ImoveisService {
 
             $data = new \App\RequestData();
             $result = $data->request($urlWithQuery, 'GET', null);
-            //var_dump($result);
             return $result;
 
         } catch (Exception $e) {
@@ -173,81 +182,6 @@ class ImoveisService {
             echo 'Error: ' . $e->getMessage();
             return null;
         }
-    }
-
-    public function loadCategoriaImoveis(){
-         
-        try {
-            // Parâmetros de filtro
-            /*$body = [
-                'limit' => '3',
-                'order' => 'nome',
-                'direction' => 'desc'
-            ];*/
-
-            // URL da API que você quer acessar
-            $location = 'https://painel.concretizaconstrucoes.com/rest.php?class=CategoriaImoveisRestService&method=LoadAll';
-
-            // Fazendo a requisição à API
-            $data = new \App\RequestData();
-            $result = $data->request($location, 'GET', null);
-            return $result;
-        } catch (Exception $e) {
-            echo 'Error: ' . $e->getMessage();
-            return null;
-        }
-        //$categoriaImoveis = new \App\RequestImoveis;
-        //$resultCategoriaImoveis = $categoriaImoveis->loadPropertyCategory(); 
-    }
-
-    public function loadTipoImoveis(){
-         
-        try {
-            // Parâmetros de filtro
-            /*$body = [
-                'limit' => '3',
-                'order' => 'nome',
-                'direction' => 'desc'
-            ];*/
-
-            // URL da API que você quer acessar
-            $location = 'https://painel.concretizaconstrucoes.com/rest.php?class=TipoImoveisRestService&method=loadAll';
-
-            // Fazendo a requisição à API
-            $data = new \App\RequestData();
-            $resultTipoImovel = $data->request($location, 'GET', null);
-            //var_dump($resultTipoImovel);
-            return $resultTipoImovel;
-        } catch (Exception $e) {
-            echo 'Error: ' . $e->getMessage();
-            return null;
-        }
-        //$categoriaImoveis = new \App\RequestImoveis;
-        //$resultCategoriaImoveis = $categoriaImoveis->loadPropertyCategory(); 
-    }
-
-    public function store($param){
-        //var_dump($param);
-        //exit;
-        $body = [
-            'data'=> [
-                'imoveis_id' => $param['data']['imoveis_id'],
-                'nome' => $param['data']['nome'],
-                'email' => $param['data']['email'],
-                'telefone' => $param['data']['telefone'],
-                'message_lead' => $param['data']['message_lead']
-            ],
-
-        ];
-        var_dump($body);
-        // URL da API que você quer acessar
-        $location = 'https://painel.concretizaconstrucoes.com/rest.php?class=LeadImobRestService&method=Store';
-
-        $data = new \App\RequestData();
-            $result = $data->requisicao($location, 'POST', $body);
-            //var_dump($result);
-            return $result;
-            
     }
 
 }

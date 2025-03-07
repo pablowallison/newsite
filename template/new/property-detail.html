@@ -183,12 +183,13 @@
                                         <video controls>
                                             <source src="./template/{{theme}}/assets/media/properties/property.mp4" type="video/mp4">
                                         </video>
+                                        <!--<iframe width="868" height="488" src="https://www.youtube.com/embed/vrLSiAbdXb4" title="Apenas R$ 200 mil!! Simplesmente Perfeita!!! #imoveisnaplanta #casasfinanciadas #juazeirodonorte" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
                                     </div>
                                 </div>
                             </div>
                             <div class="wow fadeInUp" data-wow-delay="0.6s">
-                                <h5 class="mb-32 underline-text">Map Location</h5>
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1398189.2651781747!2d6.904948286445451!3d46.80748890835359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c64ef6f596d61%3A0x5c56b5110fcb7b15!2sSwitzerland!5e0!3m2!1sen!2s!4v1710743420131!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <h5 class="mb-32 underline-text">Localização</h5>
+                                <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCr3KGnbfzKxAccWGOmHh44OLREydyzQGU&q={{ coordenadas.latitude }},{{ coordenadas.longitude }}&zoom=14" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
 
@@ -197,18 +198,35 @@
                         <div class="about-property-block mb-24 wow fadeInUp" data-wow-delay="0.25s">
                             <h4 class="mb-24">Mais informações</h4>
                             <ul class="unstyled links">
+                                {% if imovel.area_construida %}
                                 <li><i class="fa-thin fa-ruler-horizontal"></i><p>{{ imovel.area_construida }} m²</p></li>
+                                {% endif %}
+                                {% if imovel.quarto %}
                                 <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/bed-w.png" alt=""></div><p>{{ imovel.quarto }} {{ imovel.quarto == 1 ? 'Quarto' : 'Quartos' }}</p></li>
+                                {% endif %}
+                                {% if imovel.banheiro %}
                                 <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/shower-w.png" alt=""></div><p>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros' }}</p></li>
+                                {% endif %}
+                                {% if imovel.cozinha %}
                                 <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/kitchen-w.png" alt=""></div><p>{{ imovel.cozinha }} {{ imovel.cozinha == 1 ? 'Cozinha' : 'Cozinhas' }}</p></li>
+                                {% endif %}
+                                {% if imovel.garagem %}
                                 <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/car-white.png" alt=""></div><p>{{ imovel.garagem }} {{ imovel.garagem == 1 ? 'Garagem' : 'Garagens' }}</p></li>
+                                {% endif %}
+                                {% if imovel.bairro %}
                                 <li><i class="fa-light fa-location-dot"></i><p>Bairro {{ imovel.bairro }}</p></li>
+                                {% endif %}
                             </ul>
                         </div>
                         <!--Formulário de contato INICIO-->
+                        {% if msg == 'success' %}
+                        <div class="alert alert-success">Mensagem enviada com sucesso</div>
+                    {% elseif msg == 'error' %}
+                        <div class="alert alert-danger">Não foi possível enviar sua mensagem.</div>
+                    {% endif %}
                         <div class="inquiry-block mb-24 wow fadeInUp" data-wow-delay="0.5s">
                             <h4 class="mb-32">Solicitar contato</h4>
-                            <form action="index.php?action=lead" method="POST">
+                            <form action="index.php?action=imovel" method="POST">
                                 <input type="hidden" name="imoveis_id" value="{{imovel_id}}">
                                 <div class="row row-gap-3">
                                     <div class="col-lg-12 col-sm-6">
@@ -232,7 +250,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="cus-btn w-100">
+                                        <button type="submit" name="sendmessage" class="cus-btn w-100">
                                             Send Message
                                             <svg viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M19.8759 7.98103C19.532 7.98103 19.2058 8.05711 18.9122 8.19234C18.6769 7.16583 17.7568 6.3975 16.6599 6.3975C16.3085 6.3975 15.9753 6.47667 15.6767 6.61762C15.4132 5.63128 14.5123 4.90252 13.4439 4.90252C13.123 4.90252 12.8171 4.96842 12.5391 5.0872V2.31113C12.5391 1.03673 11.5024 0 10.228 0C8.95358 0 7.9168 1.03673 7.9168 2.31113V13.3079L6.72515 11.5389L6.70649 11.5157C5.81427 10.4066 4.24457 10.1601 3.0554 10.9425C2.43355 11.3516 2.01229 11.9791 1.86913 12.7095C1.72686 13.4354 1.87738 14.171 2.29293 14.7823L6.54585 21.4861L6.56001 21.5076C7.63194 23.0682 9.40227 24 11.2956 24H16.0677C19.4419 24 22.187 21.2549 22.187 17.8807V10.2921C22.187 9.01777 21.1503 7.98103 19.8759 7.98103ZM20.7808 17.8807C20.7808 20.4795 18.6665 22.5938 16.0677 22.5938H11.2956C9.8698 22.5938 8.53644 21.8941 7.72626 20.7216L3.47394 14.0188L3.45979 13.9974C3.25405 13.6978 3.17929 13.3365 3.24913 12.9799C3.31902 12.6234 3.52471 12.317 3.82827 12.1173C4.40132 11.7403 5.15544 11.8527 5.59377 12.3765L9.32305 17.9123V2.31113C9.32305 1.81214 9.72899 1.40625 10.228 1.40625C10.727 1.40625 11.1328 1.81214 11.1328 2.31113V10.6528H12.5391V7.21369C12.5391 6.7147 12.945 6.30881 13.444 6.30881C13.943 6.30881 14.3488 6.7147 14.3488 7.21369V10.6528H15.7551V8.70862C15.7551 8.20964 16.161 7.80375 16.66 7.80375C17.159 7.80375 17.5648 8.20964 17.5648 8.70862V10.6528H18.9711V10.2922C18.9711 9.79317 19.377 9.38728 19.876 9.38728C20.375 9.38728 20.7808 9.79317 20.7808 10.2922V17.8807H20.7808Z" fill="#212627"/>

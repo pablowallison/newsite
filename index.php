@@ -16,9 +16,11 @@ $twig = new \Twig\Environment($loader);
 function renderLayout($twig, $template, $data = []) {
 
     //var_dump($data);
-    $categoriaImoveis = new \App\ImoveisService();
-    $resultCategoriaImoveis = $categoriaImoveis->loadCategoriaImoveis();
-    $resultTipoImoveis = $categoriaImoveis->loadTipoImoveis();
+    $categoriaImoveis = new \App\CategoriaImoveisService();
+    $resultCategoriaImoveis = $categoriaImoveis->loadAll();
+    
+    $TipoImoveis = new \App\TipoImoveisService();
+    $resultTipoImoveis = $TipoImoveis->load();
     $iconeSite = './imagens/assets/icon.svg';
     //var_dump($iconeSite);
     
@@ -80,6 +82,36 @@ $route->add('home', function($args) use ($twig) {
 
 $route->add('imovel', function($args) use ($twig) {
     //TRATA OS DADOS DO FORMULÁRIO
+    
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendmessage'])) {
+        // Bloco de código a ser executado quando o botão for clicado
+    
+        $imoveis_id = filter_input(INPUT_POST, 'imoveis_id', FILTER_SANITIZE_NUMBER_INT);
+        $nome = trim(htmlspecialchars(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $telefone = trim(preg_replace('/\D/', '', filter_input(INPUT_POST, 'telefone', FILTER_SANITIZE_NUMBER_INT) ?? ''));
+        $mensagem = trim(htmlspecialchars(filter_input(INPUT_POST, 'message_lead', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
+        
+        $postData = [
+            'data' => [
+                'imoveis_id'   => intval($imoveis_id) ?: null,
+                'nome'         => $nome,
+                'email'        => $email,
+                'telefone'     => $telefone,
+                'message_lead' => $mensagem
+            ]
+        ];
+
+        $result = new \App\LeadImobService();
+        $resultAll = $result->lead($postData);
+        
+        //var_dump($resultAll);
+
+        header("Location: index?action=imovel&id=$imoveis_id");
+        //exit;
+        // Aqui você pode incluir o processamento desejado, como inserir dados no banco ou enviar e-mails.
+    }
     //var_dump($args);
 
     //var_dump($_GET);
@@ -97,6 +129,12 @@ $route->add('imovel', function($args) use ($twig) {
     $result = $imoveis->load($args['id']);
     //var_dump($result);
     //var_dump($result['data']['0']);
+    
+    // Verifica se a requisição foi bem-sucedida
+    $geolocalizacao = new \App\GoogleMapsService();
+    $coordenadas = $geolocalizacao->loadCoord($result);
+    //var_dump($coordenadas);
+
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
 
@@ -106,7 +144,8 @@ $route->add('imovel', function($args) use ($twig) {
         'active' => $classActive,
         'imovel' => $result['data']['0'],
         'imoveis' => $imoveisAll,
-        'imovel_id' => intval($args['id'])
+        'imovel_id' => intval($args['id']),
+        'coordenadas' => $coordenadas
     ];
 
     // Renderiza a view utilizando Twig
@@ -193,12 +232,7 @@ $route->add('lead2', function($args) use ($twig) {
 $route->add('lead', function($args) use ($twig) {
 
     // Captura e sanitiza os dados do formulário
-    $imoveis_id = filter_input(INPUT_POST, 'imoveis_id', FILTER_SANITIZE_NUMBER_INT);
-    $nome = trim(htmlspecialchars(filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $telefone = trim(preg_replace('/\D/', '', filter_input(INPUT_POST, 'telefone', FILTER_SANITIZE_NUMBER_INT) ?? '')); // Apenas números
-    $mensagem = trim(htmlspecialchars(filter_input(INPUT_POST, 'message_lead', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
-
+    
     // Valida os campos obrigatórios
     /*if (empty($nome) || !$email || empty($telefone) || empty($mensagem)) {
         echo "<script>alert('Erro: Todos os campos são obrigatórios e o e-mail deve ser válido!'); window.history.back();</script>";
@@ -211,19 +245,7 @@ $route->add('lead', function($args) use ($twig) {
         exit;
     }*/
 
-    // Dados para envio na API
-    $postData = [
-        'data' => [
-            'imoveis_id'   => intval($imoveis_id) ?: null,
-            'nome'         => $nome,
-            'email'        => $email,
-            'telefone'     => $telefone,
-            'message_lead' => $mensagem
-        ]
-    ];
-    //var_dump($postData);
-    $imoveis = new \App\ImoveisService();
-    $result_all = $imoveis->store($postData);
+    
 
 });
 
