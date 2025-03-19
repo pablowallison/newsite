@@ -34,6 +34,11 @@
                 <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
                 <span>{{ imovel.area_construida }}m²</span>
             </li>
+            {% else %}
+            <li>
+                <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                <span>{{ imovel.area_terreno }}m²</span>
+            </li>
             {% endif %}
         </ul>
     </div>
