@@ -48,7 +48,7 @@ $route->add('', function($args) use ($twig) {
 });
 
 $route->add('home', function($args) use ($twig) {
-    
+    //var_dump($args);
     $results = new \App\ImoveisService();
     $result = $results->loadAll();
     //var_dump($result['data']['0']['imagens']);
@@ -320,7 +320,7 @@ $route->add('search', function($args) use ($twig) {
     
     //implementa a paginação na busca
     $page = !empty($args['page']) ? (int) $args['page'] : 1;
-    $perPage = 1;
+    $perPage = 4;
     $offset = ($page - 1) * $perPage;
 
     // Adiciona mais filtros conforme necessário

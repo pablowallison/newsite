@@ -98,7 +98,7 @@
                                 <h2 class="color-primary">R$ {{ imovel.preco|number_format(2, ',', '.') }}</h2>
                             </div>
                             <div class="slider-block mb-64 wow fadeInUp" data-wow-delay="0.5s">
-                                <a href="properties-list.html" class="category-tag">For Sale</a>
+                                <a href="properties-list.html" class="category-tag">{{ imovel.categoria_imoveis }}</a>
                                 <div class="property-images-slider">
                                     {% for imagem in imovel.imagens %}
                                     <div class="image-anime">

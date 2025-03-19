@@ -17,18 +17,24 @@
         </div>
         <h6 class="price color-primary mb-24">R$ {{ imovel.preco }}</h6>
         <ul class="unstyled amenities">
+            {% if imovel.quarto %}
             <li>
                 <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
                 <span>{{ imovel.quarto }} {{imovel.quarto == 1 ? 'Quarto' : 'Quartos'}}</span>
             </li>
+            {% endif %}
+            {% if imovel.banheiro %}
             <li>
                 <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
                 <span>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros' }}</span>
             </li>
+            {% endif %}
+            {% if imovel.area_construida %}
             <li>
                 <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
                 <span>{{ imovel.area_construida }}m²</span>
             </li>
+            {% endif %}
         </ul>
     </div>
 </div>

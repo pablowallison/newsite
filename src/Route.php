@@ -26,6 +26,8 @@ class Route
      */
     public static function add($action, $callback)
     {
+        //var_dump($action);
+        //var_dump($callback);
         self::$actions[$action] = $callback;
     }
     

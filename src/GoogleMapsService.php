@@ -35,7 +35,7 @@ class GoogleMapsService{
         try{
             $endereco = $param['data']['0']['logradouro'] . ', ' . $param['data']['0']['num'] . ', Bairro ' . $param['data']['0']['bairro'] . ', ' . $param['data']['0']['cidade'] . ', ' . $param['data']['0']['uf']; 
             $enderecoCodificado = urlencode($endereco);
-
+            
 
         // Monta a URL da requisição
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$enderecoCodificado}&key={$this->apiKey}";
