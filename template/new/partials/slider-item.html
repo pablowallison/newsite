@@ -5,12 +5,12 @@
         {% if imovel.imagens|length > 0 %}
         <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
         {% endif %}
-        <a href="index.php?action=imovel&id={{imovel.id}}" class="detail-link">Ver detalhes</a>
+        <a href="imovel/{{imovel.id}}" class="detail-link">Ver detalhes</a>
         <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
         <h6 class="category-title">{{ imovel.categoria_imoveis }}</h6>
     </div>
     <div class="text-block">
-        <a href="index.php?action=imovel&id={{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
+        <a href="imovel/{{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
         <div class="location mb-24">
             <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
             <span>Bairro {{ imovel.bairro }}</span>

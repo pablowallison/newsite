@@ -3,9 +3,19 @@
         <div class="main-menu__block">
             <div class="main-menu__left">
                 <div class="main-menu__logo">
-                    <a href="index.php?action=home" class="logo">
+                    {% if active == 'home' %}
+                    <a href="../home" class="logo">
                         <img src="./template/{{theme}}/assets/media/logo-concretiza.png" alt="Realtor">
                     </a>
+                    {% elseif active == 'imovel' %}
+                    <a href="../home" class="logo">
+                        <img src="../template/{{theme}}/assets/media/logo-concretiza.png" alt="Realtor">
+                    </a>
+                    {% else %}
+                    <a href="./home" class="logo">
+                        <img src="./template/{{theme}}/assets/media/logo-concretiza.png" alt="Realtor">
+                    </a>
+                    {% endif %}
                 </div>
             </div>
             <div class="main-menu__right">

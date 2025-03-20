@@ -10,15 +10,15 @@
     <title>Concretiza - Home</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="./template/{{theme}}/assets/media/icon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="./{{action}}/template/{{theme}}/assets/media/icon.svg">
 
     <!-- All CSS files -->
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/all.min.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/animate.min.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/jquery.magnific-popup.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/app.css">
+    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/all.min.css">
+    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/animate.min.css">
+    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/jquery.magnific-popup.css">
+    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/app.css">
 
 </head>
 
@@ -134,7 +134,7 @@
                                 <h2 class="wow fadeInUp">Conheça nossos imóveis</h2>
                                 <p class="wow fadeInUp" data-wow-delay="0.5s">Encontre o imóvel dos seus sonhos com as melhores opções de compra, venda e aluguel!</p>
                             </div>
-                            <a href="index.php?action=search" class="cus-btn mb-64 mx-xl-0 mx-auto wow fadeInUp" data-wow-delay="0.6s">
+                            <a href="search" class="cus-btn mb-64 mx-xl-0 mx-auto wow fadeInUp" data-wow-delay="0.6s">
                                 Ver imóveis
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
                                     <g clip-path="url(#clip0_3752_13)"><path d="M8.0692 6.75527H9.47545V8.16152H8.0692V6.75527Z"/><path d="M8.0692 9.98294H9.47545V11.3892H8.0692V9.98294Z"/><path d="M14.5245 9.98294H15.9308V11.3892H14.5245V9.98294Z"/><path d="M17.7522 9.98294H19.1585V11.3892H17.7522V9.98294Z"/><path d="M14.5245 13.2107H15.9308V14.6169H14.5245V13.2107Z"/><path d="M17.7522 13.2107H19.1585V14.6169H17.7522V13.2107Z"/><path d="M14.5245 16.4383H15.9308V17.8446H14.5245V16.4383Z"/><path d="M17.7522 16.4383H19.1585V17.8446H17.7522V16.4383Z"/><path d="M14.5245 19.666H15.9308V21.0723H14.5245V19.666Z"/><path d="M17.7522 19.666H19.1585V21.0723H17.7522V19.666Z"/><path d="M4.84153 9.98294H6.24778V11.3892H4.84153V9.98294Z"/><path d="M8.0692 13.2107H9.47545V14.6169H8.0692V13.2107Z"/><path d="M4.84153 13.2107H6.24778V14.6169H4.84153V13.2107Z"/><path d="M8.0692 16.4383H9.47545V17.8446H8.0692V16.4383Z"/><path d="M4.84153 16.4383H6.24778V17.8446H4.84153V16.4383Z"/><path d="M22.3861 22.8937V6.75527H12.7031V3.40071L11.0893 3.66968V0.299927H3.22767V4.97997L1.61386 5.24894V22.8937H0V24.2999H24V22.8937H22.3861ZM20.9799 8.16152V22.8937H12.7031V8.16152H20.9799ZM4.63392 1.70618H9.68302V3.90405L4.63392 4.7456V1.70618ZM3.02011 6.44022L11.2969 5.06074V22.8937H9.47545V19.666H4.84153V22.8937H3.02011V6.44022ZM8.0692 22.8937H6.24778V21.0723H8.0692V22.8937Z"/>
@@ -192,16 +192,18 @@
                         </div>
                     </div>
                     <div class="row justify-content-center row-gap-4">
+                        {% for tipo in dropdown_tipo_imoveis %}
                         <div class="col-xl-2 col-md-4 col-6">
-                            <a href="properties-list.html" class="property-type-item wow fadeInUp" data-wow-delay="0.4s">
+                            <a href="home?action=search&tipo_imovel={{ tipo.id }}" class="property-type-item wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="icon-box">
                                     <img src="./template/{{theme}}/assets/media/icons/icon-property-type-1.svg" alt="">
                                 </div>
-                                <h6 class="mb-8">Casas</h6>
+                                <h6 class="mb-8">{{ tipo.nome }}</h6>
                                 <p>22 Properties</p>
                             </a>
                         </div>
-                        <div class="col-xl-2 col-md-4 col-6">
+                        {% endfor %}
+                        <!--<div class="col-xl-2 col-md-4 col-6">
                             <a href="properties-list.html" class="property-type-item wow fadeInUp" data-wow-delay="0.6s">
                                 <div class="icon-box">
                                     <img src="./template/{{theme}}/assets/media/icons/icon-property-type-2.svg" alt="">
@@ -245,7 +247,7 @@
                                 <h6 class="mb-8">Chácaras</h6>
                                 <p>32 Properties</p>
                             </a>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </section>
@@ -404,7 +406,7 @@
                                     {% if imovel.imagens|length > 0 %}
                                     <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
                                     {% endif %}
-                                    <a href="index.php?action=imovel&id={{imovel.id}}" class="detail-link">Ver detalhes</a>
+                                    <a href="imovel/{{imovel.id}}" class="detail-link">Ver detalhes</a>
                                     <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
                                     <h6 class="category-title">{{ imovel.categoria_imoveis }}</h6>
                                 </div>

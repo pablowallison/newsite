@@ -26,7 +26,7 @@
 
     <main class="x-hidden">
         <!-- Header Area Start -->
-        <header >
+        <header>
             {% include 'partials/navbar.html' %}
             <!--<nav class="main-menu">
                 <div class="container-fluid">
@@ -138,7 +138,8 @@
                             Search
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24" fill="none">
                                 <g clip-path="url(#clip0_3770_1586)">
-                                    <path d="M9.95156 0C15.3225 0 19.6922 4.36964 19.6922 9.74063C19.6922 12.1734 18.7957 14.4008 17.3157 16.1097L24.005 22.7997C24.2796 23.0743 24.2796 23.5195 24.005 23.7941C23.7304 24.0687 23.2852 24.0686 23.0106 23.7941L16.3214 17.1041C14.6123 18.5845 12.3847 19.4813 9.95156 19.4813C4.58058 19.4813 0.210938 15.1116 0.210938 9.74063C0.210938 4.36964 4.58058 0 9.95156 0ZM9.95156 18.075C14.5472 18.075 18.2859 14.3362 18.2859 9.74063C18.2859 5.14505 14.5471 1.40625 9.95156 1.40625C5.35598 1.40625 1.61719 5.14505 1.61719 9.74063C1.61719 14.3362 5.35598 18.075 9.95156 18.075Z"/>
+                                    <path
+                                        d="M9.95156 0C15.3225 0 19.6922 4.36964 19.6922 9.74063C19.6922 12.1734 18.7957 14.4008 17.3157 16.1097L24.005 22.7997C24.2796 23.0743 24.2796 23.5195 24.005 23.7941C23.7304 24.0687 23.2852 24.0686 23.0106 23.7941L16.3214 17.1041C14.6123 18.5845 12.3847 19.4813 9.95156 19.4813C4.58058 19.4813 0.210938 15.1116 0.210938 9.74063C0.210938 4.36964 4.58058 0 9.95156 0ZM9.95156 18.075C14.5472 18.075 18.2859 14.3362 18.2859 9.74063C18.2859 5.14505 14.5471 1.40625 9.95156 1.40625C5.35598 1.40625 1.61719 5.14505 1.61719 9.74063C1.61719 14.3362 5.35598 18.075 9.95156 18.075Z" />
                                 </g>
                             </svg>
                             <span></span>
@@ -146,19 +147,22 @@
                     </div>
                 </form>
                 <div class="row row-gap-4">
+                    {% if imoveis is not empty %}
                     {% for imovel in imoveis %}
                     <div class="col-xxl-3 col-lg-4 col-sm-6">
                         <div class="property-card shadow wow fadeInUp" data-wow-delay="0.4s">
                             <div class="img-block">
                                 {% if imovel.imagens|length > 0 %}
-                                <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
+                                <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}"
+                                    style="height: 200px; width: 100%; object-fit: cover;" alt="">
                                 {% endif %}
-                                <a href="index.php?action=imovel&id={{imovel.id}}" class="detail-link">Ver detalhes</a>
-                                <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+                                <a href="imovel/{{imovel.id}}" class="detail-link">Ver detalhes</a>
+                                <img class="category-title-bg"
+                                    src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
                                 <h6 class="category-title">{{ imovel.categoria_imoveis }}</h6>
                             </div>
                             <div class="text-block">
-                                <a href="index.php?action=imovel&id={{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
+                                <a href="imovel/{{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
                                 <div class="location mb-24">
                                     <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
                                     <span>Bairro {{ imovel.bairro }}</span>
@@ -171,7 +175,8 @@
                                     </li>
                                     <li>
                                         <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
-                                        <span>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros' }}</span>
+                                        <span>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros'
+                                            }}</span>
                                     </li>
                                     <li>
                                         <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
@@ -182,6 +187,13 @@
                         </div>
                     </div>
                     {% endfor %}
+                    {% else %}
+                    <div class="col-12">
+                        <div class="alert alert-warning wow fadeInUp"  role="alert">
+                            Nenhum imóvel encontrado.
+                        </div>
+                    </div>
+                    {% endif %}
                     <!--<div class="col-xxl-3 col-lg-4 col-sm-6">
                         <div class="property-card shadow wow fadeInUp" data-wow-delay="0.55s">
                             <div class="img-block image-anime">
@@ -408,30 +420,41 @@
                     </div>-->
 
                     <!-- Pagination Start -->
-                     {% if totalPaginas > 1 %}
+                    {% if totalPaginas > 1 %}
                     <ul class="pagination text-center wow fadeInUp" data-wow-delay="0.5s">
-                        <li><a class="{% if paginaAtual != 1 %}prev{% endif %} {% if paginaAtual == 1 %}prev disabled{% endif %}" href="{% if paginaAtual > 1 %}?action=search&page={{ paginaAtual - 1 }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}{% endif %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M12.6455 23C12.6455 20 9.84551 16 6.64551 16M6.64551 16C8.47884 16 12.6455 15 12.6455 9M6.64551 16H25.6455" stroke-width="2"/></svg></a></li>
-                        
+                        <li><a class="{% if paginaAtual != 1 %}prev{% endif %} {% if paginaAtual == 1 %}prev disabled{% endif %}"
+                                href="{% if paginaAtual > 1 %}?action=search&page={{ paginaAtual - 1 }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}{% endif %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+                                    <path
+                                        d="M12.6455 23C12.6455 20 9.84551 16 6.64551 16M6.64551 16C8.47884 16 12.6455 15 12.6455 9M6.64551 16H25.6455"
+                                        stroke-width="2" />
+                                </svg></a></li>
+
                         {%for p in 1..totalPaginas %}
                         {% if p == paginaAtual %}
-                        <li><a class="active" href="?action&page={{ p }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{ p }}</a></li>
-                        {% elseif p == 1 or p == totalPaginas or (p >= paginaAtual - 2 and p <= paginaAtual + 2) %}
-                        <li><a href="?action=search&page={{ p }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{ p }}</a></li>
-                        
-                        {% elseif p == paginaAtual - 3 or p == paginaAtual + 3 %}
-                        <li><a href="#">...</a></li>
-                        {% endif %}
-                        {% endfor %}
+                        <li><a class="active"
+                                href="?action&page={{ p }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{
+                                p }}</a></li>
+                        {% elseif p == 1 or p == totalPaginas or (p >= paginaAtual - 2 and p <= paginaAtual + 2) %} <li>
+                            <a
+                                href="?action=search&page={{ p }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{
+                                p }}</a></li>
 
-                        <li>
-                            <a class="{% if paginaAtual != totalPaginas %}prev{% endif %}{% if paginaAtual == totalPaginas %}prev disabled{% endif %}" 
-                               href="{% if paginaAtual < totalPaginas %}?action=search&page={{ paginaAtual + 1 }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}{% endif %}">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-                                    <path d="M19.3545 9C19.3545 12 22.1545 16 25.3545 16M25.3545 16C23.5212 16 19.3545 17 19.3545 23M25.3545 16L6.35449 16" stroke-width="2"/>
-                                </svg>
-                            </a>
-                        </li>
+                            {% elseif p == paginaAtual - 3 or p == paginaAtual + 3 %}
+                            <li><a href="#">...</a></li>
+                            {% endif %}
+                            {% endfor %}
+
+                            <li>
+                                <a class="{% if paginaAtual != totalPaginas %}prev{% endif %}{% if paginaAtual == totalPaginas %}prev disabled{% endif %}"
+                                    href="{% if paginaAtual < totalPaginas %}?action=search&page={{ paginaAtual + 1 }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}{% endif %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+                                        <path
+                                            d="M19.3545 9C19.3545 12 22.1545 16 25.3545 16M25.3545 16C23.5212 16 19.3545 17 19.3545 23M25.3545 16L6.35449 16"
+                                            stroke-width="2" />
+                                    </svg>
+                                </a>
+                            </li>
                     </ul>
                     {% endif %}
                     <!-- Pagination End -->
@@ -450,7 +473,7 @@
                 </div>
             </div>
         </section>
-        <!-- Properties List Area End --> 
+        <!-- Properties List Area End -->
 
         <!-- Footer Section Start -->
         <footer class="footer bg-primary pb-80 mt-80 wow fadeInUp" data-wow-delay="0.5s">
@@ -475,12 +498,15 @@
                                         <!-- Newsletter Form Start -->
                                         <form action="index.html">
                                             <div class="newsletter-field">
-                                                <input type="email" name="newsletter" id="newsletter" placeholder="Your Email" required>
+                                                <input type="email" name="newsletter" id="newsletter"
+                                                    placeholder="Your Email" required>
                                                 <button>
                                                     Subscribe
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none">
                                                         <g clip-path="url(#clip0_3752_509)">
-                                                            <path d="M23.7939 0.205944C23.9928 0.404833 24.054 0.703239 23.9496 0.964239L14.9122 23.558C14.8088 23.8165 14.5626 23.9896 14.2843 23.9996C14.006 24.0094 13.7482 23.8542 13.6267 23.6037L9.30571 14.6943L0.39629 10.3733C0.15329 10.2554 -3.62396e-05 10.0093 -3.62396e-05 9.74077C-3.62396e-05 9.73242 0.000104904 9.72404 0.000432968 9.71564C0.0103245 9.43744 0.183432 9.19116 0.441946 9.0878L23.0356 0.0503178C23.2967 -0.0541191 23.595 0.00705338 23.7939 0.205944ZM14.1975 21.5581L21.3717 3.62256L10.6829 14.3114L14.1975 21.5581ZM2.44182 9.80241L9.68863 13.317L20.3774 2.62816L2.44182 9.80241Z"/>
+                                                            <path
+                                                                d="M23.7939 0.205944C23.9928 0.404833 24.054 0.703239 23.9496 0.964239L14.9122 23.558C14.8088 23.8165 14.5626 23.9896 14.2843 23.9996C14.006 24.0094 13.7482 23.8542 13.6267 23.6037L9.30571 14.6943L0.39629 10.3733C0.15329 10.2554 -3.62396e-05 10.0093 -3.62396e-05 9.74077C-3.62396e-05 9.73242 0.000104904 9.72404 0.000432968 9.71564C0.0103245 9.43744 0.183432 9.19116 0.441946 9.0878L23.0356 0.0503178C23.2967 -0.0541191 23.595 0.00705338 23.7939 0.205944ZM14.1975 21.5581L21.3717 3.62256L10.6829 14.3114L14.1975 21.5581ZM2.44182 9.80241L9.68863 13.317L20.3774 2.62816L2.44182 9.80241Z" />
                                                         </g>
                                                     </svg>
                                                 </button>
@@ -509,10 +535,11 @@
                                     <img src="assets/media/logo-light.png" alt="">
                                 </div>
                                 <!-- Footer Logo End -->
-                                
+
                                 <!-- Footer About Content Start -->
                                 <div class="footer-about-content mb-32">
-                                    <p class="color-white">Duis pulvinar metus elit, ut aliquam est sollicitudin finibus. Integer lobortis est interdum.</p>
+                                    <p class="color-white">Duis pulvinar metus elit, ut aliquam est sollicitudin
+                                        finibus. Integer lobortis est interdum.</p>
                                 </div>
                                 <!-- Footer About Content End -->
 
@@ -524,7 +551,7 @@
                                         <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
                                         <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
                                     </ul>
-                                </div>							
+                                </div>
                                 <!-- Footer Social Link End -->
                             </div>
                             <!-- Footer About End -->
@@ -585,9 +612,10 @@
                             <!-- Footer Quick Link Starts -->
                             <div class="footer-appointment">
                                 <h4 class="mb-32 color-white">Appointment</h4>
-                                
+
                                 <div class="footer-appointment-content">
-                                    <p class="mb-32 color-white">Duis pulvinar metus elit, ut aliquam est sollicitudin finibus. Integer lobortis est interdum.</p>
+                                    <p class="mb-32 color-white">Duis pulvinar metus elit, ut aliquam est sollicitudin
+                                        finibus. Integer lobortis est interdum.</p>
                                     <a href="contact.html" class="cus-btn sec">
                                         Book Appointment
                                     </a>
@@ -637,7 +665,8 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"></span>
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="assets/media/logo.png" alt="" class="invisible"></a>
+                <a href="index.html" aria-label="logo image"><img src="assets/media/logo.png" alt=""
+                        class="invisible"></a>
             </div>
             <div class="mobile-nav__container"></div>
             <ul class="mobile-nav__contact list-unstyled">
@@ -656,11 +685,11 @@
     <!-- back-to-top-start -->
     <a href="#" class="scroll-top">
         <svg class="scroll-top__circle" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
     </a>
     <!-- back-to-top-end -->
-  
+
     <!-- Jquery Js -->
     <script src="./template/{{theme}}/assets/js/vendor/jquery-3.6.3.min.js"></script>
     <script src="./template/{{theme}}/assets/js/vendor/bootstrap.min.js"></script>

@@ -10,15 +10,15 @@
     <title>Concretiza Imóveis - Detalhes</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="./template/{{theme}}/assets/media/icon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="../template/{{theme}}/assets/media/icon.svg">
 
     <!-- All CSS files -->
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/all.min.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/animate.min.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/jquery.magnific-popup.css">
-    <link rel="stylesheet" href="./template/{{theme}}/assets/css/app.css">
+    <link rel="stylesheet" href="../template/{{theme}}/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="../template/{{theme}}/assets/css/vendor/all.min.css">
+    <link rel="stylesheet" href="../template/{{theme}}/assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="../template/{{theme}}/assets/css/vendor/animate.min.css">
+    <link rel="stylesheet" href="../template/{{theme}}/assets/css/vendor/jquery.magnific-popup.css">
+    <link rel="stylesheet" href="../template/{{theme}}/assets/css/app.css">
 
 </head>
 
@@ -140,31 +140,31 @@
                                 <ul class="unstyled mb-64 amenities-list">
                                     <li>
                                         <div class="amenity-block">
-                                            <img src="./template/{{theme}}/assets/media/icons/cold.png" alt="">
+                                            <img src="../template/{{theme}}/assets/media/icons/cold.png" alt="">
                                             <h6 class="fw-500 color-black">Air Condition</h6>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="amenity-block">
-                                            <img src="./template/{{theme}}/assets/media/icons/shower.png" alt="">
+                                            <img src="../template/{{theme}}/assets/media/icons/shower.png" alt="">
                                             <h6 class="fw-500 color-black">Heated Water</h6>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="amenity-block">
-                                            <img src="./template/{{theme}}/assets/media/icons/hotel.png" alt="">
+                                            <img src="../template/{{theme}}/assets/media/icons/hotel.png" alt="">
                                             <h6 class="fw-500 color-black">Hospital</h6>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="amenity-block">
-                                            <img src="./template/{{theme}}/assets/media/icons/pool.png" alt="">
+                                            <img src="../template/{{theme}}/assets/media/icons/pool.png" alt="">
                                             <h6 class="fw-500 color-black">Swimming Pool</h6>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="amenity-block">
-                                            <img src="./template/{{theme}}/assets/media/icons/wifi.png" alt="">
+                                            <img src="../template/{{theme}}/assets/media/icons/wifi.png" alt="">
                                             <h6 class="fw-500 color-black">High Speed WIFI</h6>
                                         </div>
                                     </li>
@@ -174,14 +174,14 @@
                                 <h5 class="mb-32 underline-text">Property Video</h5>
                                 <div class="video mb-64">
                                     <div class="img-box image-anime">
-                                        <img class="detail-image" src="./template/{{theme}}/assets/media/properties/video-thumbnail.png" alt="">
+                                        <img class="detail-image" src="../template/{{theme}}/assets/media/properties/video-thumbnail.png" alt="">
                                         <div class="overlay">
                                             <a href="javascript:;" class="play-btn"><i class="fa-solid fa-play"></i></a>
                                         </div>
                                     </div>
                                     <div class="video-box">
                                         <video controls>
-                                            <source src="./template/{{theme}}/assets/media/properties/property.mp4" type="video/mp4">
+                                            <source src="../template/{{theme}}/assets/media/properties/property.mp4" type="video/mp4">
                                         </video>
                                         <!--<iframe width="868" height="488" src="https://www.youtube.com/embed/vrLSiAbdXb4" title="Apenas R$ 200 mil!! Simplesmente Perfeita!!! #imoveisnaplanta #casasfinanciadas #juazeirodonorte" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>-->
                                     </div>
@@ -202,16 +202,16 @@
                                 <li><i class="fa-thin fa-ruler-horizontal"></i><p>{{ imovel.area_construida }} m²</p></li>
                                 {% endif %}
                                 {% if imovel.quarto %}
-                                <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/bed-w.png" alt=""></div><p>{{ imovel.quarto }} {{ imovel.quarto == 1 ? 'Quarto' : 'Quartos' }}</p></li>
+                                <li><div class="icon"><img src="../template/{{theme}}/assets/media/icons/bed-w.png" alt=""></div><p>{{ imovel.quarto }} {{ imovel.quarto == 1 ? 'Quarto' : 'Quartos' }}</p></li>
                                 {% endif %}
                                 {% if imovel.banheiro %}
-                                <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/shower-w.png" alt=""></div><p>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros' }}</p></li>
+                                <li><div class="icon"><img src="../template/{{theme}}/assets/media/icons/shower-w.png" alt=""></div><p>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros' }}</p></li>
                                 {% endif %}
                                 {% if imovel.cozinha %}
-                                <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/kitchen-w.png" alt=""></div><p>{{ imovel.cozinha }} {{ imovel.cozinha == 1 ? 'Cozinha' : 'Cozinhas' }}</p></li>
+                                <li><div class="icon"><img src="../template/{{theme}}/assets/media/icons/kitchen-w.png" alt=""></div><p>{{ imovel.cozinha }} {{ imovel.cozinha == 1 ? 'Cozinha' : 'Cozinhas' }}</p></li>
                                 {% endif %}
                                 {% if imovel.garagem %}
-                                <li><div class="icon"><img src="./template/{{theme}}/assets/media/icons/car-white.png" alt=""></div><p>{{ imovel.garagem }} {{ imovel.garagem == 1 ? 'Garagem' : 'Garagens' }}</p></li>
+                                <li><div class="icon"><img src="../template/{{theme}}/assets/media/icons/car-white.png" alt=""></div><p>{{ imovel.garagem }} {{ imovel.garagem == 1 ? 'Garagem' : 'Garagens' }}</p></li>
                                 {% endif %}
                                 {% if imovel.bairro %}
                                 <li><i class="fa-light fa-location-dot"></i><p>Bairro {{ imovel.bairro }}</p></li>
@@ -263,7 +263,7 @@
                         </div>
                         <!--Formulário de contato FIM-->
                         <div class="contact-block d-lg-block d-none wow fadeInUp" data-wow-delay="0.7s">
-                            <img src="./template/{{theme}}/assets/media/bg/contact-block-bg.jpg" alt="">
+                            <img src="../template/{{theme}}/assets/media/bg/contact-block-bg.jpg" alt="">
                             <div class="content">
                                 <h4 class="color-white mb-8">Need Help?</h4>
                                 <h4 class="color-white mb-16">Take to Our Expert.</h4>
@@ -309,27 +309,27 @@
                                 <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
                                 {% endif %}
                                 <a href="index.php?action=imovel&id={{imovel.id}}" class="detail-link">Ver detalhes</a>
-                                <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+                                <img class="category-title-bg" src="../template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
                                 <h6 class="category-title">{{ imovel.categoria_imoveis }}</h6>
                             </div>
                             <div class="text-block">
                                 <a href="index.php?action=imovel&id={{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
                                 <div class="location mb-24">
-                                    <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
+                                    <img src="../template/{{theme}}/assets/media/icons/location.svg" alt="">
                                     <span>Bairro {{ imovel.bairro }}</span>
                                 </div>
                                 <h6 class="price color-primary mb-24">R$ {{ imovel.preco }}</h6>
                                 <ul class="unstyled amenities">
                                     <li>
-                                        <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
+                                        <img src="../template/{{theme}}/assets/media/icons/bed.svg" alt="">
                                         <span>{{ imovel.quarto }} Quartos</span>
                                     </li>
                                     <li>
-                                        <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
+                                        <img src="../template/{{theme}}/assets/media/icons/shower.svg" alt="">
                                         <span>{{ imovel.banheiro }} Banheiros</span>
                                     </li>
                                     <li>
-                                        <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                                        <img src="../template/{{theme}}/assets/media/icons/area.svg" alt="">
                                         <span>{{ imovel.area_construida }} m²</span>
                                     </li>
                                 </ul>
@@ -492,7 +492,7 @@
                             <div class="footer-about">
                                 <!-- Footer Logo Start -->
                                 <div class="footer-logo mb-32">
-                                    <img src="./template/{{theme}}/assets/media/logo-concretiza.png" alt="">
+                                    <img src="../template/{{theme}}/assets/media/logo-concretiza.png" alt="">
                                 </div>
                                 <!-- Footer Logo End -->
                                 
@@ -525,7 +525,7 @@
                                 <div class="footer-contact-box">
                                     <div class="footer-info-box">
                                         <div class="icon-box">
-                                            <img src="./template/{{theme}}/assets/media/icons/icon-location.svg" alt="">
+                                            <img src="../template/{{theme}}/assets/media/icons/icon-location.svg" alt="">
                                         </div>
 
                                         <p>123, Lorem Ipsum, Street no, Cityname, Country 123456</p>
@@ -533,7 +533,7 @@
 
                                     <div class="footer-info-box">
                                         <div class="icon-box">
-                                            <img src="./template/{{theme}}/assets/media/icons/icon-phone.svg" alt="">
+                                            <img src="../template/{{theme}}/assets/media/icons/icon-phone.svg" alt="">
                                         </div>
 
                                         <p>+0 12345 67890</p>
@@ -541,7 +541,7 @@
 
                                     <div class="footer-info-box">
                                         <div class="icon-box">
-                                            <img src="./template/{{theme}}/assets/media/icons/icon-email.svg" alt="">
+                                            <img src="../template/{{theme}}/assets/media/icons/icon-email.svg" alt="">
                                         </div>
 
                                         <p>info@domainname.com</p>
@@ -623,7 +623,7 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"></span>
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="./template/{{theme}}/assets/media/logo.png" alt="" class="invisible"></a>
+                <a href="index.html" aria-label="logo image"><img src="../template/{{theme}}/assets/media/logo.png" alt="" class="invisible"></a>
             </div>
             <div class="mobile-nav__container"></div>
             <ul class="mobile-nav__contact list-unstyled">
@@ -648,14 +648,14 @@
     <!-- back-to-top-end -->
   
     <!-- Jquery Js -->
-    <script src="./template/{{theme}}/assets/js/vendor/jquery-3.6.3.min.js"></script>
-    <script src="./template/{{theme}}/assets/js/vendor/bootstrap.min.js"></script>
-    <script src="./template/{{theme}}/assets/js/vendor/jquery-appear.js"></script>
-    <script src="./template/{{theme}}/assets/js/vendor/jquery.nice-select.min.js"></script>
-    <script src="./template/{{theme}}/assets/js/vendor/slick.min.js"></script>
-    <script src="./template/{{theme}}/assets/js/vendor/wow.js"></script>
-    <script src="./template/{{theme}}/assets/js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="./template/{{theme}}/assets/js/app.js"></script>
+    <script src="../template/{{theme}}/assets/js/vendor/jquery-3.6.3.min.js"></script>
+    <script src="../template/{{theme}}/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../template/{{theme}}/assets/js/vendor/jquery-appear.js"></script>
+    <script src="../template/{{theme}}/assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="../template/{{theme}}/assets/js/vendor/slick.min.js"></script>
+    <script src="../template/{{theme}}/assets/js/vendor/wow.js"></script>
+    <script src="../template/{{theme}}/assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="../template/{{theme}}/assets/js/app.js"></script>
 
 </body>
 

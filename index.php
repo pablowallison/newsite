@@ -43,7 +43,7 @@ $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : '';
 $param = array_merge($_GET, $_POST);
 
 $route->add('', function($args) use ($twig) {
-    header("Location: index.php?action=home" );
+    header("Location: home" );
     exit();
 });
 
@@ -82,7 +82,7 @@ $route->add('home', function($args) use ($twig) {
 
 $route->add('imovel', function($args) use ($twig) {
     //TRATA OS DADOS DO FORMULÁRIO
-    
+    //var_dump($args);
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendmessage'])) {
         // Bloco de código a ser executado quando o botão for clicado
@@ -125,8 +125,8 @@ $route->add('imovel', function($args) use ($twig) {
         }
         //var_dump($imovel[0]);
     }
-
-    $result = $imoveis->load($args['id']);
+    //var_dump($args);
+    $result = $imoveis->load(isset($args['params'][0]) ? $args['params'][0] : $args['id']);
     //var_dump($result);
     //var_dump($result['data']['0']);
     
@@ -144,8 +144,9 @@ $route->add('imovel', function($args) use ($twig) {
         'active' => $classActive,
         'imovel' => $result['data']['0'],
         'imoveis' => $imoveisAll,
-        'imovel_id' => intval($args['id']),
-        'coordenadas' => $coordenadas
+        'imovel_id' => intval(isset($args['params'][0]) ? $args['params'][0] : $args['id']),
+        'coordenadas' => $coordenadas,
+        'action' => isset($args['action']) ? $args['action'] : 'home'
     ];
 
     // Renderiza a view utilizando Twig
@@ -334,7 +335,7 @@ $route->add('search', function($args) use ($twig) {
 
     $imoveisService = new App\ImoveisService();
     $result = $imoveisService->loadAll($params);
-    
+    //var_dump($result);
     //carrega a lista de imóveis
     $listaImoveis = $result['data']['imoveis'];
     //var_dump($listaImoveis);
@@ -373,7 +374,7 @@ $route->add('search', function($args) use ($twig) {
         'args' => $args,
         'title' => 'Concretiza Construções',
         'active' => $classActive,
-        'imoveis' => isset($imoveis) ? $imoveis : ['not-found' => 'Imóveis não encontrado!'],
+        'imoveis' => isset($imoveis) ? $imoveis : NULL, //? $imoveis : ['not-found' => 'Imóveis não encontrado!'],
         'totalPaginas'  => $totalPaginas,
         'paginaAtual'   => $page
         
