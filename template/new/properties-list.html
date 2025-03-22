@@ -153,7 +153,7 @@
                         <div class="property-card shadow wow fadeInUp" data-wow-delay="0.4s">
                             <div class="img-block">
                                 {% if imovel.imagens|length > 0 %}
-                                <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}"
+                                <img class="property-img" src="{{ cdn }}/{{ imovel.imagens[0].imagem }}"
                                     style="height: 200px; width: 100%; object-fit: cover;" alt="">
                                 {% endif %}
                                 <a href="imovel/{{imovel.id}}" class="detail-link">Ver detalhes</a>
