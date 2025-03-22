@@ -200,10 +200,15 @@
                         <div class="col-xl-2 col-md-4 col-6">
                             <a href="home?action=search&tipo_imovel={{ tipo.id }}" class="property-type-item wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="icon-box">
-                                    <img src="./template/{{theme}}/assets/media/icons/icon-property-type-1.svg" alt="">
+                                    <!--<img src="./template/{{theme}}/assets/media/icons/icon-property-type-1.svg" alt="">-->
+                                    <img src="{{ url }}/{{tipo.icon}}" style="filter: brightness(0) invert(1)" alt="">
                                 </div>
                                 <h6 class="mb-8">{{ tipo.nome }}</h6>
-                                <p>22 Properties</p>
+                                <p>{% if contagem_por_tipo[tipo.id] is defined %}
+                                    {{ contagem_por_tipo[tipo.id] }} imóveis
+                                {% else %}
+                                    0 imóveis
+                                {% endif %}</p>
                             </a>
                         </div>
                         {% endfor %}

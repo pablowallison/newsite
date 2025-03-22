@@ -23,7 +23,7 @@ function renderLayout($twig, $template, $data = []) {
     // Carrega os tipos de imóveis
     $TipoImoveis = new \App\TipoImoveisService();
     $resultTipoImoveis = $TipoImoveis->loadAll();
-    //var_dump($resultTipoImoveis);   
+    //var_dump($resultTipoImoveis['data']);   
 
     //Armazena o ícone do site
     $iconeSite = './imagens/assets/icon.svg';
@@ -31,7 +31,8 @@ function renderLayout($twig, $template, $data = []) {
     
 
     $data['dropdown_categoria_imoveis'] = $resultCategoriaImoveis['data'];
-    $data['dropdown_tipo_imoveis'] = $resultTipoImoveis['data'];
+    $data['dropdown_tipo_imoveis'] = $resultTipoImoveis['data']['tipo_imoveis'];
+    $data['contagem_por_tipo'] = $resultTipoImoveis['data']['contagem_por_tipo'];
     $data['url'] = URL;
     $data['theme'] = THEME;
     $data['root'] = ROOT;
