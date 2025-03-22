@@ -9,6 +9,8 @@ define('URL', $config['url']);
 define('THEME', $config['theme']);
 define('THEME_PATH', ROOT . '/template/' . THEME);
 
+//var_dump($_SERVER);
+
 // Configuração do Twig
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/template/' . THEME);
 $twig = new \Twig\Environment($loader);
@@ -236,23 +238,33 @@ $route->add('lead2', function($args) use ($twig) {
     echo "<script>alert('Mensagem enviada com sucesso!'); window.location.href='index.php';</script>";
 });
 
-$route->add('lead', function($args) use ($twig) {
+$route->add('blog', function($args) use ($twig) {
 
-    // Captura e sanitiza os dados do formulário
-    
-    // Valida os campos obrigatórios
-    /*if (empty($nome) || !$email || empty($telefone) || empty($mensagem)) {
-        echo "<script>alert('Erro: Todos os campos são obrigatórios e o e-mail deve ser válido!'); window.history.back();</script>";
-        exit;
-    }*/
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
 
-    // Validação de telefone: apenas números, mínimo de 10 e máximo de 15 dígitos
-    /*if (!preg_match('/^\d{10,15}$/', $telefone)) {
-        echo "<script>alert('Erro: Telefone inválido!'); window.history.back();</script>";
-        exit;
-    }*/
+    $data = [
+        'active' => $classActive,
+    ];
 
-    
+
+    // Renderiza a view utilizando Twig
+    renderLayout($twig, 'blogs.html', $data);
+
+});
+
+$route->add('contate-nos', function($args) use ($twig) {
+
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
+
+    $data = [
+        'active' => $classActive,
+    ];
+
+
+    // Renderiza a view utilizando Twig
+    renderLayout($twig, 'contact.html', $data);
 
 });
 
