@@ -201,7 +201,7 @@
                             <a href="home?action=search&tipo_imovel={{ tipo.id }}" class="property-type-item wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="icon-box">
                                     <!--<img src="./template/{{theme}}/assets/media/icons/icon-property-type-1.svg" alt="">-->
-                                    <img src="{{ url }}/{{tipo.icon}}" style="filter: brightness(0) invert(1)" alt="">
+                                    <img src="{{ cdn }}/{{tipo.icon}}" style="filter: brightness(0) invert(1)" alt="">
                                 </div>
                                 <h6 class="mb-8">{{ tipo.nome }}</h6>
                                 <p>{% if contagem_por_tipo[tipo.id] is defined %}
@@ -414,7 +414,7 @@
                             <div class="property-card shadow wow fadeInUp" data-wow-delay="0.8s">
                                 <div class="img-block image-anime">
                                     {% if imovel.imagens|length > 0 %}
-                                    <img class="property-img" src="{{ url }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
+                                    <img class="property-img" src="{{ cdn }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
                                     {% endif %}
                                     <a href="imovel/{{imovel.id}}" class="detail-link">Ver detalhes</a>
                                     <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">

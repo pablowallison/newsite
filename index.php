@@ -6,6 +6,7 @@ require __DIR__ . '/init.php';
 define('ROOT', getcwd());
 //var_dump(ROOT);
 define('URL', $config['url']);
+define('CDN', $config['cdn']);
 define('THEME', $config['theme']);
 define('THEME_PATH', ROOT . '/template/' . THEME);
 
@@ -40,6 +41,7 @@ function renderLayout($twig, $template, $data = []) {
     $data['dropdown_tipo_imoveis'] = $resultTipoImoveis['data']['tipo_imoveis'];
     $data['contagem_por_tipo'] = $resultTipoImoveis['data']['contagem_por_tipo'];
     $data['url'] = URL;
+    $data['cdn'] = CDN;
     $data['theme'] = THEME;
     $data['root'] = ROOT;
     //var_dump(ROOT);
@@ -56,7 +58,7 @@ $action = isset($_GET['action']) ? htmlspecialchars($_GET['action']) : '';
 $param = array_merge($_GET, $_POST);
 
 $route->add('', function($args) use ($twig) {
-    header("Location: /home" );
+    header("Location: home" );
     exit();
 });
 
