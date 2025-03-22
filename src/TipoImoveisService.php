@@ -16,7 +16,7 @@ use Exception;
 
 class TipoImoveisService {
     
-    public function load(){
+    public function loadAll(){
          
         try {
             

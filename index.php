@@ -20,8 +20,12 @@ function renderLayout($twig, $template, $data = []) {
     $categoriaImoveis = new \App\CategoriaImoveisService();
     $resultCategoriaImoveis = $categoriaImoveis->loadAll();
     
+    // Carrega os tipos de imóveis
     $TipoImoveis = new \App\TipoImoveisService();
-    $resultTipoImoveis = $TipoImoveis->load();
+    $resultTipoImoveis = $TipoImoveis->loadAll();
+    //var_dump($resultTipoImoveis);   
+
+    //Armazena o ícone do site
     $iconeSite = './imagens/assets/icon.svg';
     //var_dump($iconeSite);
     
@@ -65,7 +69,7 @@ $route->add('home', function($args) use ($twig) {
         $imoveis['preco'] = number_format($imoveis['preco'], 2, ',', '.');
         $imoveis[] = $imoveis;
     }*/
-    //var_dump($imovel);
+    //var_dump($imoveis);
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
