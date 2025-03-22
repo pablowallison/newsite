@@ -260,6 +260,21 @@ $route->add('blog', function($args) use ($twig) {
 
 });
 
+$route->add('about', function($args) use ($twig) {
+
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
+
+    $data = [
+        'active' => $classActive,
+    ];
+
+
+    // Renderiza a view utilizando Twig
+    renderLayout($twig, 'about.html', $data);
+
+});
+
 $route->add('contate-nos', function($args) use ($twig) {
 
     // Determina a classe ativa para a página
