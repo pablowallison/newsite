@@ -42,6 +42,7 @@ function renderLayout($twig, $template, $data = []) {
     $data['url'] = URL;
     $data['theme'] = THEME;
     $data['root'] = ROOT;
+    var_dump(ROOT);
     $data['icon'] = $iconeSite;
     //var_dump($data);
 
