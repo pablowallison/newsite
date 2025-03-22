@@ -12,7 +12,7 @@ define('THEME_PATH', ROOT . '/template/' . THEME);
 //var_dump($_SERVER);
 
 $urlAtual = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-var_dump($urlAtual);
+//var_dump($urlAtual);
 
 
 // Configuração do Twig
@@ -42,7 +42,7 @@ function renderLayout($twig, $template, $data = []) {
     $data['url'] = URL;
     $data['theme'] = THEME;
     $data['root'] = ROOT;
-    var_dump(ROOT);
+    //var_dump(ROOT);
     $data['icon'] = $iconeSite;
     //var_dump($data);
 
