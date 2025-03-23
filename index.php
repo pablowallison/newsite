@@ -276,7 +276,7 @@ $route->add('lead2', function($args) use ($twig) {
     echo "<script>alert('Mensagem enviada com sucesso!'); window.location.href='index.php';</script>";
 });
 
-$route->add('blog', function($args) use ($twig) {
+$route->add('blogs', function($args) use ($twig) {
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
@@ -288,6 +288,21 @@ $route->add('blog', function($args) use ($twig) {
 
     // Renderiza a view utilizando Twig
     renderLayout($twig, 'blogs.html', $data);
+
+});
+
+$route->add('blog', function($args) use ($twig) {
+
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
+
+    $data = [
+        'active' => $classActive,
+    ];
+
+
+    // Renderiza a view utilizando Twig
+    renderLayout($twig, 'blog-detail.html', $data);
 
 });
 
