@@ -63,18 +63,48 @@ $route->add('', function($args) use ($twig) {
 });
 
 $route->add('home', function($args) use ($twig) {
+    
+      
     //var_dump($args);
     $results = new \App\ImoveisService();
     $result = $results->loadAll();
     //var_dump($result['data']['0']['imagens']);
+    
     // Verifica se o imóvel está ativo e formata o preço
     foreach($result['data']['imoveis'] as &$imovel){
         if ($imovel['status'] == 1) {
             $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
             $imoveis[] = $imovel;
         }
+        
+         // Define o bairro do imóvel
+         $bairro = $imovel['bairro'];
+
+        // Verifica se o bairro foi definido
+        if($imovel['bairro']){
+            if (!isset($imoveisAgrupados[$bairro])) {
+                $imoveisAgrupados[$bairro] = [
+                    'bairro' => $bairro,
+                    'total' => 0,
+                    'imoveis' => []  // Aqui serão armazenados os imóveis deste bairro
+                ];
+            }
+
+            // Incrementa a contagem e adiciona o imóvel ao agrupamento
+            $imoveisAgrupados[$bairro]['total']++;
+            $imoveisAgrupados[$bairro]['imoveis'][] = $imovel;
+        }
+        
         //var_dump($imovel[0]);
     }
+    //var_dump($imoveisAgrupados);
+    
+    // Verifica se o imóvel está ativo e formata o preço
+    foreach($result['data']['imoveis'] as &$imovel){
+        
+        //var_dump($imovel[0]);
+    }
+
     /*if ($imoveis['status'] == 1) {
         $imoveis['preco'] = number_format($imoveis['preco'], 2, ',', '.');
         $imoveis[] = $imoveis;
@@ -88,7 +118,8 @@ $route->add('home', function($args) use ($twig) {
     $data = [
         'title' => 'Concretiza Construções',
         'active' => $classActive,
-        'imoveis' => $imoveis
+        'imoveis' => $imoveis,
+        'imoveisAgrupados' => $imoveisAgrupados
     ];
 
     // Renderiza a view utilizando Twig
