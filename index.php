@@ -271,7 +271,7 @@ $route->add('about', function($args) use ($twig) {
 
 
     // Renderiza a view utilizando Twig
-    renderLayout($twig, 'about.html', $data);
+    renderLayout($twig, 'blogs.html', $data);
 
 });
 
@@ -327,6 +327,7 @@ $route->add('search', function($args) use ($twig) {
     
     // Captura os dados do formulário enviados via GET
     $filters = [];
+    //var_dump($args);
     
     // Captura e adiciona os filtros, se existirem
     if (!empty($args['pretensao'])) {

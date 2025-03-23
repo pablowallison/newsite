@@ -58,6 +58,7 @@ class Route
     public static function run()
 {
     $args = $_REQUEST;
+    //var_dump($args);
     $callback = null;
 
     // Verifica se o parâmetro 'action' existe e é uma string

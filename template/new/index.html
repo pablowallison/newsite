@@ -1312,6 +1312,17 @@
     </a>
     <!-- back-to-top-end -->
     <!-- Jquery Js -->
+    <!-- Limpa os inputs que são passados como $args via get -->
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const inputs = e.target.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                if (!input.value || input.value.trim() === '') {
+                    input.disabled = true;
+                }
+            });
+        });
+    </script>
     <script src="./template/{{theme}}/assets/js/vendor/jquery-3.6.3.min.js"></script>
     <script src="./template/{{theme}}/assets/js/vendor/bootstrap.min.js"></script>
     <script src="./template/{{theme}}/assets/js/vendor/jquery-appear.js"></script>
