@@ -433,11 +433,11 @@
                         {%for p in 1..totalPaginas %}
                         {% if p == paginaAtual %}
                         <li><a class="active"
-                                href="?action&page={{ p }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{
+                                href="?page={{ p }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{
                                 p }}</a></li>
                         {% elseif p == 1 or p == totalPaginas or (p >= paginaAtual - 2 and p <= paginaAtual + 2) %} <li>
                             <a
-                                href="?action=search&page={{ p }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{
+                                href="?page={{ p }}{% if args.pretensao %}&pretensao={{ args.pretensao }}{% endif %}{% if args.tipo_imovel %}&tipo_imovel={{ args.tipo_imovel }}{% endif %}{% if args.localizacao %}&localizacao={{ args.localizacao }}{% endif %}{% if args.preco %}&preco={{ args.preco }}{% endif %}{% if args.quartos %}&quartos={{ args.quartos }}{% endif %}{% if args.banheiros %}&banheiros={{ args.banheiros }}{% endif %}">{{
                                 p }}</a></li>
 
                             {% elseif p == paginaAtual - 3 or p == paginaAtual + 3 %}
