@@ -291,7 +291,7 @@ $route->add('blogs', function($args) use ($twig) {
 
 });
 
-$route->add('blog', function($args) use ($twig) {
+$route->add('blog-detail', function($args) use ($twig) {
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
