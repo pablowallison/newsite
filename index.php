@@ -271,7 +271,7 @@ $route->add('about', function($args) use ($twig) {
 
 
     // Renderiza a view utilizando Twig
-    renderLayout($twig, 'blogs.html', $data);
+    renderLayout($twig, 'about.html', $data);
 
 });
 
