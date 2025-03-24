@@ -77,24 +77,40 @@ $route->add('home', function($args) use ($twig) {
             $imoveis[] = $imovel;
         }
         
-         // Define o bairro do imóvel
+        if(isset($imovel['bairro'])){
+            $bairroLink = $imovel['bairro'];
+            // Converte a string para minúsculas usando codificação UTF-8
+            $bairroLink = mb_strtolower($bairroLink);
+            // Remove acentos convertendo os caracteres para a representação ASCII
+            $bairroLink = iconv('UTF-8', 'ASCII//TRANSLIT', $bairroLink);
+            // Remove caracteres especiais (mantém apenas letras, números e espaços)
+            $bairroLink = preg_replace('/[^a-z0-9 ]/', '', $bairroLink);
+            // Remove espaços extras (opcional)
+            $bairroLink = trim(preg_replace('/\s+/', ' ', $bairroLink));
+            $bairroLink = str_replace(' ', '+', $bairroLink);
+        }
+         
+        // Define o bairro do imóvel
+        //$bairro = str_replace('+',' ',$imovel['bairro']);
          $bairro = $imovel['bairro'];
-
+        //var_dump($bairroLink);
+        
         // Verifica se o bairro foi definido
         if($imovel['bairro']){
             if (!isset($imoveisAgrupados[$bairro])) {
                 $imoveisAgrupados[$bairro] = [
                     'bairro' => $bairro,
                     'total' => 0,
+                    'bairroLink' => $bairroLink,
                     'imoveis' => []  // Aqui serão armazenados os imóveis deste bairro
                 ];
             }
-
+            
             // Incrementa a contagem e adiciona o imóvel ao agrupamento
             $imoveisAgrupados[$bairro]['total']++;
             $imoveisAgrupados[$bairro]['imoveis'][] = $imovel;
         }
-        
+        //var_dump($imoveisAgrupados);
         //var_dump($imovel[0]);
     }
     //var_dump($imoveisAgrupados);
