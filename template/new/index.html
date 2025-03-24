@@ -1148,7 +1148,9 @@
             <section class="pt-40 pb-80 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="partners-slider">
                     {% for logo in logos_partners %}
+                    {% if logo.deleted_at == null %}
                     <div class="partner-block"><img src="{{cdn}}/{{logo.path_image}}" alt="{{logo.title}}"></div>
+                    {% endif %}
                     {% endfor %}
                     <!--<div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-2.png" alt=""></div>
                     <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-3.png" alt=""></div>
