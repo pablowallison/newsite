@@ -385,7 +385,18 @@ $route->add('search', function($args) use ($twig) {
     }
 
     if (!empty($args['localizacao'])) {
+        
+        // Converte a string para minúsculas usando codificação UTF-8
+        $args['localizacao'] = mb_strtolower($args['localizacao']);
+        // Remove acentos convertendo os caracteres para a representação ASCII
+        $args['localizacao'] = iconv('UTF-8', 'ASCII//TRANSLIT', $args['localizacao']);
+        // Remove caracteres especiais (mantém apenas letras, números e espaços)
+        $args['localizacao'] = preg_replace('/[^a-z0-9 ]/', '', $args['localizacao']);
+        // Remove espaços extras (opcional)
+        $string = trim(preg_replace('/\s+/', ' ', $args['localizacao']));
+        
         $filters[] = ['bairro', 'LIKE', '%' . $args['localizacao'] . '%'];
+        
     }
 
     if (!empty($args['preco'])) {
