@@ -393,7 +393,7 @@ $route->add('search', function($args) use ($twig) {
         // Remove caracteres especiais (mantém apenas letras, números e espaços)
         $args['localizacao'] = preg_replace('/[^a-z0-9 ]/', '', $args['localizacao']);
         // Remove espaços extras (opcional)
-        $string = trim(preg_replace('/\s+/', ' ', $args['localizacao']));
+        $args['localizacao'] = trim(preg_replace('/\s+/', ' ', $args['localizacao']));
         
         $filters[] = ['bairro', 'LIKE', '%' . $args['localizacao'] . '%'];
         
