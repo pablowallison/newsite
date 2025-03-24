@@ -1147,8 +1147,10 @@
             <!-- Partnerss Area Start -->
             <section class="pt-40 pb-80 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="partners-slider">
-                    <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-1.png" alt=""></div>
-                    <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-2.png" alt=""></div>
+                    {% for logo in logos_partners %}
+                    <div class="partner-block"><img src="{{cdn}}/{{logo.path_image}}" alt="{{logo.title}}"></div>
+                    {% endfor %}
+                    <!--<div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-2.png" alt=""></div>
                     <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-3.png" alt=""></div>
                     <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-4.png" alt=""></div>
                     <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-5.png" alt=""></div>
@@ -1156,7 +1158,7 @@
                     <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-2.png" alt=""></div>
                     <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-3.png" alt=""></div>
                     <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-4.png" alt=""></div>
-                    <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-5.png" alt=""></div>
+                    <div class="partner-block"><img src="./template/{{theme}}/assets/media/partners/partner-5.png" alt=""></div>-->
                 </div>
             </section>
             <!-- Partnerss Area End -->

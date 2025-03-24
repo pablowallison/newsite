@@ -36,10 +36,14 @@ function renderLayout($twig, $template, $data = []) {
     $iconeSite = './imagens/assets/icon.svg';
     //var_dump($iconeSite);
     
+    $logosPartners = new \App\LogosPartnersService();
+    $resultLogosPartners = $logosPartners->loadAll();
+    //var_dump($resultLogosPartners);
 
     $data['dropdown_categoria_imoveis'] = $resultCategoriaImoveis['data'];
     $data['dropdown_tipo_imoveis'] = $resultTipoImoveis['data']['tipo_imoveis'];
     $data['contagem_por_tipo'] = $resultTipoImoveis['data']['contagem_por_tipo'];
+    $data['logos_partners'] = $resultLogosPartners['data'];
     $data['url'] = URL;
     $data['cdn'] = CDN;
     $data['theme'] = THEME;
@@ -384,7 +388,11 @@ $route->add('destaques', function($args) use ($twig) {
 
 $route->add('search', function($args) use ($twig) {
     
-    
+    //faz o tratamento do parametro localizacao
+    if(isset($args['localizacao'])){
+        
+        $args['localizacao'] = str_replace('+', ' ', $args['localizacao']);
+    }
     //var_dump($args);
     
     // Captura os dados do formulário enviados via GET

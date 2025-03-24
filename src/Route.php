@@ -58,12 +58,6 @@ class Route
     public static function run()
 {
     $args = $_REQUEST;
-    
-    if(isset($args['localizacao'])){
-        
-        $args['localizacao'] = str_replace('+', ' ', $args['localizacao']);
-    }
-    
     //var_dump($args['localizacao']);
 
     //var_dump($args);
