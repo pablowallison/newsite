@@ -1,0 +1,49 @@
+<!-- Slider Item -->
+{% for imovel in imoveis %}
+{% if imovel.destaque == 1 %}
+<div class="property-card">
+    <div class="img-block image-anime">
+        {% if imovel.imagens|length > 0 %}
+        <img class="property-img" src="{{ cdn }}/{{ imovel.imagens[0].imagem }}" style="height: 200px; width: 100%; object-fit: cover;" alt="">
+        {% endif %}
+        <a href="imovel/{{imovel.id}}" class="detail-link">Ver detalhes</a>
+        <h6 style="border-radius: 20px; background: #FFFFFF; color: #131110; font-size: 13px; line-height: 120%; padding: 4px 12px; position: absolute; z-index: 99; top: 16px; right: 16px; transition: all 0.3s ease-in;">{%if imovel.destaque == 1%}Em destaque{% endif %}</h6>
+        <img class="category-title-bg" src="./template/{{theme}}/assets/media/shapes/card-tag-bg.png" alt="">
+        <h6 class="category-title">{{ imovel.categoria_imoveis }}</h6>
+    </div>
+    <div class="text-block">
+        <a href="imovel/{{imovel.id}}" class="title h5 mb-8">{{ imovel.titulo }}</a>
+        <div class="location mb-24">
+            <img src="./template/{{theme}}/assets/media/icons/location.svg" alt="">
+            <span>Bairro {{ imovel.bairro }}</span>
+        </div>
+        <h6 class="price color-primary mb-24">R$ {{ imovel.preco }}</h6>
+        <ul class="unstyled amenities">
+            {% if imovel.quarto %}
+            <li>
+                <img src="./template/{{theme}}/assets/media/icons/bed.svg" alt="">
+                <span>{{ imovel.quarto }} {{imovel.quarto == 1 ? 'Quarto' : 'Quartos'}}</span>
+            </li>
+            {% endif %}
+            {% if imovel.banheiro %}
+            <li>
+                <img src="./template/{{theme}}/assets/media/icons/shower.svg" alt="">
+                <span>{{ imovel.banheiro }} {{ imovel.banheiro == 1 ? 'Banheiro' : 'Banheiros' }}</span>
+            </li>
+            {% endif %}
+            {% if imovel.area_construida %}
+            <li>
+                <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                <span>{{ imovel.area_construida }}m²</span>
+            </li>
+            {% else %}
+            <li>
+                <img src="./template/{{theme}}/assets/media/icons/area.svg" alt="">
+                <span>{{ imovel.area_terreno }}m²</span>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
