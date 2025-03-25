@@ -30,7 +30,7 @@ function renderLayout($twig, $template, $data = []) {
     // Carrega os tipos de imóveis
     $TipoImoveis = new \App\TipoImoveisService();
     $resultTipoImoveis = $TipoImoveis->loadAll();
-    //var_dump($resultTipoImoveis['data']);   
+    //var_dump($resultTipoImoveis);   
 
     //Armazena o ícone do site
     $iconeSite = './imagens/assets/icon.svg';
@@ -67,69 +67,49 @@ $route->add('', function($args) use ($twig) {
 });
 
 $route->add('home', function($args) use ($twig) {
-    
-      
-    //var_dump($args);
+
     $results = new \App\ImoveisService();
     $result = $results->loadAll();
-    //var_dump($result['data']['0']['imagens']);
-    
-    // Verifica se o imóvel está ativo e formata o preço
-    foreach($result['data']['imoveis'] as &$imovel){
+
+    // Inicializa os arrays
+    $imoveis = [];
+    $imoveisAgrupados = [];
+
+    // Percorre os imóveis e trabalha apenas com os ativos
+    foreach ($result['data']['imoveis'] as &$imovel) {
         if ($imovel['status'] == 1) {
+            // Formata o preço e adiciona ao array de imóveis ativos
             $imovel['preco'] = number_format($imovel['preco'], 2, ',', '.');
             $imoveis[] = $imovel;
-        }
-        
-        if(isset($imovel['bairro'])){
-            $bairroLink = $imovel['bairro'];
-            // Converte a string para minúsculas usando codificação UTF-8
-            $bairroLink = mb_strtolower($bairroLink);
-            // Remove acentos convertendo os caracteres para a representação ASCII
-            $bairroLink = iconv('UTF-8', 'ASCII//TRANSLIT', $bairroLink);
-            // Remove caracteres especiais (mantém apenas letras, números e espaços)
-            $bairroLink = preg_replace('/[^a-z0-9 ]/', '', $bairroLink);
-            // Remove espaços extras (opcional)
-            $bairroLink = trim(preg_replace('/\s+/', ' ', $bairroLink));
-            $bairroLink = str_replace(' ', '+', $bairroLink);
-        }
-         
-        // Define o bairro do imóvel
-        //$bairro = str_replace('+',' ',$imovel['bairro']);
-         $bairro = $imovel['bairro'];
-        //var_dump($bairroLink);
-        
-        // Verifica se o bairro foi definido
-        if($imovel['bairro']){
-            if (!isset($imoveisAgrupados[$bairro])) {
-                $imoveisAgrupados[$bairro] = [
-                    'bairro' => $bairro,
-                    'total' => 0,
-                    'bairroLink' => $bairroLink,
-                    'imoveis' => []  // Aqui serão armazenados os imóveis deste bairro
-                ];
-            }
-            
-            // Incrementa a contagem e adiciona o imóvel ao agrupamento
-            $imoveisAgrupados[$bairro]['total']++;
-            $imoveisAgrupados[$bairro]['imoveis'][] = $imovel;
-        }
-        //var_dump($imoveisAgrupados);
-        //var_dump($imovel[0]);
-    }
-    //var_dump($imoveisAgrupados);
-    
-    // Verifica se o imóvel está ativo e formata o preço
-    foreach($result['data']['imoveis'] as &$imovel){
-        
-        //var_dump($imovel[0]);
-    }
 
-    /*if ($imoveis['status'] == 1) {
-        $imoveis['preco'] = number_format($imoveis['preco'], 2, ',', '.');
-        $imoveis[] = $imoveis;
-    }*/
-    //var_dump($imoveis);
+            // Processa o link do bairro, se definido
+            if (isset($imovel['bairro'])) {
+                $bairroLink = $imovel['bairro'];
+                $bairroLink = mb_strtolower($bairroLink);
+                $bairroLink = iconv('UTF-8', 'ASCII//TRANSLIT', $bairroLink);
+                $bairroLink = preg_replace('/[^a-z0-9 ]/', '', $bairroLink);
+                $bairroLink = trim(preg_replace('/\s+/', ' ', $bairroLink));
+                $bairroLink = str_replace(' ', '+', $bairroLink);
+            }
+
+            // Define o bairro e agrupa os imóveis ativos por bairro
+            $bairro = $imovel['bairro'];
+            if ($bairro) {
+                if (!isset($imoveisAgrupados[$bairro])) {
+                    $imoveisAgrupados[$bairro] = [
+                        'bairro' => $bairro,
+                        'total' => 0,
+                        'bairroLink' => $bairroLink,
+                        'imoveis' => [] // Aqui serão armazenados os imóveis deste bairro
+                    ];
+                }
+
+                // Incrementa a contagem e adiciona o imóvel ativo ao agrupamento
+                $imoveisAgrupados[$bairro]['total']++;
+                $imoveisAgrupados[$bairro]['imoveis'][] = $imovel;
+            }
+        }
+    }
 
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
@@ -145,6 +125,7 @@ $route->add('home', function($args) use ($twig) {
     // Renderiza a view utilizando Twig
     renderLayout($twig, 'index.html', $data);
 });
+
 
 $route->add('imovel', function($args) use ($twig) {
     //TRATA OS DADOS DO FORMULÁRIO
