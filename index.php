@@ -413,7 +413,7 @@ $route->add('search', function($args) use ($twig) {
     
     //implementa a paginação na busca
     $page = !empty($args['page']) ? (int) $args['page'] : 1;
-    $perPage = 4;
+    $perPage = 8;
     $offset = ($page - 1) * $perPage;
 
     // Adiciona mais filtros conforme necessário
