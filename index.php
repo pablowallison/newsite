@@ -374,7 +374,7 @@ $route->add('search', function($args) use ($twig) {
         
         $args['localizacao'] = str_replace('+', ' ', $args['localizacao']);
     }
-    //var_dump($args);
+    var_dump($args);
     
     // Captura os dados do formulário enviados via GET
     $filters = [];
