@@ -204,8 +204,7 @@
                                     referrerpolicy="no-referrer-when-downgrade">
                                 </iframe>
                             </div>-->
-                            {% set lat = coordenadas.latitude %}
-                            {% set lon = coordenadas.longitude %}
+                            
                             {% set margin = 0.01 %}
 
                             <iframe
@@ -215,7 +214,7 @@
                             scrolling="no"
                             marginheight="0"
                             marginwidth="0"
-                            src="https://www.openstreetmap.org/export/embed.html?bbox={{ lon - margin }}%2C{{ lat - margin }}%2C{{ lon + margin }}%2C{{ lat + margin }}&layer=mapnik&marker={{ lat }}%2C{{ lon }}"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox={{ coordenadas.longitude - margin }}%2C{{ coordenadas.latitude - margin }}%2C{{ coordenadas.longitude + margin }}%2C{{ coordenadas.latitude + margin }}&layer=mapnik&marker={{ coordenadas.latitude }}%2C{{ coordenadas.longitude }}"
                             style="border: 1px solid black">
                             </iframe>
 
