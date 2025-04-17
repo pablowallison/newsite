@@ -71,7 +71,7 @@ class MapsService {
                 return $coordenadas;
             } else {
                 // Nenhum resultado retornado pela API do Nominatim
-                echo "Nenhum resultado encontrado para o endereço informado.";
+                //echo "Nenhum resultado encontrado para o endereço informado.";
                 return null;
             }
 
