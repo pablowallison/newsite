@@ -72,7 +72,8 @@ class GoogleMapsService{
             ];
 
         } else {
-            echo "Erro ao geocodificar o endereço: " . $dados['status'];
+            return NULL;
+            //echo "Erro ao geocodificar o endereço: " . $dados['status'];
         }
 
         return $coordenadas;
