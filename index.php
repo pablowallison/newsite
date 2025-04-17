@@ -192,7 +192,7 @@ $route->add('imovel', function($args) use ($twig) {
         'imovel' => $result['data']['0'],
         'imoveis' => $imoveisAll,
         'imovel_id' => intval(isset($args['params'][0]) ? $args['params'][0] : $args['id']),
-        'coordenadas' => $coordenadas,
+        'coordenadas' => isset($coordenadas) ? $coordenadas : null,
         'action' => isset($args['action']) ? $args['action'] : 'home'
     ];
 
