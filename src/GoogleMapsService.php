@@ -39,6 +39,8 @@ class GoogleMapsService{
 
         // Monta a URL da requisição
         $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$enderecoCodificado}&key={$this->apiKey}";
+        //$url = "https://nominatim.openstreetmap.org/search?format=json&q={$enderecoCodificado}";
+
         
         // Inicializa o cURL
         $ch = curl_init();
@@ -71,9 +73,11 @@ class GoogleMapsService{
                 'longitude' => $longitude
             ];
 
+            //var_dump($coordenadas);
+
         } else {
-            return NULL;
-            //echo "Erro ao geocodificar o endereço: " . $dados['status'];
+            //return NULL;
+            echo "Erro ao geocodificar o endereço: " . $dados['status'];
         }
 
         return $coordenadas;

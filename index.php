@@ -178,7 +178,7 @@ $route->add('imovel', function($args) use ($twig) {
     //var_dump($result['data']['0']);
     
     // Verifica se a requisição foi bem-sucedida
-    $geolocalizacao = new \App\GoogleMapsService();
+    $geolocalizacao = new \App\MapsService();
     $coordenadas = $geolocalizacao->loadCoord($result);
     //var_dump($coordenadas);
 
