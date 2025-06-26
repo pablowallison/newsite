@@ -367,6 +367,21 @@ $route->add('destaques', function($args) use ($twig) {
     renderLayout($twig, 'venda.html', $data);
 });
 
+$route->add('simulacao', function($args) use ($twig) {
+    
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
+
+    // Dados para renderizar na view
+    $data = [
+        'title' => 'Concretiza Construções',
+        'active' => $classActive,
+    ];
+
+    // Renderiza a view utilizando Twig
+    renderLayout($twig, 'simulator.html', $data);
+});
+
 $route->add('search', function($args) use ($twig) {
     
     //faz o tratamento do parametro localizacao
