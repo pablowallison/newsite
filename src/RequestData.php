@@ -56,7 +56,7 @@ class RequestData {
     }
 
     public function requisicao($url, $method = 'POST', $data = null, $headers = []) {
-        var_dump($data);
+        //var_dump($data);
         $ch = curl_init();
     
         // Configuração do método

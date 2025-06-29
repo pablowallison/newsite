@@ -371,6 +371,181 @@ $route->add('simulacao', function($args) use ($twig) {
     
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
+    
+    //echo date_default_timezone_get();      // deve exibir America/Boa_Vista
+    //echo date('Y-m-d H:i:s'); 
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
+
+        /* ----------------------------------------------------------
+         * 1) Coleta e higienização (“sanitize”)
+         * ---------------------------------------------------------- */
+    
+        // Nome: remove tags, converte entidades, tira espaços duplicados
+        $full_name = trim(
+            preg_replace('/\s{2,}/', ' ',
+                htmlspecialchars(
+                    filter_input(INPUT_POST, 'full_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '',
+                    ENT_QUOTES,
+                    'UTF-8'
+                )
+            )
+        );
+    
+        // Telefone: pega só dígitos (ex.: “(99) 99999-9999” → “99999999999”)
+        $phone_number = trim(
+            preg_replace('/\D/', '',
+                filter_input(INPUT_POST, 'phone_number', FILTER_SANITIZE_NUMBER_INT) ?? ''
+            )
+        );
+    
+        // CPF: mantém só dígitos (opcional: validar algoritmo)
+        $cpf = trim(
+            preg_replace('/\D/', '',
+                filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_NUMBER_INT) ?? ''
+            )
+        );
+    
+        // Data de nascimento: tipo “YYYY-MM-DD” vindo do <input type="date">
+        $birth_raw   = trim(filter_input(INPUT_POST, 'birth_date', FILTER_UNSAFE_RAW) ?? '');
+        $birth_clean = preg_replace('/[^0-9\-]/', '', $birth_raw); // apenas dígitos e “-”
+    
+        // Renda bruta: permite casas decimais
+        $gross_income = filter_input(
+            INPUT_POST,
+            'gross_income',
+            FILTER_SANITIZE_NUMBER_FLOAT,
+            FILTER_FLAG_ALLOW_FRACTION
+        );
+        $gross_income = trim($gross_income);
+    
+        // Demais campos de seleção/radio
+        $gender              = filter_input(INPUT_POST, 'gender',          FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $marital_status      = filter_input(INPUT_POST, 'marital_status',  FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $has_minor_child     = filter_input(INPUT_POST, 'has_minor_child', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $employed_over_3yrs  = filter_input(INPUT_POST, 'employed_over_3_years', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+        /* ----------------------------------------------------------
+         * 2) Validação (“validate”)
+         * ---------------------------------------------------------- */
+    
+        $errors = [];
+    
+        // Nome não vazio
+        if ($full_name === '') {
+            $errors[] = 'Nome obrigatório.';
+        }
+    
+        // Telefone: 10 ou 11 dígitos no Brasil
+        if (!preg_match('/^\d{10,11}$/', $phone_number)) {
+            $errors[] = 'Telefone inválido.';
+        }
+        
+        // Montagem: 55 (código do Brasil) + DDD + número SEM o “9”
+        $ddd        = substr($phone_number, 0, 2);  // dois primeiros dígitos
+        $semNove    = substr($phone_number, 3);      // pula o dígito 3 (o “9”)
+        $chatNumber = '55' . $ddd . $semNove;    // ex.: 551187654321*/
+        //var_dump($chatNumber);
+
+        // CPF: 11 dígitos + algoritmo (exemplo simples: só checa tamanho)
+        if (!preg_match('/^\d{11}$/', $cpf)) {
+            $errors[] = 'CPF inválido.';
+        }
+        // → implemente aqui o validador de dígitos verificadores se precisar.
+    
+        // Data de nascimento
+        $birth_date = false;
+        $dt = DateTime::createFromFormat('Y-m-d', $birth_clean);
+        if ($dt && $dt->format('Y-m-d') === $birth_clean) {
+            $birth_date = $dt->format('Y-m-d');  // normalizada
+        } else {
+            $errors[] = 'Data de nascimento inválida.';
+        }
+    
+        // Renda bruta ≥ 0
+        if ($gross_income === '' || !is_numeric($gross_income) || $gross_income < 0) {
+            $errors[] = 'Renda bruta inválida.';
+        } else {
+            $gross_income = (float) $gross_income;
+        }
+    
+        // Valores esperados para campos de escolha
+        if (!in_array($gender, ['M', 'F'], true)) {
+            $errors[] = 'Gênero inválido.';
+        }
+        if (!in_array($marital_status, ['single', 'married'], true)) {
+            $errors[] = 'Estado civil inválido.';
+        }
+        if (!in_array($has_minor_child, ['1', '0'], true)) {
+            $errors[] = 'Campo “Filho menor de idade” inválido.';
+        }
+        if (!in_array($employed_over_3yrs, ['1', '0'], true)) {
+            $errors[] = 'Campo “Tempo de carteira” inválido.';
+        }
+
+        $createdAt = (new DateTime('now'))->format('Y-m-d H:i:s');
+         
+    
+        /* ----------------------------------------------------------
+         * 3) Resultado
+         * ---------------------------------------------------------- */
+    
+        if ($errors) {
+            // Trate como desejar: salvar log, redirecionar, exibir ao usuário etc.
+            var_dump($errors);
+            exit;
+        }
+        
+        //var_dump($chatNumber);
+        // Pronto: dados prontos para inserção/uso seguro
+        $postData = [
+            'data' => [
+                'system_users_id' => 1,
+                'nome'                 => $full_name,
+                'telefone'             => $phone_number,
+                'chatNumber'           => $chatNumber, 
+                'documento'                  => $cpf,
+                'data_nascimento'      => $birth_date,   // ISO “YYYY-MM-DD”
+                'renda_familiar'          => $gross_income, // float
+                'genero_msc_fem'               => $gender,
+                'estado_civil'         => $marital_status,
+                'dependente'          => $has_minor_child,
+                'periodo_trabalho'    => $employed_over_3yrs,
+                'created_at'        => $createdAt, 
+            ]
+        ];
+
+        $guruResquest = new \App\ChatGuruService();
+        $resultGuru = $guruResquest->cadastrarChat($postData);
+
+        $result = new \App\LeadsService();
+        $resultAll = $result->lead($postData);
+    
+        //var_dump($resultAll);
+        // continue com a gravação, envio de e-mail etc.
+    }
+    
+
+    /*if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sendmessage'])) {
+        // Bloco de código a ser executado quando o botão for clicado
+    
+        //$full_name = filter_input(INPUT_POST, 'full_name', FILTER_SANITIZE_NUMBER_INT);
+        $full_name = trim(htmlspecialchars(filter_input(INPUT_POST, 'full_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
+        //$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $phone_number = trim(preg_replace('/\D/', '', filter_input(INPUT_POST, 'phone_number', FILTER_SANITIZE_NUMBER_INT) ?? ''));
+        $cpf = trim(htmlspecialchars(filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? ''));
+        $mensagem = trim(htmlspecialchars(filter_input(INPUT_POST, 'message_lead', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?? '', ENT_QUOTES, 'UTF-8'));
+        $birth_date = t
+
+        $postData = [
+            'data' => [
+                'imoveis_id'   => intval($imoveis_id) ?: null,
+                'nome'         => $nome,
+                'email'        => $email,
+                'telefone'     => $telefone,
+                'message_lead' => $mensagem
+            ]
+        ];*/
 
     // Dados para renderizar na view
     $data = [
@@ -379,7 +554,7 @@ $route->add('simulacao', function($args) use ($twig) {
     ];
 
     // Renderiza a view utilizando Twig
-    renderLayout($twig, 'simulator.html', $data);
+    renderLayout($twig, 'simulation.html', $data);
 });
 
 $route->add('search', function($args) use ($twig) {
