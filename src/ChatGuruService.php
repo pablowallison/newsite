@@ -31,7 +31,8 @@
     $payload  = [
         'action'       => 'chat_add',
         'name'         => $param['data']['nome'],
-        'text'         => "Olá, gostaria de simular as condições de financiamento, 
+        'text'         => "Olá, você gostaria de simular as condições de financiamento,
+                        com os dados abaixo: 
                         Nome completo: {$param['data']['nome']}, 
                         Telefone: {$param['data']['telefone']},
                         Renda: {$param['renda_familiar']}.
