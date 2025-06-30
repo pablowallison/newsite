@@ -924,12 +924,16 @@
                         </a>
                     </div>
                     <div class="gallery-slider wow fadeInUp" data-wow-delay="0.8s">
+                        {% for post in instagram %}
+                        {% if post.type == 'IMAGE' or post.type == 'CAROUSEL_ALBUM' %}
                         <div class="col">
                             <div class="img-block image-anime">
-                                <img src="./template/{{theme}}/assets/media/gallery/gallery-1.png" alt="">
+                                <img src="{{ post.url }}" alt="{{ post.alt|e }}">
                             </div>
                         </div>
-                        <div class="col">
+                        {% endif %}
+                        {% endfor %}
+                        <!--<div class="col">
                             <div class="img-block image-anime">
                                 <img src="./template/{{theme}}/assets/media/gallery/gallery-2.png" alt="">
                             </div>
@@ -963,9 +967,9 @@
                             <div class="img-block image-anime">
                                 <img src="./template/{{theme}}/assets/media/gallery/gallery-8.png" alt="">
                             </div>
-                        </div>
+                        </div>-->
                     </div>
-
+                    
                 </div>
             </section>
             <!-- Gallery Area End --> 

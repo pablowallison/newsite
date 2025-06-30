@@ -3,6 +3,12 @@
 require_once __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/init.php';
 
+$cacheDir = __DIR__ . '/storage/cache';
+    
+if (!is_dir($cacheDir)) {
+    mkdir($cacheDir, 0777, true);   // cria se não existir
+}
+
 define('ROOT', getcwd());
 //var_dump(ROOT);
 define('URL', $config['url']);
@@ -66,7 +72,7 @@ $route->add('', function($args) use ($twig) {
     exit();
 });
 
-$route->add('home', function($args) use ($twig) {
+$route->add('home', function($args) use ($twig, $cacheDir) {
 
     $results = new \App\ImoveisService();
     $result = $results->loadAll();
@@ -111,6 +117,23 @@ $route->add('home', function($args) use ($twig) {
         }
     }
 
+    $tokenInstagram = "IGAAKIFBiuMZAFBZAFBlQmFxbWluQll3eWdIWWdaeFR6QjBkZAVlZANG04Si01ZA18taWltQlBCd19IeGVubU5HZAHBqbEtMc21ZAeWNBYV83clhnS2ZAWR1NQQkd0ZAkhrYVhLVVU5NlIxYXBudmp1elJablFZASmdNbFlqUUNxNjJSRTRkYwZDZD";
+    /* ---------- Instagram ---------- */
+    $feedService = new \App\InstagramService(
+        new \App\InstagramApi(
+            new \App\InstagramRequest(),
+            $tokenInstagram,                                           // token de 60 dias
+            'id,caption,media_url,permalink,media_type,thumbnail_url,timestamp'     // campos que vai usar
+        ),
+        new \App\InstagramFileCache($cacheDir),
+        3600                                                              // TTL 1 h
+    );
+    $instaFeed = $feedService->get(); // 20 últimos posts
+
+    foreach($instaFeed as $insta){
+        //var_dump($insta);
+    }
+    
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
 
@@ -119,7 +142,8 @@ $route->add('home', function($args) use ($twig) {
         'title' => 'Concretiza Construções',
         'active' => $classActive,
         'imoveis' => $imoveis,
-        'imoveisAgrupados' => $imoveisAgrupados
+        'imoveisAgrupados' => $imoveisAgrupados,
+        'instagram' => $instaFeed, 
     ];
 
     // Renderiza a view utilizando Twig
