@@ -35,7 +35,7 @@
                         com os dados abaixo: 
                         Nome completo: {$param['data']['nome']}, 
                         Telefone: {$param['data']['telefone']},
-                        Renda: {$param['renda_familiar']}.
+                        Renda: {$param['data']['renda_familiar']}.
                         CPF: {$param['data']['documento']},
                         Data de nascimento: {$param['data']['data_nascimento']},
                         Estado civil, {$param['data']['estado_civil']},
