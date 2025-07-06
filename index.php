@@ -150,6 +150,14 @@ $route->add('home', function($args) use ($twig, $cacheDir) {
     renderLayout($twig, 'index.html', $data);
 });
 
+$route->add('depoimento', function ($args) use ($twig){
+
+    $data = [];
+
+    // Renderiza a view utilizando Twig
+renderLayout($twig, 'testimony.html', $data);
+});
+
 
 $route->add('imovel', function($args) use ($twig) {
     //TRATA OS DADOS DO FORMULÁRIO
