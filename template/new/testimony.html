@@ -10,15 +10,15 @@
     <title>Realtor - HTML Template</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="./{{action}}/template/{{theme}}/assets/media/icon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="./template/{{theme}}/assets/media/icon.svg">
 
     <!-- All CSS files -->
-    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/all.min.css">
-    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/slick.css">
-    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/animate.min.css">
-    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/vendor/jquery.magnific-popup.css">
-    <link rel="stylesheet" href="./{{action}}/template/{{theme}}/assets/css/app.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/all.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/animate.min.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/vendor/jquery.magnific-popup.css">
+    <link rel="stylesheet" href="./template/{{theme}}/assets/css/app.css">
 
 </head>
 
@@ -95,15 +95,14 @@
                     <p class="eyebrow wow fadeInUp">Escreva e deixe seu depoimento abaixo</p>
                     <h2 class="wow fadeInUp" data-wow-delay="0.25s">Sua mensagem como contribuição é muito importante.</h2>
                 </div>
-
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
                         <!-- Contact Form start -->
-                        <form  method="post" action="contact.html" class="contact-form wow fadeInUp" data-wow-delay="0.75s">
+                        <form action="index.php?action=depoimento" method="POST" class="contact-action wow fadeInUp" data-wow-delay="0.75s">
                             <div class="row row-gap-3">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" name="name" required placeholder="Name*">
+                                        <input type="text" name="name" required placeholder="Nome*">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -113,22 +112,22 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="tel" name="tel" required placeholder="Phone number*">
+                                        <input type="tel" name="tel" required placeholder="Telefone*">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" name="subject" required placeholder="Subject*">
+                                        <input type="text" name="subject" required placeholder="Assunto*">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea name="message" rows="5" required placeholder="Message*"></textarea>
+                                        <textarea name="message" rows="5" required placeholder="Mensagem*"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="cus-btn w-100">
-                                        Send Message
+                                    <button type="submit" name="send" class="cus-btn w-100">
+                                        Enviar
                                         <svg viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M19.8759 7.98103C19.532 7.98103 19.2058 8.05711 18.9122 8.19234C18.6769 7.16583 17.7568 6.3975 16.6599 6.3975C16.3085 6.3975 15.9753 6.47667 15.6767 6.61762C15.4132 5.63128 14.5123 4.90252 13.4439 4.90252C13.123 4.90252 12.8171 4.96842 12.5391 5.0872V2.31113C12.5391 1.03673 11.5024 0 10.228 0C8.95358 0 7.9168 1.03673 7.9168 2.31113V13.3079L6.72515 11.5389L6.70649 11.5157C5.81427 10.4066 4.24457 10.1601 3.0554 10.9425C2.43355 11.3516 2.01229 11.9791 1.86913 12.7095C1.72686 13.4354 1.87738 14.171 2.29293 14.7823L6.54585 21.4861L6.56001 21.5076C7.63194 23.0682 9.40227 24 11.2956 24H16.0677C19.4419 24 22.187 21.2549 22.187 17.8807V10.2921C22.187 9.01777 21.1503 7.98103 19.8759 7.98103ZM20.7808 17.8807C20.7808 20.4795 18.6665 22.5938 16.0677 22.5938H11.2956C9.8698 22.5938 8.53644 21.8941 7.72626 20.7216L3.47394 14.0188L3.45979 13.9974C3.25405 13.6978 3.17929 13.3365 3.24913 12.9799C3.31902 12.6234 3.52471 12.317 3.82827 12.1173C4.40132 11.7403 5.15544 11.8527 5.59377 12.3765L9.32305 17.9123V2.31113C9.32305 1.81214 9.72899 1.40625 10.228 1.40625C10.727 1.40625 11.1328 1.81214 11.1328 2.31113V10.6528H12.5391V7.21369C12.5391 6.7147 12.945 6.30881 13.444 6.30881C13.943 6.30881 14.3488 6.7147 14.3488 7.21369V10.6528H15.7551V8.70862C15.7551 8.20964 16.161 7.80375 16.66 7.80375C17.159 7.80375 17.5648 8.20964 17.5648 8.70862V10.6528H18.9711V10.2922C18.9711 9.79317 19.377 9.38728 19.876 9.38728C20.375 9.38728 20.7808 9.79317 20.7808 10.2922V17.8807H20.7808Z" fill="#212627"/>
                                         </svg>
@@ -150,8 +149,8 @@
             <div class="container">
 
                 <div class="heading mb-64 text-center">
-                    <p class="eyebrow wow fadeInUp">Contact Us</p>
-                    <h2 class="wow fadeInUp" data-wow-delay="0.25s">Contact Details</h2>
+                    <p class="eyebrow wow fadeInUp">Fale com a nossa equipe</p>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.25s">Mais informações de contato</h2>
                 </div>
 
                 <div class="row row-gap-4">
@@ -159,11 +158,11 @@
                         <!-- Contact Detail Item Start -->
                         <div class="contact-detail-item wow fadeInUp" data-wow-delay="0.25s">
                             <div class="icon-box">
-                                <img src="./{{action}}/template/{{theme}}/assets/media/icons/icon-address.svg" alt="">
+                                <img src="./template/{{theme}}/assets/media/icons/icon-address.svg" alt="">
                             </div>
 
-                            <h3 class="mb-16">Address</h3>
-                            <p>131 Martens Place, Alexandra Hills, Australia.</p>
+                            <h3 class="mb-16">Endereço</h3>
+                            <p>Av. Dom Apparecido José Dias, 668, Cidade Satélite, Boa Vista/RR.</p>
                         </div>
                         <!-- Contact Detail Item End -->
                     </div>
@@ -172,11 +171,11 @@
                         <!-- Contact Detail Item Start -->
                         <div class="contact-detail-item wow fadeInUp" data-wow-delay="0.5s">
                             <div class="icon-box">
-                                <img src="./{{action}}/template/{{theme}}/assets/media/icons/icon-contactno.svg" alt="">
+                                <img src="./template/{{theme}}/assets/media/icons/icon-contactno.svg" alt="">
                             </div>
 
-                            <h3 class="mb-16">Phone</h3>
-                            <p>(+0) 123 456 789</p>
+                            <h3 class="mb-16">Telefone</h3>
+                            <p>+55 (95) 99117-9765</p>
                         </div>
                         <!-- Contact Detail Item End -->
                     </div>
@@ -185,11 +184,11 @@
                         <!-- Contact Detail Item Start -->
                         <div class="contact-detail-item wow fadeInUp" data-wow-delay="0.75s">
                             <div class="icon-box">
-                                <img src="./{{action}}/template/{{theme}}/assets/media/icons/icon-email-address.svg" alt="">
+                                <img src="./template/{{theme}}/assets/media/icons/icon-email-address.svg" alt="">
                             </div>
 
                             <h3 class="mb-16">Email</h3>
-                            <p>Info@domainname.com</p>
+                            <p>contato@concretizaimoveis.com</p>
                         </div>
                         <!-- Contact Detail Item End -->
                     </div>
@@ -203,7 +202,7 @@
             <div class="container">
                 <div class="heading mb-64 text-center">
                     <p class="eyebrow wow fadeInUp">Google Map</p>
-                    <h2 class="wow fadeInUp" data-wow-delay="0.25s">How to Reach us?</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.25s">Como nos achar?</h2>
                 </div>
                 <!-- Google Map Iframe Start -->
                 <div class="iframe-block wow fadeInUp" data-wow-delay="0.5s">
@@ -222,7 +221,7 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"></span>
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="./{{action}}/template/{{theme}}/assets/media/logo.png" alt="" class="invisible"></a>
+                <a href="index.html" aria-label="logo image"><img src="./template/{{theme}}/assets/media/logo.png" alt="" class="invisible"></a>
             </div>
             <div class="mobile-nav__container"></div>
             <ul class="mobile-nav__contact list-unstyled">
@@ -247,14 +246,15 @@
     <!-- back-to-top-end -->
   
     <!-- Jquery Js -->
-    <script src="./{{action}}/template/{{theme}}/assets/js/vendor/jquery-3.6.3.min.js"></script>
-    <script src="./{{action}}/template/{{theme}}/assets/js/vendor/bootstrap.min.js"></script>
-    <script src="./{{action}}/template/{{theme}}/assets/js/vendor/jquery-appear.js"></script>
-    <script src="./{{action}}/template/{{theme}}/assets/js/vendor/jquery.nice-select.min.js"></script>
-    <script src="./{{action}}/template/{{theme}}/assets/js/vendor/slick.min.js"></script>
-    <script src="./{{action}}/template/{{theme}}/assets/js/vendor/wow.js"></script>
-    <script src="./{{action}}/template/{{theme}}/assets/js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="./{{action}}/template/{{theme}}/assets/js/app.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery-3.6.3.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery-appear.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/slick.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/wow.js"></script>
+    <script src="./template/{{theme}}/assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="./template/{{theme}}/assets/js/app.js"></script>
+    <script src="./template/{{theme}}/assets/js/main.js"></script>
 
 </body>
 

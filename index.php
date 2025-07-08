@@ -16,6 +16,8 @@ define('CDN', $config['cdn']);
 define('THEME', $config['theme']);
 define('THEME_PATH', ROOT . '/template/' . THEME);
 
+//chdir(ROOT);
+//var_dump(ROOT);
 //var_dump($_SERVER);
 
 $urlAtual = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -150,9 +152,46 @@ $route->add('home', function($args) use ($twig, $cacheDir) {
     renderLayout($twig, 'index.html', $data);
 });
 
-$route->add('depoimento', function ($args) use ($twig){
+$route->add('depoimento', function($args) use ($twig){
 
-    $data = [];
+       
+    
+    // Determina a classe ativa para a página
+    $classActive = isset($args['action']) ? $args['action'] : 'home';
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $nome     = trim(filter_input(INPUT_POST, 'name',    FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $email    = filter_input(INPUT_POST, 'email',        FILTER_VALIDATE_EMAIL);
+        $telefone = preg_replace('/\D/', '',
+                     filter_input(INPUT_POST, 'tel',         FILTER_SANITIZE_NUMBER_INT));
+        $assunto  = trim(filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $mensagem = trim(filter_input(INPUT_POST, 'message', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+    
+        $postData = [
+                'nome'     => $nome,
+                'email'    => $email,
+                'telefone' => $telefone,
+                'assunto'  => $assunto,
+                'mensagem' => $mensagem
+            ];
+    
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode([
+            'success' => true,
+            'data'    => $postData
+        ]);
+        exit;
+    }
+
+    
+    
+
+    $data = [
+        'title' => 'Concretiza Construções',
+        'active' => $classActive,
+        'action' => isset($args['action']) ? $args['action'] : 'home'
+    ];
 
     // Renderiza a view utilizando Twig
 renderLayout($twig, 'testimony.html', $data);
@@ -399,20 +438,35 @@ $route->add('destaques', function($args) use ($twig) {
     renderLayout($twig, 'venda.html', $data);
 });
 
-$route->add('simulacao', function($args) use ($twig) {
+$route->add('simulacao', function($args) use ($twig, $config) {
     
     // Determina a classe ativa para a página
     $classActive = isset($args['action']) ? $args['action'] : 'home';
     
+    var_dump($_POST);
+    var_dump($config['accountId']);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])){
+        
+        //var_dump($config);
+        
+        $cfg     = new \App\ChatGuruConfig($config['accountId'], $config['phoneId'], $config['apiKey']);
+        var_dump($cfg);
+        $http    = new \App\CurlHttpClient();
+        $builder = new \App\LeadMessageBuilder();
+        $service = new \App\ChatGuruLeadService($cfg, $http, $builder);
+        
+        $result  = $service->cadastrarLead($_POST);
+        var_dump($result);
+    }
+    
+    
     //echo date_default_timezone_get();      // deve exibir America/Boa_Vista
     //echo date('Y-m-d H:i:s'); 
-
+    /*
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
 
-        /* ----------------------------------------------------------
-         * 1) Coleta e higienização (“sanitize”)
-         * ---------------------------------------------------------- */
-    
+        
         // Nome: remove tags, converte entidades, tira espaços duplicados
         $full_name = trim(
             preg_replace('/\s{2,}/', ' ',
@@ -456,11 +510,8 @@ $route->add('simulacao', function($args) use ($twig) {
         $marital_status      = filter_input(INPUT_POST, 'marital_status',  FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $has_minor_child     = filter_input(INPUT_POST, 'has_minor_child', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $employed_over_3yrs  = filter_input(INPUT_POST, 'employed_over_3_years', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    
-        /* ----------------------------------------------------------
-         * 2) Validação (“validate”)
-         * ---------------------------------------------------------- */
-    
+        
+        //validação
         $errors = [];
     
         // Nome não vazio
@@ -476,7 +527,7 @@ $route->add('simulacao', function($args) use ($twig) {
         // Montagem: 55 (código do Brasil) + DDD + número SEM o “9”
         $ddd        = substr($phone_number, 0, 2);  // dois primeiros dígitos
         $semNove    = substr($phone_number, 3);      // pula o dígito 3 (o “9”)
-        $chatNumber = '55' . $ddd . $semNove;    // ex.: 551187654321*/
+        $chatNumber = '55' . $ddd . $semNove;    // ex.: 551187654321
         //var_dump($chatNumber);
 
         // CPF: 11 dígitos + algoritmo (exemplo simples: só checa tamanho)
@@ -518,10 +569,8 @@ $route->add('simulacao', function($args) use ($twig) {
         $createdAt = (new DateTime('now'))->format('Y-m-d H:i:s');
          
     
-        /* ----------------------------------------------------------
-         * 3) Resultado
-         * ---------------------------------------------------------- */
-    
+        //resultado
+        
         if ($errors) {
             // Trate como desejar: salvar log, redirecionar, exibir ao usuário etc.
             var_dump($errors);
